@@ -1,0 +1,51 @@
+:root[data-theme='light-mode'] {  /*light mode here*/
+    --secondary-color: #000066;
+    --primary-color: #0000FF;
+    --tertiary-color: #4B7BF5;
+
+    --light-color: #C2E2F5;
+    --background-color: #ffffff;
+    --background-color-card: rgba(255, 255, 255, 0.6);
+    --border-color-card: #cccccc;
+
+    --primary-text-color: black;
+    --secondary-text-color: #2e2e2e;
+    --tertiary-text-color: #2e2e2e;
+    --primary-text-color-contrary: #ffffff;
+
+    --footer-color: #1a1a1a;
+    --copyright-footer-color: black;
+
+    --github-button-color: #333;
+    --button-color: var(--primary-color);
+
+    --blobcolor: rgba(245, 195, 15, 0.35);
+    --blobtwocolor: rgba(245, 195, 15, 0.35);
+    --blobthreecolor: rgba(245, 195, 15, 0.35);
+}
+
+:root[data-theme='dark-mode'] { /*dark mode here*/
+  --secondary-color: #000066;
+  --primary-color: #0000FF;
+  --tertiary-color: #4B7BF5;
+
+  --light-color: #C2E2F5;
+  --background-color: #00011a;
+  --background-color-card: rgba(0, 1, 35, 0.8);
+  --border-color-card: #3a3a3a;
+
+  --primary-text-color: #ffffff;
+  --secondary-text-color: #c7d2ff;
+  --tertiary-text-color: #ffffff;
+  --primary-text-color-contrary: #ffffff;
+
+  --footer-color: #1a1a1a;
+  --copyright-footer-color: black;
+
+  --github-button-color: #333;
+  --button-color: var(--primary-color);
+
+  --blobcolor: rgba(9, 142, 219, 0.35);
+  --blobtwocolor: rgba(139, 182, 250, 0.3);
+  --blobthreecolor: rgba(139, 122, 200, 0.3);
+}

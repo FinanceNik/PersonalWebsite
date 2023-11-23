@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" data-theme='light-mode'>
+<head>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body class="body">
+    <!-- get the navigation bar from the navigation-bar.html file -->
+    {% include 'global-templates/navigation-bar.html' %}
+    <div class="container">
+        <img src='{{ url_for("static", filename="blog_background.png") }}' alt="Your Image" style="width:100%">
+        <h1 class="centered-h1">PROJECT TITLE</h1>
+    </div>
+    <br>
+    <div class="project-outer">
+      <h4 style="font-size: 36px; font-weight: normal; width:100%; font-family: var(--fontfamily);">
+          Technologies used:
+      </h4>
+  <!-- HERE START THE TECH USED LOGOS -->
+      <div class="tech-used-outer">
+
+          <div class="used-logo">
+            <img src='{{ url_for("static", filename="python_logo.svg") }}' style="width:70px; ">
+          </div>
+
+          <div class="used-logo">
+            <img src='{{ url_for("static", filename="logo_docker.svg") }}' style="width:80px;">
+          </div>
+
+          <div class="used-logo">
+            <img src='{{ url_for("static", filename="google-cloud-seeklogo.com.svg") }}' style="width:80px;">
+          </div>
+
+         <div class="used-logo">
+            <img src='{{ url_for("static", filename="git_logo.svg") }}' style="width:140px;">
+          </div>
+
+      </div>
+  <!-- HERE END THE TECH USED LOGOS -->
+    <br>
+    <br>
+</div>
+<div class="project-outer-text">
+    <p>
+        Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text
+        Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text
+        Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text
+        Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text
+        Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Tfffext Text Text Text Text Text
+        Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text
+        Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text
+        Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text
+    </p>
+    <br>
+    <p>
+        SIJDFJIASDJIJASID Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text
+        Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text
+        Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text
+        Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text
+        Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text
+        Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text
+        Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text
+        Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text
+    </p>
+
+</div>
+
+
+
+        <!--
+    <div class="card">
+
+
+ <br>
+ <br>
+ <hr style="width:90%; margin-left:0;">
+<p>Text Text Text Text Text Text</p>
+ <br>
+  <img src='{{ url_for("static", filename="sports_dashboard_screenshot.png") }}' style="width:95%;">
+
+  <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+</div>
+ reference footer.html -->
+    {% include 'global-templates/footer.html' %}
+</body>
+</html>

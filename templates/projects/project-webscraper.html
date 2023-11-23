@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" data-theme='light-mode'>
+<head>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body class="body">
+    <!-- get the navigation bar from the navigation-bar.html file -->
+    {% include 'global-templates/navigation-bar.html' %}
+    <div class="container">
+        <img src='{{ url_for("static", filename="blog_background.png") }}' alt="Your Image" style="width:100%">
+        <h1 class="centered-h1">Our Projects</h1>
+    </div>
+    <br>
+
+    <div class="card">
+  <h2 style="font-size: 40px;">Sports Dashboard For Strava Data</h2>
+
+
+  <div class="tech-used-outer">
+      <h4 style="font-size: 20px; font-weight: normal; width:15%;">Technologies used:</h4>
+      <div class="used-logo">
+        <img src='{{ url_for("static", filename="python_logo.svg") }}' style="width:70px; ">
+      </div>
+      <div class="used-logo">
+        <img src='{{ url_for("static", filename="logo_docker.svg") }}' style="width:80px;">
+      </div>
+      <div class="used-logo">
+        <img src='{{ url_for("static", filename="google-cloud-seeklogo.com.svg") }}' style="width:80px;">
+      </div>
+     <div class="used-logo">
+        <img src='{{ url_for("static", filename="git_logo.svg") }}' style="width:140px;">
+      </div>
+  </div>
+ <br>
+ <br>
+ <hr style="width:90%; margin-left:0;">
+<p>This project was created because Strava - a popular sporting app only allows for its data to be reviews within the
+app once a user has paid for the premium version. Because these yearly statistics is what motivates me the most I
+decided to just create a yearly review dashboard myself and share it with whomever wants to analyze their own data.</p>
+ <br>
+  <img src='{{ url_for("static", filename="sports_dashboard_screenshot.png") }}' style="width:95%;">
+
+  <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+</div>
+    <!-- reference footer.html -->
+    {% include 'global-templates/footer.html' %}
+</body>
+</html>

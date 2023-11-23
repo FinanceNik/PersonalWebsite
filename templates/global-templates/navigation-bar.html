@@ -1,0 +1,102 @@
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css_components/navigation-bar.css') }}">
+</head>
+<header class="header container">
+    <!-- Logo -->
+    <img src="{{ url_for('static', filename='/image_assets/logo.png') }}" alt="Logo" class="header__logo">
+
+    <nav>
+        <ul class="header__menu">
+            <li id="home" class="">
+                <a class="header__link" href="/">Home</a>
+            </li>
+            <li id="projects" class="">
+                <a class="header__link" href="/projects">Projects</a>
+            </li>
+            <li id="services" class="">
+                <a class="header__link" href="/services">Services</a>
+            </li>
+            <li class="header__line"></li>
+            <li class="toggle-switch">
+                <img src="{{ url_for('static', filename='/image_assets/contrast.png') }}" alt="Logo"
+                     class="color-mode">
+                <input type="checkbox" id="theme-toggle" class="toggle"/>
+                <label for="theme-toggle"></label>
+                <img src="{{ url_for('static', filename='/image_assets/crescent-moon.png') }}" alt="Logo"
+                     class="color-mode">
+            </li>
+            <li class="header__line"></li>
+            <li class="language-switcher">
+                <select id="language-select" onchange="loadJSON(value)">
+                    <option value="en">en</option>
+                    <option value="de">de</option>
+                </select>
+            </li>
+            <li class="header__line"></li>
+            <li class="active">
+                <a class="header__contact button" href="/contact">Contact</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<!-- Mobile Navigation -->
+<div class="dropdown">
+    <a class="mobile-menu">Menu</a>
+    <div class="dropdown-content span">
+        <a href="/">Home</a>
+        <a href="/projects">Projects</a>
+        <a href="/services">Services</a>
+        <a href="/contact" style="background-color: var(--dark-color); color: var(--primary-text-color);">Contact</a>
+    </div>
+</div>
+<!-- End of Mobile Navigation -->
+<script>
+    // Function to load and display JSON data
+    function loadJSON(languageCode) {
+        // Use AJAX to fetch the JSON file
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                // Parse the JSON data
+                console.log(languageCode)
+                var jsonData = JSON.parse(xhr.responseText);
+                console.log(jsonData)
+
+                document.getElementById('hero-title').innerHTML = jsonData.herotitle.content;
+
+
+                // Display the JSON data (you can modify this part based on your JSON structure)
+                console.log(jsonData);
+            }
+        };
+
+        // Replace 'your_json_file.json' with the actual filename
+        var filename = languageCode + '.json';
+        xhr.open("GET", "/static/" + filename, true);
+        xhr.send();
+    }
+
+    // Call the function when the page is loaded
+    loadJSON();
+</script>
+<script>
+    const themeToggle = document.getElementById('theme-toggle');
+const currentTheme = localStorage.getItem('theme');
+
+if (currentTheme) {
+    document.documentElement.setAttribute('data-theme', currentTheme);
+    if (currentTheme === 'dark-mode') {
+        themeToggle.checked = true;
+    }
+}
+
+themeToggle.addEventListener('change', function () {
+    if (themeToggle.checked) {
+        document.documentElement.setAttribute('data-theme', 'dark-mode');
+        localStorage.setItem('theme', 'dark-mode');
+    } else {
+        document.documentElement.setAttribute('data-theme', 'light-mode');
+        localStorage.setItem('theme', 'light-mode');
+    }
+});
+</script>

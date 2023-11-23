@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap');
+@import "colors.css";
+
+:root {
+    --fontfamily: IBM Plex Mono;
+
+    /* sizes for responsiveness*/
+    --size-xxs: 0.5rem;
+    --size-xs: 0.75rem;
+    --size-sm: 0.875rem;
+    --size-base: 1rem;
+    --size-lg: 1.125rem;
+    --size-xl: 1.25rem;
+    --size-2xl: 1.5rem;
+    --size-3xl: 1.875rem;
+    --size-4xl: 2.25rem;
+    --size-5xl: 3rem;
+    --size-6xl: 3.75rem;
+    --size-7xl: 4.5rem;
+    --size-8xl: 6rem;
+    --size-9xl: 8rem;
+    --size-10xl: 10rem;
+}
+
+.footer {
+    background-color: var(--footer-color);
+    color: white;
+    padding: 20px 0;
+    display: flex;
+    justify-content: space-around;
+    font-family: var(--fontfamily);
+}
+
+.footer-inner {
+    background-color: rgb(0,0,0,0);
+    height: 100%;
+    text-align: left;
+    line-height: 2.0;
+    padding: 0px 0px 0px 15px;
+}
+
+.copyright-footer {
+    background-color: var(--copyright-footer-color);
+    color: white;
+    text-align: center;
+    padding: 5px 0;
+    font-family: var(--fontfamily);
+}
+
+
+
+.socials,
+.contact {
+    flex: 1;
+    padding: 0 20px;
+    text-align: center;
+    font-family: var(--fontfamily);
+}
+
+@media (min-width: 400px) {
+    .footer {
+        font-size: var(--size-xs);
+    }
+    .copyright {
+        font-size: var(--size-xs);
+    }
+}
+
+/* md */
+@media (min-width: 768px) {
+    .footer {
+        font-size: var(--size-sm);
+    }
+    .copyright {
+        font-size: var(--size-sm);
+    }
+}
+
+/* lg */
+@media (min-width: 1024px) {
+    .footer {
+        font-size: var(--size-sx);
+    }
+    .copyright {
+        font-size: var(--size-sx);
+    }
+}

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" data-theme='light-mode'>
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css_components/styles.css') }}">
+</head>
+<body class="body">
+<header>
+    <!-- get the navigation bar from the navigation-bar.html file -->
+    {% include 'global-templates/navigation-bar.html' %}
+</header>
+<div>
+    <div class="container">
+        <br>
+        <h1 class="hero-title">Personal Website</h1>
+        <br>
+        <h3 class="hero-subtitle">Creating APIs / Designing Websites / Server Deployment</h3>
+        <br>
+        <br>
+        <h5 class="project-hero-text">
+            Any business needs a website and so do I. I created this website from scratch using HTML and CSS and
+            containerized it with Docker. I used the Flask framework to deploy the website on a Raspberry Pi.
+        </h5>
+    </div>
+</div>
+
+<div class="section"></div>
+<div class="container">
+    <img src='{{ url_for("static", filename="image_assets/personal_website_second.png") }}'
+         alt="Project Personal Data Science Website"
+         style="width:100%;">
+</div>
+
+<div class="section"></div>
+<div class="container">
+    <h2 class="project-text-header">Technology Used: ⚡ Python | ⚡ Google Cloud Deploy | ⚡ HTML / CSS | ⚡ Docker</h2>
+</div>
+
+<div class="section"></div>
+<div class="container">
+    <h2 class="project-text-header">The Problem:</h2>
+    <hr class="project-hr">
+</div>
+<div class="container">
+    <p class="project-text">
+        Of course, one could simply use a website builder like Wix or Squarespace to create a personal website. However,
+        I wanted to create a website that is fully customizable and that I can change and adapt to my needs.
+        Furthermore,
+        I wanted to get up to speed with the latest HTML / CSS technologies and learn how to deploy a website on a
+        Raspeberry Pi.
+    </p>
+</div>
+
+<div class="section"></div>
+<div class="container">
+    <h2 class="project-text-header">The Solution:</h2>
+    <hr class="project-hr">
+</div>
+<div class="container">
+    <p class="project-text">
+        I created this website from scratch using HTML and CSS. I used the Flask framework to deploy the website on a
+        Raspberry Pi. The website is fully responsive and can be viewed on any device. The methodology of this website
+        is the so-called mobile first approach. This means that the website is first designed for mobile devices and
+        then for larger devices. I incorporated the latest HTML and CSS technologies such as CSS Grid and Flexbox,
+        animations and transitions as well as much more.
+
+    </p>
+</div>
+
+<div class="section"></div>
+<div class="container">
+    <h2 class="project-text-header">Key Features:</h2>
+    <hr class="project-hr">
+</div>
+<div class="container">
+    <p class="project-text">
+        The main goal of this website is to showcase my data science projects and to provide a way for potential clients
+        to contact me. The call-to-action is the contact button in the navigation bar and various other elements of the
+        website. Moreover, the projects section shows a selection of my data science and process automation projects.
+        The contact-form triggers a CRUD framework that saves the data in a database. The data can then be accessed via
+        a REST API that is also written in Python's flask framework.
+    </p>
+</div>
+
+<div class="section"></div>
+<div class="container">
+    <h2 class="project-text-header">Summary:</h2>
+    <hr class="project-hr">
+</div>
+<div class="container">
+    <p class="project-text">
+        In summary, this project was a great way to get up to speed with the latest HTML and CSS technologies.
+        Additionally, I learned how to deploy a website on a Raspberry Pi and saved a little bit of continuous costs by
+        not having to pay for a website builder or hosting service.
+    </p>
+</div>
+
+<div class="section"></div>
+<div class="container">
+    <div class="pre-footer">
+        <h5>Have I sparked your interest?</h5>
+        <a aria-label="contact button" id="contact button 2" href="/contact" style="margin: 0% 5%;"
+           class="button"><span>Get in Contact!</span></a>
+    </div>
+</div>
+
+<div class="section"></div>
+<div class="container">
+    <!-- reference footer.html -->
+    {% include 'global-templates/footer.html' %}
+</div>
+
+</body>
+</html>

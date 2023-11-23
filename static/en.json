@@ -1,0 +1,15 @@
+
+{
+  "herotitle": {
+      "title": "Welcome to My Website",
+      "content": "Hello World,<br>I'm <strong>NIK</strong>"
+  },
+  "services": {
+      "title": "Our Services",
+      "content": "Check out our services with <span style='font-weight: bold; color: green;'>stylish</span> formatting."
+  },
+  "hi": {
+      "title": "Hello",
+      "content": "Say <em>hi</em> with some <span style='background-color: yellow;'>colorful</span> CSS."
+  }
+}

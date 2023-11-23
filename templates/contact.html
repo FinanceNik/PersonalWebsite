@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" data-theme='light-mode'>
+<head>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css_components/styles.css') }}">
+</head>
+<body class="body">
+<!-- get the navigation bar from the navigation-bar.html file -->
+{% include 'global-templates/navigation-bar.html' %}
+<br>
+<br>
+<div class="layout-contact-box-container">
+    <div class="blobtwo" style="float:center"></div>
+    <div class="layout-contact-box" style="background-color: var(--lightgrey)">
+        <h3>Contact Form</h3>
+        <div class="container">
+            <form action="http://localhost:5000/submit_contact_form" method="post">
+                <label for="fname">First Name</label>
+                <input type="text" id="fname" name="firstname" placeholder="Your name..">
+
+                <label for="lname">Last Name</label>
+                <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+
+                <label for="country">Country</label>
+                <select id="country" name="country">
+                    <option value="Switzerland">Switzerland</option>
+                    <option value="Germany">Germany</option>
+                    <option value="Austria">Austria</option>
+                    <option value="Italy">Italy</option>
+                    <option value="France">France</option>
+                    <option value="Netherlands">Netherlands</option>
+                    <option value="Belgium">Belgium</option>
+                </select>
+                <label for="mail">Last Name</label>
+                <input type="text" id="mail" name="email" placeholder="Your e-mail..">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" placeholder="Write something.." style="height:200px"></textarea>
+                <button class="button" style="font-size: 20px;" type="submit"><span>Submit</span></button>
+            </form>
+        </div>
+
+    </div>
+</div>
+<div class="blobthree" style="z-index:0;"></div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class="container">
+    <!-- reference footer.html -->
+    {% include 'global-templates/footer.html' %}
+</div>
+
+</body>
+</html>

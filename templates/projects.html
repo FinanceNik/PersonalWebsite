@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en" data-theme='light-mode'>
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css_components/styles.css') }}">
+</head>
+<body class="body">
+<header>
+    <!-- get the navigation bar from the navigation-bar.html file -->
+    {% include 'global-templates/navigation-bar.html' %}
+</header>
+<div class="container">
+    <img src='{{ url_for("static", filename="image_assets/blog_background.png") }}'
+         alt="Your Image"
+         style="width:100%">
+    <h1 class="page-title">Previous Projects</h1>
+    <h5 class="page-title-text">
+        Find out what I am capable of!
+    </h5>
+    <a aria-label="contact button" id="contact button" href="/contact"
+       class="home-contact-button"><span>Get in Contact!</span></a>
+</div>
+
+<div class="section"></div>
+
+<div class="container" style="background-color: var(--background-color)">
+    <div class="card-container">
+        <div class="card">
+            <img src='{{ url_for("static", filename="image_assets/sports_dashboard_screenshot.png") }}'
+                 alt="Your Image"
+                 style="width:100%">
+            <h2 style="padding: 10px 0px 0px 0px">Sports Tracking App</h2>
+            <hr class="card-hr">
+            <p>Expert in data analysis with a strong ability to extract valuable insights from raw data. Proficient in
+                data cleansing, exploratory data analysis, and statistical analysis to drive informed
+                decision-making.</p>
+            <br>
+            <a href="https://github.com/FinanceNik/SportsDashboard" class="github-button"><span>Go to GitHub</span></a>
+            <br>
+            <a href="/projects/project-sportsdashboard.html" class="button"><span>Learn More</span></a>
+
+        </div>
+        <div class="card">
+            <img src='{{ url_for("static", filename="image_assets/personal_website_second.png") }}'
+                 alt="Your Image"
+                 style="width:100%">
+            <h2 style="padding: 10px 0px 0px 0px">My Personal Website</h2>
+            <hr class="card-hr">
+            <p>
+                This project is a personal website that I created from scratch using HTML and CSS. I used the Flask
+                framework to deploy the website on a Raspberry Pi. The website is fully responsive and can be viewed on
+                any device. Here, I can showcase my previous work and have a way for potential clients to contact me.
+            </p>
+            <br>
+            <a href="https://github.com/FinanceNik/PersonalWebsite" class="github-button"><span>Go to GitHub</span></a>
+            <br>
+            <a href="/projects/project-personal-website.html" class="button"><span>Learn More</span></a>
+
+        </div>
+        <div class="card">
+            <img src='{{ url_for("static", filename="image_assets/duolingo_analysis_large.png") }}'
+                 alt="Your Image"
+                 style="width:100%;">
+            <h2 style="padding: 10px 0px 0px 0px">Duolingo Analysis Tool</h2>
+            <hr class="card-hr">
+            <p>
+                If you are a language learning geek just like I am, you probably wondered if there is a better way to
+                analyse more of your duolingo data. I have created such a tool to which you can upload your own Duolingo
+                data and see insights that the app itself does not give.
+            </p>
+            <br>
+            <a href="https://github.com/FinanceNik/duolingo-analysis"
+               class="github-button"><span>Go to GitHub</span></a>
+            <br>
+            <a href="/projects/project-duolingoanalysistool.html" class="button"><span>Learn More</span></a>
+
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <br>
+    <hr>
+    <br>
+</div>
+
+<div class="container" style="background-color: var(--background-color)">
+    <div class="card-container">
+        <div class="card">
+            <img src='{{ url_for("static", filename="image_assets/Time-Management-App.png") }}'
+                 alt="Your Image"
+                 style="width:100%">
+            <h2 style="padding: 10px 0px 0px 0px">Free Time</h2>
+            <hr class="card-hr">
+            <p>
+                "Free Time" is a time management tool for freelancers. Here, freelancers can track their time and export
+                time sheets as well as create invoices for various employers. This app is meant to greatly reduce the
+                hassle of using Excel sheets to track working hours.
+            </p>
+            <br>
+            <a href="https://github.com/FinanceNik/free-time" class="github-button"><span>Go to GitHub</span></a>
+            <br>
+            <a href="/projects/project-free-time.html" class="button"><span>Learn More</span></a>
+
+        </div>
+        <div class="card">
+            <img src='{{ url_for("static", filename="image_assets/personal_website_second.png") }}'
+                 alt="Your Image"
+                 style="width:100%">
+            <h2 style="padding: 10px 0px 0px 0px">My Personal Website</h2>
+            <hr class="card-hr">
+            <p>
+                This project is a personal website that I created from scratch using HTML and CSS. I used the Flask
+                framework to deploy the website on a Raspberry Pi. The website is fully responsive and can be viewed on
+                any device. Here, I can showcase my previous work and have a way for potential clients to contact me.
+            </p>
+            <br>
+            <a href="https://github.com/FinanceNik/PersonalWebsite" class="github-button"><span>Go to GitHub</span></a>
+            <br>
+            <a href="/projects/project-personal-website.html" class="button"><span>Learn More</span></a>
+
+        </div>
+        <div class="card">
+            <img src='{{ url_for("static", filename="image_assets/duolingo_analysis_large.png") }}'
+                 alt="Your Image"
+                 style="width:100%;">
+            <h2 style="padding: 10px 0px 0px 0px">Duolingo Analysis Tool</h2>
+            <hr class="card-hr">
+            <p>
+                If you are a language learning geek just like I am, you probably wondered if there is a better way to
+                analyse more of your duolingo data. I have created such a tool to which you can upload your own Duolingo
+                data and see insights that the app itself does not give.
+            </p>
+            <br>
+            <a href="https://github.com/FinanceNik/duolingo-analysis"
+               class="github-button"><span>Go to GitHub</span></a>
+            <br>
+            <a href="/projects/project-duolingoanalysistool.html" class="button"><span>Learn More</span></a>
+
+        </div>
+    </div>
+</div>
+
+<div class="section"></div>
+
+<div class="container">
+    <div class="pre-footer">
+        <h5>Have I sparked your interest?</h5>
+        <a aria-label="contact button" id="contact button 2" href="/contact" style="margin: 0% 5%;"
+           class="button"><span>Get in Contact!</span></a>
+    </div>
+</div>
+
+
+<div class="section"></div>
+<div class="container">
+    <!-- reference footer.html -->
+    {% include 'global-templates/footer.html' %}
+</div>
+
+</body>
+</html>

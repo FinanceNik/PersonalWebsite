@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" data-theme='light-mode'>
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css_components/styles.css') }}">
+</head>
+<body class="body">
+<header>
+    <!-- get the navigation bar from the navigation-bar.html file -->
+    {% include 'global-templates/navigation-bar.html' %}
+</header>
+<div>
+    <div class="container">
+        <br>
+        <h1 class="hero-title">Free Time</h1>
+        <br>
+        <h3 class="hero-subtitle">Software Development / Process Automation</h3>
+        <br>
+        <br>
+        <h5 class="project-hero-text">Passionate Freelance Data Scientist and Machine Learning Engineer ready to
+            tackle any complex
+            business problem you might have. Whether it is data gathering, analysis, process automation, or the
+            development and implementation of machine learning algorithms. </h5>
+    </div>
+</div>
+
+<div class="section"></div>
+<div class="container">
+    <img src='{{ url_for("static", filename="image_assets/Time-Management-App.png") }}'
+         alt="Project Sports Dashboard"
+         style="width:100%;">
+</div>
+
+<div class="section"></div>
+<div class="container">
+    <h2 class="project-text-header">Technology Used: ⚡ Python | ⚡ Google Cloud Deploy | ⚡ Process Automation</h2>
+</div>
+
+<div class="section"></div>
+<div class="container">
+    <h2 class="project-text-header">The Problem:</h2>
+    <hr class="project-hr">
+</div>
+<div class="container">
+    <p class="project-text">
+        When you are a freelancer, more often than not, you have to proof your exact working hours to your clients. This
+        is frequently done using various Excel sheets and templates. This can be a very time-consuming and tedious and
+        hence I set out to create a tool that makes it easier to track time as well as creating invoices for clients.
+    </p>
+</div>
+
+<div class="section"></div>
+<div class="container">
+    <h2 class="project-text-header">The Solution:</h2>
+    <hr class="project-hr">
+</div>
+<div class="container">
+    <p class="project-text">The mission is to bridge this gap and make fitness data accessible to everyone. I
+        believe that understanding your activity patterns, setting goals, and tracking your progress should be available
+        to all, regardless of subscription plans. That's why we created this app – to empower individuals on their
+        fitness journey. Analyzing your fitness data can be a powerful motivator. It not only helps you understand your
+        achievements but also encourages you to push your limits. By providing insights into your activities, we aim to
+        inspire you to take on new challenges, set personal records, and embrace a healthier lifestyle.
+
+    </p>
+</div>
+
+<div class="section"></div>
+<div class="container">
+    <h2 class="project-text-header">Key Features:</h2>
+    <hr class="project-hr">
+</div>
+<div class="container">
+    <p class="project-text"> The dashboard has a file upload feature. With that every user can upload their own
+        Strava data and get a personalized dashboard of their own. The dashboard is fully dynamic and
+        automatically updates with every new file upload. Furthermore, the user can choose between different types of sports
+        to analyze or analyze all sports types at once.
+
+    </p>
+</div>
+
+<div class="section"></div>
+<div class="container">
+    <h2 class="project-text-header">Summary:</h2>
+    <hr class="project-hr">
+</div>
+<div class="container">
+    <p class="project-text">All in all, this projects bridged the gap between a problem that exists for many users doing
+        sports and tracking their corresponding data and eliminates the need for users to subscribe to expensive sports
+        apps in order to basic analysis with their own data.</p>
+</div>
+
+<div class="section"></div>
+<div class="container">
+    <div class="pre-footer">
+        <h5>Have I sparked your interest?</h5>
+        <a aria-label="contact button" id="contact button 2" href="/contact" style="margin: 0% 5%;"
+           class="button"><span>Get in Contact!</span></a>
+    </div>
+</div>
+
+<div class="section"></div>
+<div class="container">
+    <!-- reference footer.html -->
+    {% include 'global-templates/footer.html' %}
+</div>
+
+</body>
+</html>

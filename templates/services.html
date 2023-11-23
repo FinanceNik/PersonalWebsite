@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en" data-theme='light-mode'>
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css_components/styles.css') }}">
+</head>
+<body class="body">
+<header>
+    <!-- get the navigation bar from the navigation-bar.html file -->
+    {% include 'global-templates/navigation-bar.html' %}
+</header>
+<div>
+    <div class="container">
+        <div class="modular-container-wrapper">
+            <div class="modular-container" style="height: 400px">
+                <br>
+                <h1 class="hero-title">Offered Services</h1>
+                <br>
+                <br>
+                <h3 class="hero-subtitle">Empowering Your Success Through Data Science Excellence!</h3>
+                <br>
+                <br>
+                <h5 class="hero-text">
+                    Explore the possibilities and discover how my expertise can elevate your projects. Ready to
+                    collaborate? Let's chat!
+                </h5>
+
+                <div class="blob"></div>
+                <br>
+                <br>
+                <a aria-label="contact button" id="contact button" href="/contact"
+                   class="button"><span>Get in Contact!</span></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section"></div>
+<div class="container">
+    <div class="modular-container-wrapper">
+        <div class="modular-container-buffer" style="width: 7%;"></div>
+
+        <div class="modular-container-services-one">
+            <div style="margin: 10px;">
+                <br>
+                <h5 class="service-card-type">Data Analysis on your Dataset</h5>
+                <br>
+                <h2 class="service-card-header">Starting at CHF 500</h2>
+                <br>
+                <p class="service-card-text">Uncover insights and patterns within your dataset through meticulous data
+                    analysis. Leverage the power of data to make informed decisions and drive your business forward.
+                </p>
+                <br>
+                <ul class="service-list">
+                    <li class="service-list-item">Tailored analysis
+                    </li>
+                    <li class="service-list-item">In-depth statistical assessments
+                    </li>
+                    <li class="service-list-item">Visual Data Representation
+                    </li>
+                    <li class="service-list-item">Actionable Recommendations
+                    </li>
+                    <li class="service-list-item">Continuous Support
+                    </li>
+                </ul>
+                <br>
+                <a aria-label="Secure your package now!" href="/contact" class="secure-package-link">Secure your package
+                    now!</a>
+            </div>
+        </div>
+
+        <div class="modular-container-services-two">
+            <div style="margin: 10px;">
+                <br>
+                <h5 class="service-card-type">Custom Data Science Dashboard</h5>
+                <br>
+                <h2 class="service-card-header">Starting at CHF 2,000</h2>
+                <br>
+                <p class="service-card-text">Transform your data into interactive dashboards, providing a comprehensive
+                    view of key metrics. Empower your team with real-time data visualization for strategic
+                    decision-making.
+                </p>
+                <br>
+                <ul class="service-list">
+                    <li class="service-list-item">Customized dashboards reflecting your unique business metrics.</li>
+                    <li class="service-list-item">Stay informed with automatic, real-time updates for dynamic
+                        insights.
+                    </li>
+                    <li class="service-list-item">Intuitive interface for easy navigation and understanding.</li>
+                    <li class="service-list-item">Implement robust security measures to protect your sensitive
+                        information.
+                    </li>
+                    <li class="service-list-item">Comprehensive training and ongoing support for efficient usage.</li>
+                </ul>
+                <br>
+                <a aria-label="Secure your package now!" href="/contact" class="secure-package-link">Secure your package
+                    now!</a>
+            </div>
+
+        </div>
+        <div class="modular-container-buffer" style="width: 7%;"></div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="modular-container-wrapper">
+        <div class="modular-container-buffer" style="width: 7%;"></div>
+
+        <div class="modular-container-services-two">
+            <div style="margin: 10px;">
+                <br>
+                <h5 class="service-card-type">Custom Machine Learning Model</h5>
+                <br>
+                <h2 class="service-card-header">Individual Pricing</h2>
+                <br>
+                <p class="service-card-text">Harness the power of custom machine learning models tailored to your
+                    specific
+                    needs. From predictive analytics to recommendation engines, transform your data into actionable
+                    insights.
+                </p>
+                <br>
+                <ul class="service-list">
+                    <li class="service-list-item">Tailored ML algorithms for accurate predictions</li>
+                    <li class="service-list-item">Predictive modeling for future trends</li>
+                    <li class="service-list-item">Performance optimization to enhance efficiency</li>
+                    <li class="service-list-item">Integration support for seamless implementation</li>
+                    <li class="service-list-item">Continuous improvement for evolving needs</li>
+                </ul>
+                <br>
+                <a aria-label="Secure your package now!" href="/contact" class="secure-package-link">Secure your package
+                    now!</a>
+            </div>
+        </div>
+
+        <div class="modular-container-services-one">
+            <div style="margin: 10px;">
+                <br>
+                <h5 class="service-card-type">Automating your Business Process</h5>
+                <br>
+                <h2 class="service-card-header">Individual Pricing</h2>
+                <br>
+                <p class="service-card-text">Streamline and automate your business processes for increased efficiency
+                    and
+                    productivity. From data entry to task automation, let technology work for you.
+                </p>
+                <br>
+                <ul class="service-list">
+                    <li class="service-list-item">Workflow Analysis</li>
+                    <li class="service-list-item">Custom Automation Solutions</li>
+                    <li class="service-list-item">Integration with Existing Systems</li>
+                    <li class="service-list-item">User Training and Support</li>
+                    <li class="service-list-item">Scalable Automation Strategies</li>
+                </ul>
+                <br>
+                <a aria-label="Secure your package now!" href="/contact" class="secure-package-link">Secure your package
+                    now!</a>
+            </div>
+        </div>
+        <div class="modular-container-buffer" style="width: 7%;"></div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="modular-container-wrapper">
+        <div class="modular-container-buffer" style="width: 7%;"></div>
+
+        <div class="modular-container-services-one">
+            <div style="margin: 10px;">
+                <br>
+                <h5 class="service-card-type">You have a Project Idea?</h5>
+                <br>
+                <h2 class="service-card-header">Individual Pricing</h2>
+                <br>
+                <p class="service-card-text">Bring your project idea to life with personalized solutions and flexible
+                    pricing options.
+                </p>
+                <br>
+                <!-- please create a list with 5 bullet points-->
+                <ul class="service-list">
+                    <li class="service-list-item">Consultation and idea refinement</li>
+                    <li class="service-list-item">Customized project development plan</li>
+                    <li class="service-list-item">Regular updates and project milestones</li>
+                    <li class="service-list-item">Collaborative and transparent communication</li>
+                    <li class="service-list-item">Post-launch support and maintenance</li>
+                </ul>
+                <br>
+                <a aria-label="Secure your package now!" href="/contact" class="secure-package-link">Secure your package
+                    now!</a>
+            </div>
+        </div>
+
+        <div class="modular-container-services-two">
+            <div style="margin: 10px;">
+                <br>
+                <h5 class="service-card-type">Your Personal Website</h5>
+                <br>
+                <h2 class="service-card-header">Starting at CHF 3,000</h2>
+                <br>
+                <p class="service-card-text">Transform your online presence with a personalized website tailored to your
+                    needs and preferences.
+                </p>
+                <br>
+                <!-- please create a list with 5 bullet points-->
+                <ul class="service-list">
+                    <li class="service-list-item">Custom website design and development</li>
+                    <li class="service-list-item">Responsive and user-friendly interface</li>
+                    <li class="service-list-item">Integration of essential features and functionalities</li>
+                    <li class="service-list-item">Optimization for search engines (SEO)</li>
+                    <li class="service-list-item">Training and support for managing your website</li>
+                </ul>
+                <br>
+                <a aria-label="Secure your package now!" href="/contact" class="secure-package-link">Secure your package
+                    now!</a>
+            </div>
+
+        </div>
+        <div class="modular-container-buffer" style="width: 7%;"></div>
+    </div>
+</div>
+
+<div class="section"></div>
+
+<div class="container">
+    <div class="pre-footer">
+        <h5>Have I sparked your interest?</h5>
+        <a aria-label="contact button" id="contact button 2" href="/contact" style="margin: 0% 5%;"
+           class="button"><span>Get in Contact!</span></a>
+    </div>
+</div>
+
+
+<div class="section"></div>
+<div class="container">
+    <!-- reference footer.html -->
+    {% include 'global-templates/footer.html' %}
+</div>
+</body>
+</html>
+
