@@ -51,28 +51,48 @@
 </div>
 <!-- End of Mobile Navigation -->
 <script>
-    // Function to load and display JSON data
+    function setElementInnerHTML(elementId, content) {
+        var element = document.getElementById(elementId);
+        if (element) {
+            element.innerHTML = content;
+        } else {
+            console.error(`Element with ID ${elementId} not found.`);
+        }
+    }
+
     function loadJSON(languageCode) {
-        // Use AJAX to fetch the JSON file
         var xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function() {
-            if (xhr.readyState === 4 && xhr.status === 200) {
-                // Parse the JSON data
-                console.log(languageCode)
-                var jsonData = JSON.parse(xhr.responseText);
-                console.log(jsonData)
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                    try {
+                        var jsonData = JSON.parse(xhr.responseText);
 
-                document.getElementById('hero-title').innerHTML = jsonData.herotitle.content;
+                        document.getElementById('hero-title').innerHTML = jsonData.herotitle.content;
+                        document.getElementById('hero-subtitle').innerHTML = jsonData.herosubtitle.content;
+                        document.getElementById('hero-text').innerHTML = jsonData.herotext.content;
 
+                        for (let i = 1; i <= 6; i++) {
+                            setElementInnerHTML(`card-expertise-${i}-header`, jsonData[`cardexpertise${i}header`].content);
+                            setElementInnerHTML(`card-expertise-${i}-text`, jsonData[`cardexpertise${i}text`].content);
+                        }
 
-                // Display the JSON data (you can modify this part based on your JSON structure)
-                console.log(jsonData);
+                        for (let i = 1; i <= 9; i++) {
+                            setElementInnerHTML(`card-technology-${i}-text`, jsonData[`cardtechnology${i}text`].content);
+                        }
+
+                        console.log(jsonData);
+                    } catch (error) {
+                        console.error('Error parsing JSON:', error);
+                    }
+                } else {
+                    console.error(`Error fetching JSON. Status: ${xhr.status}`);
+                }
             }
         };
 
-        // Replace 'your_json_file.json' with the actual filename
         var filename = languageCode + '.json';
-        xhr.open("GET", "/static/" + filename, true);
+        xhr.open('GET', '/static/' + filename, true);
         xhr.send();
     }
 

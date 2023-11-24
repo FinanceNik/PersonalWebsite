@@ -1,7 +1,80 @@
 {
-  "herotitle": "Hello World,<br>Ich bin <strong>NIK</strong>",
-  "services": "Dienstleistungen",
-  "projekte": "Projekte",
-  "contact": "Kontakt",
-  "secure_package": "Sichern Sie Ihr Paket jetzt!"
+  "herotitle": {
+    "content": "Hallo Welt,<br>Ich bin <strong>NIK</strong>"
+  },
+  "herosubtitle": {
+    "content": "Datenwissenschaftler / Maschinenlerningenieur"
+  },
+  "herotext": {
+    "content": "Erschließen Sie das Potenzial Ihres Unternehmens mit <strong>personalisierten Datelösungen</strong>. Ich widme mich dazu, komplexe Herausforderungen in <strong>strategische Chancen</strong> zu verwandeln. Ob Datenexploration, Analyse oder die Implementierung <strong>innovativer Algorithmen</strong> – lassen Sie uns gemeinsam auf eine Reise der Innovation gehen."
+  },
+  "expertiseheader": {
+    "content": "Meine Expertise"
+  },
+  "cardexpertise1header": {
+    "content": "Datenanalyse"
+  },
+  "cardexpertise2header": {
+    "content": "Maschinenlernmodelle"
+  },
+  "cardexpertise3header": {
+    "content": "Prozessautomatisierung"
+  },
+  "cardexpertise4header": {
+    "content": "Datenvisualisierung und Dashboards"
+  },
+  "cardexpertise5header": {
+    "content": "Dateninfrastruktur"
+  },
+  "cardexpertise6header": {
+    "content": "Datenstrategie"
+  },
+  "cardexpertise1text": {
+    "content": "Experte in der Datenanalyse mit der Fähigkeit, wertvolle Erkenntnisse aus Rohdaten zu extrahieren. Kompetent in Datenbereinigung, explorativer Datenanalyse und statistischer Analyse zur Unterstützung fundierter Entscheidungen."
+  },
+  "cardexpertise2text": {
+    "content": "Spezialisiert auf die Entwicklung und Implementierung von maschinellen Lernmodellen für verschiedene Anwendungen. Erfahren in der Erstellung von Vorhersagemodellen, Klassifikation, Regression und Lösungen im Bereich Deep Learning zur Lösung komplexer Probleme."
+  },
+  "cardexpertise3text": {
+    "content": "Erfahren in der Prozessautomatisierung, Vereinfachung von Arbeitsabläufen und Optimierung von Geschäftsprozessen. Nutze Automatisierungswerkzeuge und -techniken, um die Effizienz zu steigern und manuelle Aufwände zu reduzieren."
+  },
+  "cardexpertise4text": {
+    "content": "Versiert in der Datenvisualisierung und Erstellung von Dashboards. Erstelle interaktive Visualisierungen und Dashboards, um komplexe Daten auf klare und verständliche Weise zu kommunizieren und die datengesteuerte Entscheidungsfindung zu unterstützen."
+  },
+  "cardexpertise5text": {
+    "content": "Kompetent in der Gestaltung und Verwaltung von Dateninfrastruktur. Richte Datenpipelines, Datenbanken und Lösungen zur Datenspeicherung ein, um eine effiziente Datenverarbeitung und Zugänglichkeit sicherzustellen."
+  },
+  "cardexpertise6text": {
+    "content": "Expertise in der Entwicklung von Datenstrategien, die sich an Unternehmenszielen ausrichten. Definiere Datenführung, Datenmanagement und datengesteuerte Strategien, um die Kraft der Daten für den organisatorischen Erfolg zu nutzen."
+  },
+  "technologyheader": {
+    "content": "Technologien"
+  },
+  "cardtechnology1text": {
+    "content": "Beherrschung von Python, einer vielseitigen und weit verbreiteten Programmiersprache. Expertise in Python für Datenanalyse, maschinelles Lernen und Automatisierung."
+  },
+  "cardtechnology2text": {
+    "content": "Spezialisierung in Keras und TensorFlow, führende Frameworks für Deep Learning. Kompetent im Aufbau und Training von neuronalen Netzwerken für verschiedene Anwendungen."
+  },
+  "cardtechnology3text": {
+    "content": "Erfahrung mit Docker, einer Plattform zur Containerisierung von Anwendungen. Beherrschung der Erstellung und Verwaltung von Containern für eine effiziente Bereitstellung."
+  },
+  "cardtechnology4text": {
+    "content": "Sicherer Umgang mit SQL (Structured Query Language) zur Verwaltung und Abfrage von relationalen Datenbanken. Fähigkeit, wertvolle Erkenntnisse aus Daten zu extrahieren."
+  },
+  "cardtechnology5text": {
+    "content": "Kompetent in GIT, einem verteilten Versionskontrollsystem. Erfahrung in der kollaborativen Softwareentwicklung und dem Management von Codeversionen."
+  },
+  "cardtechnology6text": {
+    "content": "Vertraut mit HTML und CSS für die Webentwicklung. Fähigkeit zur Erstellung und Gestaltung von Webseiten zur Verbesserung der Benutzererfahrung."
+  },
+  "cardtechnology7text": {
+    "content": "Nachgewiesene Expertise in Cloud-Plattformen wie AWS, Azure und Google Cloud. Kompetenz in der Bereitstellung von Anwendungen und Diensten in der Cloud."
+  },
+  "cardtechnology8text": {
+    "content": "Fähigkeiten in Datenvisualisierungstools wie Tableau und Power BI. Expertise in der Erstellung interaktiver und aufschlussreicher Daten-Dashboards."
+  },
+  "cardtechnology9text": {
+    "content": "Versiert in R, einer Programmiersprache für statistische Analyse und Datenvisualisierung. Fähigkeit zur Durchführung fortgeschrittener Analysen."
+  }
 }

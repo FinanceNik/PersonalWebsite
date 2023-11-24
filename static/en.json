@@ -1,15 +1,80 @@
-
 {
   "herotitle": {
-      "title": "Welcome to My Website",
-      "content": "Hello World,<br>I'm <strong>NIK</strong>"
+    "content": "Hello World,<br>I'm <strong>NIK</strong>"
   },
-  "services": {
-      "title": "Our Services",
-      "content": "Check out our services with <span style='font-weight: bold; color: green;'>stylish</span> formatting."
+  "herosubtitle": {
+    "content": "Data Scientist / Machine Learning Engineer"
   },
-  "hi": {
-      "title": "Hello",
-      "content": "Say <em>hi</em> with some <span style='background-color: yellow;'>colorful</span> CSS."
+  "herotext": {
+    "content": "Unlock the potential of your business with <strong>personalized data solutions</strong>. I'm dedicated to turning complex challenges into <strong>strategic opportunities</strong>. Whether it's data exploration, analysis, or implementing <strong>cutting-edge algorithms</strong>, let's embark on a journey of innovation together."
+  },
+  "expertiseheader": {
+    "content": "My Expertise"
+  },
+  "cardexpertise1header": {
+    "content": "Data Analysis"
+  },
+  "cardexpertise2header": {
+    "content": "Machine Learning Models"
+  },
+  "cardexpertise3header": {
+    "content": "Process Automation"
+  },
+  "cardexpertise4header": {
+    "content": "Data Visualization and Dashboards"
+  },
+  "cardexpertise5header": {
+    "content": "Data Infrastructure"
+  },
+  "cardexpertise6header": {
+    "content": "Data Strategy"
+  },
+  "cardexpertise1text": {
+    "content": "Expert in data analysis with a strong ability to extract valuable insights from raw data. Proficient in data cleansing, exploratory data analysis, and statistical analysis to drive informed decision-making."
+  },
+  "cardexpertise2text": {
+    "content": "Specialized in developing and implementing machine learning models for various applications. Skilled in creating predictive models, classification, regression, and deep learning solutions to solve complex problems."
+  },
+  "cardexpertise3text": {
+    "content": "Experienced in process automation, streamlining workflows, and optimizing business processes. Utilize automation tools and techniques to improve efficiency and reduce manual efforts."
+  },
+  "cardexpertise4text": {
+    "content": "Proficient in data visualization and dashboard creation. Create interactive visualizations and dashboards to communicate complex data in a clear and comprehensible manner, aiding in data-driven decision-making."
+  },
+  "cardexpertise5text": {
+    "content": "Skilled in designing and managing data infrastructure. Set up data pipelines, databases, and data storage solutions to ensure efficient data handling and accessibility."
+  },
+  "cardexpertise6text": {
+    "content": "Expertise in developing data strategies to align with business goals. Define data governance, data management, and data-driven strategies to harness the power of data for organizational success."
+  },
+  "technologyheader": {
+    "content": "Technologies"
+  },
+  "cardtechnology1text": {
+    "content": "Proficiency in Python, a versatile and widely-used programming language. Expertise in Python for data analysis, machine learning, and automation."
+  },
+  "cardtechnology2text": {
+    "content": "Specialization in Keras and TensorFlow, leading deep learning frameworks. Skilled in building and training neural networks for various applications."
+  },
+  "cardtechnology3text": {
+    "content": "Experience with Docker, a platform for containerizing applications. Proficiency in creating and managing containers for efficient deployment."
+  },
+  "cardtechnology4text": {
+    "content": "Strong command of SQL (Structured Query Language) for managing and querying relational databases.Capability to extract valuable insights from data."
+  },
+  "cardtechnology5text": {
+    "content": "Skilled in GIT, a distributed version control system. Experience in collaborative software development and code version management."
+  },
+  "cardtechnology6text": {
+    "content": "Familiarity with HTML and CSS for web development. Capability to create and style web pages to enhance user experience"
+  },
+  "cardtechnology7text": {
+    "content": "Proven expertise in cloud computing platforms such as AWS, Azure, and Google Cloud. Proficiency in deploying applications and services in the cloud."
+  },
+  "cardtechnology8text": {
+    "content": "Skilled in data visualization tools like Tableau and Power BI. Expertise in creating interactive and insightful data dashboards."
+  },
+  "cardtechnology9text": {
+    "content": "Proficient in R, a programming language for statistical analysis and data visualization. Capability to perform advanced analytics."
   }
 }
