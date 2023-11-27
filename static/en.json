@@ -76,5 +76,233 @@
   },
   "cardtechnology9text": {
     "content": "Proficient in R, a programming language for statistical analysis and data visualization. Capability to perform advanced analytics."
+  },
+  "faqquestion1": {
+    "content": "How can I hire your data science services?"
+  },
+  "faqanswer1": {
+    "content": "To hire my data science services, simply visit the \"Contact\" page on my website and fill out the contact form. I'll get back to you as soon as possible to discuss your project requirements."
+  },
+  "faqquestion2": {
+    "content": "What industries do you specialize in?"
+  },
+  "faqanswer2": {
+    "content": "I have experience in a wide range of industries, including finance, healthcare, e-commerce, and more. My data science expertise is adaptable to various sectors."
+  },
+  "faqquestion3": {
+    "content": "What data analysis tools and languages do you use?"
+  },
+  "faqanswer3": {
+    "content": "I primarily use Python for data analysis and machine learning. I'm proficient in libraries such as Pandas, NumPy, Scikit-Learn, and more. Additionally, I use visualization tools like Matplotlib and Seaborn."
+  },
+  "faqquestion4": {
+    "content": "Can you provide examples of past projects?"
+  },
+  "faqanswer4": {
+    "content": "Yes, I can provide case studies and examples of previous projects in the \"Projects\" section of my website. These examples showcase the range of work I've done."
+  },
+  "faqquestion5": {
+    "content": "What is the typical process for a data science project engagement?"
+  },
+  "faqanswer5": {
+    "content": "The typical process involves project scoping, data collection, data cleaning, exploratory data analysis, model development, testing, and deployment. The exact steps may vary based on your project's requirements."
+  },
+  "faqquestion6": {
+    "content": "Do you offer ongoing support for deployed models?"
+  },
+  "faqanswer6": {
+    "content": "Yes, I offer post-deployment support and maintenance to ensure the continued performance and accuracy of machine learning models. We can discuss a service-level agreement that suits your needs."
+  },
+  "faqquestion7": {
+    "content": "What is the average turnaround time for a data science project?"
+  },
+  "faqanswer7": {
+    "content": "The project timeline depends on its complexity and scope. Small projects can be completed in a few weeks, while more extensive projects may take several months. I provide estimated timelines during our initial consultation."
+  },
+  "faqquestion8": {
+    "content": "What sets you apart as a freelance data scientist?"
+  },
+  "faqanswer8": {
+    "content": "I combine technical expertise with a strong focus on understanding your business goals. This allows me to tailor data solutions that align with your specific needs and deliver actionable insights."
+  },
+  "faqquestion9": {
+    "content": "How do you ensure data privacy and security?"
+  },
+  "faqanswer9": {
+    "content": "Data privacy and security are paramount. I implement best practices to protect your data and ensure compliance with privacy regulations, such as GDPR. I can provide a detailed data protection plan for your project."
+  },
+  "faqquestion10": {
+    "content": "What is your pricing structure for data science services?"
+  },
+  "faqanswer10": {
+    "content": "My pricing structure is flexible and based on project complexity and duration. I offer competitive rates and provide detailed quotes after discussing your project requirements."
+  },
+  "prefooter": {
+    "content": "Have I sparked your interest?"
+  },
+  "contactbutton": {
+    "content": "Get in Contact!"
+  },
+  "copyrightfooter": {
+    "content": "&copy; 2023 Clasen Data Science. All rights reserved."
+  },
+  "githubbutton": {
+    "content": "Go to GitHub"
+  },
+  "servicesherotitle": {
+    "content": ""
+  },
+  "servicesherosubtitle": {
+    "content": ""
+  },
+  "servicesherotext": {
+    "content": ""
+  },
+  "servicecardtype1": {
+    "content": ""
+  },
+  "servicecardheader1": {
+    "content": ""
+  },
+  "servicecardtext1": {
+    "content": ""
+  },
+  "servicecardlist11": {
+    "content": ""
+  },
+  "servicecardlist12": {
+    "content": ""
+  },
+  "servicecardlist13": {
+    "content": ""
+  },
+  "servicecardlist14": {
+    "content": ""
+  },
+  "servicecardlist15": {
+    "content": ""
+  },
+  "servicecardlist16": {
+    "content": ""
+  },
+  "servicecardtype2": {
+    "content": ""
+  },
+  "servicecardheader2": {
+    "content": ""
+  },
+  "servicecardtext2": {
+    "content": ""
+  },
+  "servicecardlist21": {
+    "content": ""
+  },
+  "servicecardlist22": {
+    "content": ""
+  },
+  "servicecardlist23": {
+    "content": ""
+  },
+  "servicecardlist24": {
+    "content": ""
+  },
+  "servicecardlist25": {
+    "content": ""
+  },
+  "servicecardtype3": {
+    "content": ""
+  },
+  "servicecardheader3": {
+    "content": ""
+  },
+  "servicecardtext3": {
+    "content": ""
+  },
+  "servicecardlist31": {
+    "content": ""
+  },
+  "servicecardlist32": {
+    "content": ""
+  },
+  "servicecardlist33": {
+    "content": ""
+  },
+  "servicecardlist34": {
+    "content": ""
+  },
+  "servicecardlist35": {
+    "content": ""
+  },
+  "servicecardtype4": {
+    "content": ""
+  },
+  "servicecardheader4": {
+    "content": ""
+  },
+  "servicecardtext4": {
+    "content": ""
+  },
+  "servicecardlist41": {
+    "content": ""
+  },
+  "servicecardlist42": {
+    "content": ""
+  },
+  "servicecardlist43": {
+    "content": ""
+  },
+  "servicecardlist44": {
+    "content": ""
+  },
+  "servicecardlist45": {
+    "content": ""
+  },
+  "servicecardtype5": {
+    "content": ""
+  },
+  "servicecardheader5": {
+    "content": ""
+  },
+  "servicecardtext5": {
+    "content": ""
+  },
+  "servicecardlist51": {
+    "content": ""
+  },
+  "servicecardlist52": {
+    "content": ""
+  },
+  "servicecardlist53": {
+    "content": ""
+  },
+  "servicecardlist54": {
+    "content": ""
+  },
+  "servicecardlist55": {
+    "content": ""
+  },
+  "servicecardtype6": {
+    "content": ""
+  },
+  "servicecardheader6": {
+    "content": ""
+  },
+  "servicecardtext6": {
+    "content": ""
+  },
+  "servicecardlist61": {
+    "content": ""
+  },
+  "servicecardlist62": {
+    "content": ""
+  },
+  "servicecardlist63": {
+    "content": ""
+  },
+  "servicecardlist64": {
+    "content": ""
+  },
+  "servicecardlist65": {
+    "content": ""
   }
 }

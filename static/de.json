@@ -3,10 +3,10 @@
     "content": "Hallo Welt,<br>Ich bin <strong>NIK</strong>"
   },
   "herosubtitle": {
-    "content": "Datenwissenschaftler / Maschinenlerningenieur"
+    "content": "Datenwissenschaftler / Machine Learning Ingenieur"
   },
   "herotext": {
-    "content": "Erschließen Sie das Potenzial Ihres Unternehmens mit <strong>personalisierten Datelösungen</strong>. Ich widme mich dazu, komplexe Herausforderungen in <strong>strategische Chancen</strong> zu verwandeln. Ob Datenexploration, Analyse oder die Implementierung <strong>innovativer Algorithmen</strong> – lassen Sie uns gemeinsam auf eine Reise der Innovation gehen."
+    "content": "Erschließen Sie das Potenzial Ihres Unternehmens mit <strong>personalisierten Datenlösungen</strong>. Ich widme mich der Umwandlung komplexer Herausforderungen in <strong>strategische Chancen</strong>. Ob es um Datenexploration, Analyse oder die Implementierung von <strong>Spitzentechnologie-Algorithmen</strong> geht, lassen Sie uns gemeinsam auf eine Reise der Innovation gehen."
   },
   "expertiseheader": {
     "content": "Meine Expertise"
@@ -15,7 +15,7 @@
     "content": "Datenanalyse"
   },
   "cardexpertise2header": {
-    "content": "Maschinenlernmodelle"
+    "content": "Maschinelles Lernmodelle"
   },
   "cardexpertise3header": {
     "content": "Prozessautomatisierung"
@@ -30,51 +30,123 @@
     "content": "Datenstrategie"
   },
   "cardexpertise1text": {
-    "content": "Experte in der Datenanalyse mit der Fähigkeit, wertvolle Erkenntnisse aus Rohdaten zu extrahieren. Kompetent in Datenbereinigung, explorativer Datenanalyse und statistischer Analyse zur Unterstützung fundierter Entscheidungen."
+    "content": "Experte in Datenanalyse mit starker Fähigkeit, wertvolle Einblicke aus Rohdaten zu gewinnen. Kompetent in Datenbereinigung, explorativer Datenanalyse und statistischer Analyse zur Unterstützung fundierter Entscheidungen."
   },
   "cardexpertise2text": {
-    "content": "Spezialisiert auf die Entwicklung und Implementierung von maschinellen Lernmodellen für verschiedene Anwendungen. Erfahren in der Erstellung von Vorhersagemodellen, Klassifikation, Regression und Lösungen im Bereich Deep Learning zur Lösung komplexer Probleme."
+    "content": "Spezialisiert auf die Entwicklung und Implementierung von maschinellen Lernmodellen für verschiedene Anwendungen. Geschickt im Erstellen von Vorhersagemodellen, Klassifizierung, Regression und Deep-Learning-Lösungen zur Lösung komplexer Probleme."
   },
   "cardexpertise3text": {
-    "content": "Erfahren in der Prozessautomatisierung, Vereinfachung von Arbeitsabläufen und Optimierung von Geschäftsprozessen. Nutze Automatisierungswerkzeuge und -techniken, um die Effizienz zu steigern und manuelle Aufwände zu reduzieren."
+    "content": "Erfahren in der Prozessautomatisierung, Rationalisierung von Arbeitsabläufen und Optimierung von Geschäftsprozessen. Nutzung von Automatisierungswerkzeugen und -techniken zur Steigerung der Effizienz und Reduzierung manueller Aufwände."
   },
   "cardexpertise4text": {
-    "content": "Versiert in der Datenvisualisierung und Erstellung von Dashboards. Erstelle interaktive Visualisierungen und Dashboards, um komplexe Daten auf klare und verständliche Weise zu kommunizieren und die datengesteuerte Entscheidungsfindung zu unterstützen."
+    "content": "Kompetent in Datenvisualisierung und Dashboard-Erstellung. Erstellen interaktiver Visualisierungen und Dashboards, um komplexe Daten klar und verständlich zu kommunizieren und datengetriebene Entscheidungen zu unterstützen."
   },
   "cardexpertise5text": {
-    "content": "Kompetent in der Gestaltung und Verwaltung von Dateninfrastruktur. Richte Datenpipelines, Datenbanken und Lösungen zur Datenspeicherung ein, um eine effiziente Datenverarbeitung und Zugänglichkeit sicherzustellen."
+    "content": "Geschickt im Entwerfen und Verwalten von Dateninfrastrukturen. Einrichten von Datenpipelines, Datenbanken und Datenspeicherlösungen zur Gewährleistung effizienter Datenhandhabung und Zugänglichkeit."
   },
   "cardexpertise6text": {
-    "content": "Expertise in der Entwicklung von Datenstrategien, die sich an Unternehmenszielen ausrichten. Definiere Datenführung, Datenmanagement und datengesteuerte Strategien, um die Kraft der Daten für den organisatorischen Erfolg zu nutzen."
+    "content": "Expertise in der Entwicklung von Datenstrategien, die mit Geschäftszielen übereinstimmen. Definieren von Daten-Governance, Datenmanagement und datengesteuerten Strategien, um die Kraft der Daten für den Unternehmenserfolg zu nutzen."
   },
   "technologyheader": {
     "content": "Technologien"
   },
   "cardtechnology1text": {
-    "content": "Beherrschung von Python, einer vielseitigen und weit verbreiteten Programmiersprache. Expertise in Python für Datenanalyse, maschinelles Lernen und Automatisierung."
+    "content": "Kompetenz in Python, einer vielseitigen und weit verbreiteten Programmiersprache. Expertise in Python für Datenanalyse, maschinelles Lernen und Automatisierung."
   },
   "cardtechnology2text": {
-    "content": "Spezialisierung in Keras und TensorFlow, führende Frameworks für Deep Learning. Kompetent im Aufbau und Training von neuronalen Netzwerken für verschiedene Anwendungen."
+    "content": "Spezialisierung auf Keras und TensorFlow, führende Deep-Learning-Frameworks. Geschickt im Erstellen und Trainieren neuronaler Netze für verschiedene Anwendungen."
   },
   "cardtechnology3text": {
-    "content": "Erfahrung mit Docker, einer Plattform zur Containerisierung von Anwendungen. Beherrschung der Erstellung und Verwaltung von Containern für eine effiziente Bereitstellung."
+    "content": "Erfahrung mit Docker, einer Plattform zur Containerisierung von Anwendungen. Kompetenz im Erstellen und Verwalten von Containern für effiziente Bereitstellung."
   },
   "cardtechnology4text": {
-    "content": "Sicherer Umgang mit SQL (Structured Query Language) zur Verwaltung und Abfrage von relationalen Datenbanken. Fähigkeit, wertvolle Erkenntnisse aus Daten zu extrahieren."
+    "content": "Starke Beherrschung von SQL (Structured Query Language) zum Verwalten und Abfragen relationaler Datenbanken. Fähigkeit, wertvolle Erkenntnisse aus Daten zu gewinnen."
   },
   "cardtechnology5text": {
-    "content": "Kompetent in GIT, einem verteilten Versionskontrollsystem. Erfahrung in der kollaborativen Softwareentwicklung und dem Management von Codeversionen."
+    "content": "Geschickt in GIT, einem verteilten Versionskontrollsystem. Erfahrung in kollaborativer Softwareentwicklung und Codeversionsverwaltung."
   },
   "cardtechnology6text": {
-    "content": "Vertraut mit HTML und CSS für die Webentwicklung. Fähigkeit zur Erstellung und Gestaltung von Webseiten zur Verbesserung der Benutzererfahrung."
+    "content": "Vertrautheit mit HTML und CSS für die Webentwicklung. Fähigkeit, Webseiten zu erstellen und zu gestalten, um das Benutzererlebnis zu verbessern."
   },
   "cardtechnology7text": {
-    "content": "Nachgewiesene Expertise in Cloud-Plattformen wie AWS, Azure und Google Cloud. Kompetenz in der Bereitstellung von Anwendungen und Diensten in der Cloud."
+    "content": "Bewährte Expertise in Cloud-Computing-Plattformen wie AWS, Azure und Google Cloud. Kompetenz in der Bereitstellung von Anwendungen und Diensten in der Cloud."
   },
   "cardtechnology8text": {
-    "content": "Fähigkeiten in Datenvisualisierungstools wie Tableau und Power BI. Expertise in der Erstellung interaktiver und aufschlussreicher Daten-Dashboards."
+    "content": "Geschickt in Datenvisualisierungswerkzeugen wie Tableau und Power BI. Expertise in der Erstellung interaktiver und aussagekräftiger Daten-Dashboards."
   },
   "cardtechnology9text": {
-    "content": "Versiert in R, einer Programmiersprache für statistische Analyse und Datenvisualisierung. Fähigkeit zur Durchführung fortgeschrittener Analysen."
+    "content": "Kompetent in R, einer Programmiersprache für statistische Analyse und Datenvisualisierung. Fähigkeit, fortgeschrittene Analysen durchzuführen."
+  },
+  "faqquestion1": {
+    "content": "Wie kann ich Ihre Datenwissenschaftsdienste beauftragen?"
+  },
+  "faqanswer1": {
+    "content": "Um meine Datenwissenschaftsdienste zu beauftragen, besuchen Sie einfach die Seite \"Kontakt\" auf meiner Website und füllen Sie das Kontaktformular aus. Ich werde mich so schnell wie möglich bei Ihnen melden, um Ihre Projektanforderungen zu besprechen."
+  },
+  "faqquestion2": {
+    "content": "In welchen Branchen sind Sie spezialisiert?"
+  },
+  "faqanswer2": {
+    "content": "Ich habe Erfahrung in einer Vielzahl von Branchen, einschließlich Finanzen, Gesundheitswesen, E-Commerce und mehr. Meine Datenwissenschaftsexpertise ist an verschiedene Sektoren anpassbar."
+  },
+  "faqquestion3": {
+    "content": "Welche Datenanalysewerkzeuge und -sprachen verwenden Sie?"
+  },
+  "faqanswer3": {
+    "content": "Ich verwende hauptsächlich Python für Datenanalyse und maschinelles Lernen. Ich bin kompetent in Bibliotheken wie Pandas, NumPy, Scikit-Learn und mehr. Zusätzlich verwende ich Visualisierungswerkzeuge wie Matplotlib und Seaborn."
+  },
+  "faqquestion4": {
+    "content": "Können Sie Beispiele für vergangene Projekte liefern?"
+  },
+  "faqanswer4": {
+    "content": "Ja, ich kann Fallstudien und Beispiele für vorherige Projekte im Abschnitt \"Projekte\" meiner Website zur Verfügung stellen. Diese Beispiele zeigen die Bandbreite meiner Arbeit."
+  },
+  "faqquestion5": {
+    "content": "Wie ist der typische Ablauf für ein Datenwissenschaftsprojekt?"
+  },
+  "faqanswer5": {
+    "content": "Der typische Ablauf umfasst Projektumfang, Datenerfassung, Datenbereinigung, explorative Datenanalyse, Modellentwicklung, Testen und Bereitstellung. Die genauen Schritte können je nach den Anforderungen Ihres Projekts variieren."
+  },
+  "faqquestion6": {
+    "content": "Bieten Sie laufende Unterstützung für implementierte Modelle an?"
+  },
+  "faqanswer6": {
+    "content": "Ja, ich biete nach der Bereitstellung Unterstützung und Wartung an, um die fortgesetzte Leistung und Genauigkeit von maschinellen Lernmodellen zu gewährleisten. Wir können eine Service-Level-Vereinbarung besprechen, die Ihren Anforderungen entspricht."
+  },
+  "faqquestion7": {
+    "content": "Wie lange dauert die Durchführung eines Datenwissenschaftsprojekts im Durchschnitt?"
+  },
+  "faqanswer7": {
+    "content": "Die Projektdauer hängt von der Komplexität und dem Umfang ab. Kleine Projekte können in einigen Wochen abgeschlossen werden, während umfangreichere Projekte mehrere Monate dauern können. Ich stelle geschätzte Zeitpläne während unserer ersten Beratung zur Verfügung."
+  },
+  "faqquestion8": {
+    "content": "Was zeichnet Sie als freiberuflichen Datenwissenschaftler aus?"
+  },
+  "faqanswer8": {
+    "content": "Ich verbinde technische Fachkenntnisse mit einem starken Fokus auf das Verständnis Ihrer Geschäftsziele. Dies ermöglicht es mir, maßgeschneiderte Datenlösungen zu entwickeln, die auf Ihre spezifischen Bedürfnisse abgestimmt sind und umsetzbare Erkenntnisse liefern."
+  },
+  "faqquestion9": {
+    "content": "Wie gewährleisten Sie Datenschutz und Datensicherheit?"
+  },
+  "faqanswer9": {
+    "content": "Datenschutz und Datensicherheit haben oberste Priorität. Ich implementiere bewährte Praktiken, um Ihre Daten zu schützen und die Einhaltung von Datenschutzvorschriften wie der DSGVO sicherzustellen. Ich kann für Ihr Projekt einen detaillierten Datenschutzplan bereitstellen."
+  },
+  "faqquestion10": {
+    "content": "Wie ist Ihre Preisstruktur für Datenwissenschaftsdienste?"
+  },
+  "faqanswer10": {
+    "content": "Meine Preisstruktur ist flexibel und basiert auf der Komplexität und Dauer des Projekts. Ich biete wettbewerbsfähige Preise und stelle detaillierte Angebote nach der Besprechung Ihrer Projektanforderungen zur Verfügung."
+  },
+  "prefooter": {
+    "content": "Habe ich Ihr Interesse geweckt?"
+  },
+  "contactbutton": {
+    "content": "Nehmen Sie Kontakt auf!"
+  },
+  "copyrightfooter": {
+    "content": "&copy; 2023 Clasen Data Science. Alle Rechte vorbehalten."
+  },
+  "githubbutton": {
+    "content": "Zum GitHub Repo"
   }
 }

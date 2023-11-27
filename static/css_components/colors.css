@@ -22,6 +22,9 @@
     --blobcolor: rgba(245, 195, 15, 0.35);
     --blobtwocolor: rgba(245, 195, 15, 0.35);
     --blobthreecolor: rgba(245, 195, 15, 0.35);
+
+    --matrix-text-color: var(--primary-color);
+    --matrix-background-color:rgba(5, 7, 38, 0.1);
 }
 
 :root[data-theme='dark-mode'] { /*dark mode here*/
@@ -48,4 +51,7 @@
   --blobcolor: rgba(9, 142, 219, 0.35);
   --blobtwocolor: rgba(139, 182, 250, 0.3);
   --blobthreecolor: rgba(139, 122, 200, 0.3);
+
+  --matrix-text-color: var(--primary-color);
+  --matrix-background-color:rgba(5, 7, 38, 0.1);
 }

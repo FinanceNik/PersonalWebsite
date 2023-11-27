@@ -8,10 +8,21 @@
     <!-- get the navigation bar from the navigation-bar.html file -->
     {% include 'global-templates/navigation-bar.html' %}
 </header>
+<div class="container">
+    <img src='{{ url_for("static", filename="image_assets/blog_background.png") }}'
+         alt="Your Image"
+         style="width:100%">
+    <h1 class="page-title">Previous Projects</h1>
+    <h5 class="page-title-text">
+        Find out what I am capable of!
+    </h5>
+    <a aria-label="contact button" id="contact button" href="/contact"
+       class="home-contact-button"><span>Get in Contact!</span></a>
+</div>
 
 <div class="section"></div>
 
-<div class="container">
+<div class="container" style="background-color: var(--background-color)">
     <div class="card-container">
         <div class="card">
             <img src='{{ url_for("static", filename="image_assets/sports_dashboard_screenshot.png") }}'
@@ -72,7 +83,7 @@
     <br>
 </div>
 
-<div class="container">
+<div class="container" style="background-color: var(--background-color)">
     <div class="card-container">
         <div class="card">
             <img src='{{ url_for("static", filename="image_assets/Time-Management-App.png") }}'
@@ -132,10 +143,17 @@
 <div class="section"></div>
 
 <div class="container">
-    {% include 'global-templates/pre-footer.html' %}
+    <div class="pre-footer">
+        <h5>Have I sparked your interest?</h5>
+        <a aria-label="contact button" id="contact button 2" href="/contact" style="margin: 0% 5%;"
+           class="button"><span>Get in Contact!</span></a>
+    </div>
 </div>
+
+
 <div class="section"></div>
 <div class="container">
+    <!-- reference footer.html -->
     {% include 'global-templates/footer.html' %}
 </div>
 
