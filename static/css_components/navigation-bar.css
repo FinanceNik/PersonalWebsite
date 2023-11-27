@@ -77,7 +77,7 @@
 .dropdown-content {
     display: none;
     position: relative;
-    background-color: white;
+    background-color: var(--background-color);
     z-index: 4;
     text-align: center;
 }
@@ -114,7 +114,7 @@
   }
 
   .header__link:hover {
-    color: black; /* change this color for hover animation color change */
+    color: var(--accent-color); /* change this color for hover animation color change */
     /*background-color: var(--primary-color);*/
   }
 

@@ -9,6 +9,21 @@
     {% include 'global-templates/navigation-bar.html' %}
 </header>
 
+<div class="container">
+    <div class="matrix-container">
+        <canvas id="matrixCanvasHeader"></canvas>
+        <div class="content" style="height: 400px;">
+            <h1 class="page-title">Previous Projects</h1>
+            <h5 class="page-title-text">
+                Find out what I am capable of!
+            </h5>
+            <a aria-label="contact button" id="contact button" href="/contact"
+               class="home-contact-button"><span>Get in Contact!</span></a>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='js_components/matrix-header.js') }}"></script>
+</div>
+
 <div class="section"></div>
 
 <div class="container">
