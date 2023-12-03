@@ -1,15 +1,19 @@
 ![Alt Text](../ClasenDataScience/static/image_assets/personal_website_second.png)
 
 ---
-## Version: 0.9.0
-### Author: Finance Nik 
-#### Date: 12.11.2023
+
+### Version: 0.9.0
+
+### Author: Finance Nik
+
+### Date: 03.12.2023
 
 ---
 
-# Your Flask Application Name
+# Clasen Data Science - Website
 
-Description of your Flask application goes here. Provide a brief overview of what your application does and any notable features.
+This is the source code for my personal website. It is built using the Flask web framework and deployed on Vercel. It is
+meant as a portfolio of my data science projects and a place to share my thoughts on data science and machine learning.
 
 ## Table of Contents
 
@@ -23,7 +27,8 @@ Description of your Flask application goes here. Provide a brief overview of wha
 
 ## Prerequisites
 
-List any prerequisites that users need to have installed or set up to run your application. This might include Python, Flask, or specific libraries.
+List any prerequisites that users need to have installed or set up to run your application. This might include Python,
+Flask, or specific libraries.
 
 ## Installation
 
@@ -43,11 +48,15 @@ Provide instructions on how to install and set up your application. You can incl
    ```bash
    pip install -r requirements.txt
    ```
+
 ## Usage
+
 Start the app by running:
+
    ```bash
    python app.py
    ```
+
 Once the application is running, you can access it in your web browser at http://localhost:5000.
 
 ## Configuration
