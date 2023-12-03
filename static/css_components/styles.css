@@ -306,10 +306,11 @@ strong {
     position: absolute;
     align-text: center;
     display: block;
-    top: 35%; /* Center vertically */
-    left: 50%; /* Center horizontally */
-    transform: translate(-50%, -30%); /* Center both horizontally and vertically */
-    color: var(--primary-text-color); /* Adjust text color for visibility */    line-height: 1.1;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -30%);
+    color: var(--primary-text-color);
+    line-height: 1.1;
 }
 
 .project-hero-text {
@@ -326,14 +327,14 @@ strong {
 
 .project-text-header {
     font-size: var(--size-lg);
-    color: var(--secondary-color);
+    color: var(--primary-text-color);
     text-align: left;
     padding: 10px 0px 0px 0px;
 }
 
 .project-text {
     font-size: var(--size-base);
-    color: var(--primary-text-color);
+    color: var(--secondary-text-color);
     text-align: left;
 }
 
@@ -350,7 +351,7 @@ strong {
 }
 .hero-subtitle {
     line-height: 1.1;
-    color: var(--primary-text-color);
+    color: var(--secondary-text-color);
 }
 .hero-text {
     color: var(--primary-text-color);
@@ -360,11 +361,11 @@ strong {
     position: absolute;
     align-text: center;
     display: block;
-    top: 50%; /* Center vertically */
-    left: 50%; /* Center horizontally */
-    transform: translate(-50%, -100%); /* Center both horizontally and vertically */
-    color: white; /* Adjust text color for visibility */
-    padding: 10px ; /* Adjust padding as needed */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -100%);
+    color: white;
+    padding: 10px ;
     font-family: var(--fontfamily);
     font-weight: normal;
     line-height: 1.7;
@@ -650,7 +651,8 @@ textarea {
     padding: 30px;
     display: none;
     font-size: 14px;
-    color: var(--secondary-text-color)
+    color: var(--primary-text-color);
+    line-height: 1.7;
 }
 
 .faq {
@@ -663,17 +665,12 @@ textarea {
 }
 
 .faq .question {
-    padding: 25px 0px 25px 0px;
+    padding: 25px 25px 25px 25px;
+    color: var(--secondary-text-color);
     width: 80%;
     margin: 0 auto; /* Center horizontally */
     cursor: pointer;
     border: 1px solid #ccc;
-}
-
-.faq .question:hover .answer {
-    animation: expandAnswer 2.5s ease; /* Use CSS animation for smoother transition */
-    display: block;
-    max-height: 1000px; /* Adjust to a sufficiently large value to fully expand */
 }
 
 @keyframes expandAnswer {
@@ -705,7 +702,7 @@ textarea {
     font-size: var(--size-base);
   }
   .hero-text {
-    font-size: var(--size-sm);
+    font-size: var(--size-lg);
     line-height: 1.5;
   }
   .home-contact-button {
@@ -734,7 +731,7 @@ textarea {
     font-size: var(--size-base);
   }
     .hero-text {
-    font-size: var(--size-sm);
+    font-size: var(--size-lg);
     line-height: 1.5;
   }
   .home-contact-button {
@@ -766,10 +763,10 @@ textarea {
         font-size: var(--size-5xl);
     }
     .hero-subtitle {
-        font-size: var(--size-lg);
+        font-size: var(--size-xl);
     }
     .hero-text {
-        font-size: var(--size-sm);
+        font-size: var(--size-lg);
         line-height: 1.5;
     }
     .home-contact-button {
@@ -817,7 +814,7 @@ textarea {
     font-size: var(--size-xl);
   }
 .hero-text {
-    font-size: var(--size-sm);
+    font-size: var(--size-lg);
     line-height: 1.6;
   }
     .page-title-text {
@@ -870,8 +867,8 @@ textarea {
     font-size: var(--size-2xl);
   }
   .hero-text {
-    font-size: var(--size-base);
-    line-height: 1.7;
+    font-size: var(--size-lg);
+    line-height: 1.8;
   }
     .page-title-text {
     margin: 70px 0px 0px 0px; /* Center the button below the h1 */
