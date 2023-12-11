@@ -14,4 +14,4 @@
   - [ ] Dark mode colored logo with text
   - [ ] Dark mode colored logo without text small
 - [x] Move the FAQ section to the services page
-- [ ] Change the FAQ action from hover to clicked
+- [x] Change the FAQ action from hover to clicked

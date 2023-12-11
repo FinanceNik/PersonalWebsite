@@ -44,8 +44,8 @@
 }
 
 .header__logo {
-    max-width: 100px; /* Set the maximum width of your logo */
-    margin-right: auto; /* Add some margin to separate the logo from the menu */
+    max-width: 100px;
+    margin-right: auto;
 }
 
 
@@ -63,6 +63,12 @@
     position: relative;
     justify-content: center;
     align-items: center;
+    font-size: var(--size-2xl);
+    font-weight: bold;
+    border: 1px solid var(--primary-color);
+    border-radius: 10px;
+    margin: 30px;
+    padding: 0.5rem;
   }
 
 .dropdown {
@@ -78,6 +84,7 @@
     display: none;
     position: relative;
     background-color: var(--background-color);
+    font-size: var(--size-xl);
     z-index: 4;
     text-align: center;
 }
@@ -95,7 +102,7 @@
 }
 
 /* md */
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   .header__menu {
     display: flex;
     align-items: center;
@@ -105,7 +112,6 @@
   }
 
   .header__link {
-    font-size: var(--size-xs);
     text-decoration: none;
     font-weight: 600;
     color: var(--primary-color);
@@ -114,7 +120,7 @@
   }
 
   .header__link:hover {
-    color: var(--accent-color); /* change this color for hover animation color change */
+    color: var(--accent-color);
     /*background-color: var(--primary-color);*/
   }
 

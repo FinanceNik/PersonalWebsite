@@ -5,8 +5,8 @@
     --accent-color: #4cd964;
 
     --light-color: #C2E2F5;
-    --background-color: #ffffff;
-    --background-color-card: rgba(255, 255, 255, 0.6);
+    --background-color: white;
+    --background-color-card: rgba(247, 247, 247, 0.6);
     --border-color-card: #cccccc;
 
     --primary-text-color: black;
@@ -30,7 +30,7 @@
 
 :root[data-theme='dark-mode'] { /*dark mode here*/
   --secondary-color: #000066;
-  --primary-color: #0000FF;
+  --primary-color: #0000ff;
   --tertiary-color: #4B7BF5;
   --accent-color: #4cd964;
 
