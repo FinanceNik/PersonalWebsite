@@ -2,7 +2,7 @@
 @import "colors.css";
 
 :root {
-    --fontfamily: IBM Plex Mono;
+    --font-family-header: IBM Plex Mono;
 
     /* sizes for responsiveness*/
     --size-xxs: 0.5rem;
@@ -28,7 +28,7 @@
     padding: 20px 0;
     display: flex;
     justify-content: space-around;
-    font-family: var(--fontfamily);
+    font-family: var(--font-family-header);
     border-radius: 10px 10px 0px 0px;
 }
 
@@ -45,7 +45,7 @@
     color: white;
     text-align: center;
     padding: 5px 0;
-    font-family: var(--fontfamily);
+    font-family: var(--font-family-header);
 }
 
 
@@ -55,7 +55,7 @@
     flex: 1;
     padding: 0 20px;
     text-align: center;
-    font-family: var(--fontfamily);
+    font-family: var(--font-family-header);
 }
 
 @media (min-width: 400px) {

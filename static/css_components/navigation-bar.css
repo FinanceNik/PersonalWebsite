@@ -11,7 +11,7 @@
 
 .language-switcher select {
     background-color: var(--background-color);
-    font-family: var(--fontfamily);
+    font-family: var(--font-family-header);
     color: var(--primary-color);
     padding: 8px;
     border: 0px;
@@ -21,7 +21,7 @@
 
 .language-switcher label {
     color: var(--primary-text-color);
-    font-family: var(--fontfamily);
+    font-family: var(--font-family-header);
     font-size: 16px; /* Adjust the font size as needed */
     border: 0px;
 }

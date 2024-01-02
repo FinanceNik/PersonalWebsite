@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap');
-@import "colors.css";
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=Lato&family=Roboto:wght@300&display=swap');
 @import "sizes.css";
 
 * {
@@ -11,7 +11,7 @@ html {
 }
 
 body {
-  font-family: var(--fontfamily), sans-serif;
+  font-family: var(--font-family-header), sans-serif;
   background-color: var(--background-color);
   color: var(--primary-text-color);
   overflow-x: hidden;
@@ -117,10 +117,12 @@ strong {
 }
 .service-list-item {
     font-size: var(--size-lg);
+    font-family: var(--font-family-body);
     color: var(--secondary-text-color);
     padding: 5px;
 }
 .service-card-text {
+    font-family: var(--font-family-body);
     text-align: left;
     font-size: var(--size-lg);
     color: var(--secondary-text-color);
@@ -194,7 +196,7 @@ strong {
   position: relative;
   bottom: 0px;
   transition: all 0.3s;
-  font-family: var(--fontfamily);
+  font-family: var(--font-family-header);
 }
 .github-button span {
   cursor: pointer;
@@ -235,7 +237,7 @@ strong {
   position: relative;
   bottom: 0px;
   transition: all 0.6s;
-  font-family: var(--fontfamily);
+  font-family: var(--font-family-header);
 }
 
 .prefooter-button:hover {
@@ -256,7 +258,7 @@ strong {
   position: relative;
   bottom: 0px;
   transition: all 0.3s;
-  font-family: var(--fontfamily);
+  font-family: var(--font-family-header);
 }
 
 .button span {
@@ -326,6 +328,22 @@ strong {
     margin: 0% 2% 0% 2%;
 }
 
+.project-list {
+    list-style-type: disc; /* You can change this to other values like 'circle' or 'square' */
+    margin-left: 20px; /* Adjust the margin as needed */
+    color: var(--secondary-text-color);
+    font-size: var(--size-base);
+    text-align: left;
+}
+
+.project-list li {
+    margin-bottom: 10px; /* Adjust the spacing between list items */
+    font-family: var(--font-family-body);
+    color: var(--secondary-text-color);
+    font-size: var(--size-xxl);
+    text-align: left;
+}
+
 .project-text-header {
     font-size: var(--size-lg);
     color: var(--primary-text-color);
@@ -335,6 +353,8 @@ strong {
 
 .project-text {
     font-size: var(--size-base);
+    line-height: 1.7;
+    font-family: var(--font-family-body);
     color: var(--secondary-text-color);
     text-align: left;
 }
@@ -367,7 +387,7 @@ strong {
     transform: translate(-50%, -100%);
     color: white;
     padding: 10px ;
-    font-family: var(--fontfamily);
+    font-family: var(--font-family-header);
     font-weight: normal;
     line-height: 1.7;
 }
@@ -389,7 +409,7 @@ strong {
     border-radius: 10px;
     bottom: 15px + 5rem;
     transition: all 0.3s;
-    font-family: var(--fontfamily);
+    font-family: var(--font-family-header);
 }
 
 .home-contact-button:hover {
@@ -477,6 +497,7 @@ strong {
     text-align: left;
     border-radius: 0px;
     font-size: var(--size-lg);
+    font-family: var(--font-family-body);
     color: var(--secondary-text-color);
 }
 .card-hr {
@@ -582,7 +603,7 @@ strong {
     height: 100%;
     border-radius: 15px;
     box-shadow: 5px 5px 20px var(--lightgrey);
-    font-family: var(--fontfamily);
+    font-family: var(--font-family-header);
     font-size: 22px;
     padding: 20px;
 }
@@ -595,7 +616,7 @@ strong {
 
 select {
     background-color: white;
-    font-family: var(--fontfamily);
+    font-family: var(--font-family-header);
     color: #6b6b6b;
 
 }
@@ -609,7 +630,7 @@ input[type=text], select, textarea {
     margin-top: 6px;
     margin-bottom: 16px;
     resize: vertical;
-    font-family: var(--fontfamily);
+    font-family: var(--font-family-header);
     font-size: 18px;
 
 }
@@ -621,29 +642,29 @@ input[type=submit] {
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  font-family: var(--fontfamily);
+  font-family: var(--font-family-header);
   font-size: 18px;
 }
 
 input[type=submit]:hover {
-    font-family: var(--fontfamily);
+    font-family: var(--font-family-header);
 }
 
 label {
     color: var(--primary-text-color);
-    font-family: var(--fontfamily);
+    font-family: var(--font-family-header);
     font-size: 22px;
 }
 
 form {
     width: 100%;
     text-align: left;
-    font-family: var(--fontfamily);
+    font-family: var(--font-family-header);
     font-size: 22px;
 }
 
 textarea {
-    font-family: var(--fontfamily);
+    font-family: var(--font-family-header);
     font-size: 18px;
 }
 
@@ -670,6 +691,7 @@ textarea {
 }
 
 .faq .question {
+    font-family: var(--font-family-body);
     padding: 25px 25px 25px 25px;
     color: var(--secondary-text-color);
     width: 80%;
@@ -758,6 +780,9 @@ textarea {
   .project-text {
     font-size: var(--size-lg);
   }
+  .project-list {
+    font-size: var(--size-lg);
+  }
 }
 
 /* md */
@@ -807,6 +832,9 @@ textarea {
     .project-text {
       font-size: var(--size-xl);
     }
+    .project-list {
+      font-size: var(--size-xl);
+    }
 }
 
 /* lg */
@@ -843,7 +871,7 @@ textarea {
   }
     .card {
         width: 26%; /* One card per row on mobile */
-        line-height: 1.55;
+        line-height: 1.75;
     }
     .project-hero-text {
         font-size: var(--size-xl);
@@ -899,6 +927,9 @@ textarea {
         font-size: var(--size-2xl);
     }
     .project-text {
+      font-size: var(--size-xl);
+    }
+    .project-list {
       font-size: var(--size-xl);
     }
 }

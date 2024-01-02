@@ -1,5 +1,6 @@
 :root {
-    --fontfamily: IBM Plex Mono;
+    --font-family-header: IBM Plex Mono;
+    --font-family-body: Lato;
 
     /* sizes for responsiveness*/
     --size-xxs: 0.7rem;
