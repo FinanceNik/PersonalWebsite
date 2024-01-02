@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" data-theme='light-mode'>
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css_components/styles.css') }}">
+</head>
+<body class="body">
+<header>
+    <!-- get the navigation bar from the navigation-bar.html file -->
+    {% include 'global-templates/navigation-bar.html' %}
+</header>
+<div>
+    <div class="container">
+        <br>
+        <h1 class="hero-title">ML News Article Sentiment</h1>
+        <br>
+        <h3 class="hero-subtitle">Machine Learning / Data Science</h3>
+        <br>
+    </div>
+</div>
+
+<div class="section"></div>
+<div class="container">
+    <img src='{{ url_for("static", filename="image_assets/ML_Sentiment_small.png") }}'
+         alt="Project Sports Dashboard"
+         style="width:100%;">
+</div>
+
+<div class="section"></div>
+<div class="container">
+    <h2 class="project-text-header">
+        Technology Used: ⚡ ML | ⚡ Python | ⚡ Docker
+    </h2>
+</div>
+
+<div class="section"></div>
+<div class="container">
+    <h2 class="project-text-header">The Problem:</h2>
+    <hr class="project-hr">
+</div>
+<div class="container">
+    <p class="project-text">
+        Sometimes it is important for algorithms such as trading bots to quickly determine the sentiment of a news
+        article. This task can be done manually, however, it is very time-consuming and tedious. Hence, this machine
+        learning algorithm set out to solve this problem by pre-training a model on a large dataset of news articles
+        from various sources.
+    </p>
+</div>
+
+<div class="section"></div>
+<div class="container">
+    <h2 class="project-text-header">The Solution:</h2>
+    <hr class="project-hr">
+</div>
+<div class="container">
+    <p class="project-text">
+        Create a machine learning algorithm that can quickly determine the sentiment of a news article. The algorithm
+        was trained on a large dataset of news articles from various sources. The algorithm is fully dynamic and
+        automatically updates with every new file upload. Furthermore, the user can choose between different types of
+        analysis or analyze all data at once.
+    </p>
+</div>
+
+<div class="section"></div>
+<div class="container">
+    <h2 class="project-text-header">Key Features:</h2>
+    <hr class="project-hr">
+</div>
+<div class="container">
+    <p class="project-text">
+        XXXXXX
+    </p>
+    <br>
+    <ul class="project-list">
+        <li>xxx</li>
+        <li>xxx</li>
+        <li>xxx</li>
+        <li>xxx</li>
+    </ul>
+</div>
+
+<div class="section"></div>
+<div class="container">
+    <h2 class="project-text-header">Summary:</h2>
+    <hr class="project-hr">
+</div>
+<div class="container">
+    <p class="project-text">
+        xxx
+    </p>
+</div>
+
+<div class="section"></div>
+<div class="container">
+    {% include 'global-templates/pre-footer.html' %}
+</div>
+
+<div class="section"></div>
+<div class="container">
+    {% include 'global-templates/footer.html' %}
+</div>
+
+</body>
+</html>
