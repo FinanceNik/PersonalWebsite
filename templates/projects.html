@@ -1,27 +1,31 @@
-<!DOCTYPE html>
-<html lang="en" data-theme='light-mode'>
-<head>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css_components/styles.css') }}">
-</head>
-<body class="body">
-<header>
-    <!-- get the navigation bar from the navigation-bar.html file -->
-    {% include 'global-templates/navigation-bar.html' %}
-</header>
+{% extends "base.html" %}
+{% block title %}Case Studies - Niklas Clasen Consulting{% endblock %}
+{% block meta_description %}Explore case studies showcasing Power BI migrations, Microsoft Fabric implementations, and automated reporting pipelines.{% endblock %}
 
-<div class="container">
-    <div class="matrix-container">
-        <canvas id="matrixCanvasHeader"></canvas>
-        <div class="content" style="height: 400px;">
-            <h1 class="page-title">Previous Projects</h1>
-            <h5 class="page-title-text">
-                Find out what I am capable of!
-            </h5>
-            <a aria-label="contact button" id="contact button" href="/contact"
-               class="home-contact-button"><span>Get in Contact!</span></a>
+{% block content %}
+<div>
+    <div class="container">
+        <div class="modular-container-wrapper">
+            <div class="modular-container" style="height: 400px">
+                <br>
+                <h1 class="hero-title">Case Studies</h1>
+                <br>
+                <br>
+                <h3 class="hero-subtitle">Real Results from Real Projects</h3>
+                <br>
+                <br>
+                <h5 class="hero-text">
+                    Explore how I've helped organizations transform their data platforms,
+                    build impactful dashboards, and automate their reporting workflows.
+                </h5>
+                <div class="blob"></div>
+                <br>
+                <br>
+                <a aria-label="Get in contact" href="/contact"
+                   class="button"><span>Get in Contact!</span></a>
+            </div>
         </div>
     </div>
-    <script src="{{ url_for('static', filename='js_components/matrix-header.js') }}"></script>
 </div>
 
 <div class="section"></div>
@@ -29,117 +33,40 @@
 <div class="container">
     <div class="card-container">
         <div class="card">
-            <img src='{{ url_for("static", filename="image_assets/sports_dashboard_screenshot.png") }}'
-                 alt="Your Image"
-                 style="width:100%">
-            <h2 style="padding: 10px 0px 0px 0px">Sports Tracking App</h2>
+            <h2 style="padding: 10px 0px 0px 0px">Enterprise Power BI Migration</h2>
             <hr class="card-hr">
-            <p>Expert in data analysis with a strong ability to extract valuable insights from raw data. Proficient in
-                data cleansing, exploratory data analysis, and statistical analysis to drive informed
-                decision-making.</p>
+            <p>Consolidated 50+ Excel reports into a centralized Power BI platform for a financial
+                services company. Unified data from 8 source systems into Azure Synapse, deployed
+                15 interactive dashboards, and reduced manual reporting effort by 80%.</p>
             <br>
-            <a href="https://github.com/FinanceNik/SportsDashboard" class="github-button"><span>Go to GitHub</span></a>
+            <p><strong>Industry:</strong> Financial Services</p>
+            <p><strong>Technologies:</strong> Power BI, Azure Synapse, DAX</p>
             <br>
-            <a href="/projects/project-sportsdashboard.html" class="button"><span>Learn More</span></a>
-
+            <a href="/projects/case-study-powerbi-migration.html" class="button"><span>View Case Study</span></a>
         </div>
         <div class="card">
-            <img src='{{ url_for("static", filename="image_assets/personal_website_second.png") }}'
-                 alt="Your Image"
-                 style="width:100%">
-            <h2 style="padding: 10px 0px 0px 0px">My Personal Website</h2>
+            <h2 style="padding: 10px 0px 0px 0px">Microsoft Fabric Lakehouse</h2>
             <hr class="card-hr">
-            <p>
-                This project is a personal website that I created from scratch using HTML and CSS. I used the Flask
-                framework to deploy the website on a Raspberry Pi. The website is fully responsive and can be viewed on
-                any device. Here, I can showcase my previous work and have a way for potential clients to contact me.
-            </p>
+            <p>Implemented a Fabric Lakehouse architecture for a retail company with 50+ stores,
+                centralizing data from POS, e-commerce, and CRM systems. PySpark notebooks and
+                Direct Lake reports enabled near real-time analytics across the organization.</p>
             <br>
-            <a href="https://github.com/FinanceNik/PersonalWebsite" class="github-button"><span>Go to GitHub</span></a>
+            <p><strong>Industry:</strong> Retail</p>
+            <p><strong>Technologies:</strong> Microsoft Fabric, PySpark, Power BI</p>
             <br>
-            <a href="/projects/project-personal-website.html" class="button"><span>Learn More</span></a>
-
+            <a href="/projects/case-study-fabric-lakehouse.html" class="button"><span>View Case Study</span></a>
         </div>
         <div class="card">
-            <img src='{{ url_for("static", filename="image_assets/ML_Sentiment_small.png") }}'
-                 alt="Machine Learning Sentiment Analysis Project"
-                 style="width:100%;">
-            <h2 style="padding: 10px 0px 0px 0px">ML News Sentiment Analysis</h2>
+            <h2 style="padding: 10px 0px 0px 0px">Automated Reporting Pipeline</h2>
             <hr class="card-hr">
-            <p>
-                When reading the news, it is often difficult for machines to determine whether the article is positive
-                or negative. In this project, I have created a machine learning model that can classify news articles
-                by solely parsing the URL to the article as an argument. All the necessary data is then scraped.
-            </p>
+            <p>Built an end-to-end automated reporting pipeline for a manufacturing company,
+                replacing manual Excel KPI tracking with real-time Power BI dashboards. Automated
+                alerts via Power Automate reduced quality issue response time from days to minutes.</p>
             <br>
-            <a href="https://github.com/FinanceNik/Newsletter-Sentiment-Analysis"
-               class="github-button"><span>Go to GitHub</span></a>
+            <p><strong>Industry:</strong> Manufacturing</p>
+            <p><strong>Technologies:</strong> Azure Data Factory, Power BI, Power Automate</p>
             <br>
-            <a href="/projects/project-ML-sentiment-analysis.html" class="button"><span>Learn More</span></a>
-
-        </div>
-    </div>
-</div>
-
-<div class="container">
-    <br>
-    <hr>
-    <br>
-</div>
-
-<div class="container">
-    <div class="card-container">
-        <div class="card">
-            <img src='{{ url_for("static", filename="image_assets/Time-Management-App.png") }}'
-                 alt="Your Image"
-                 style="width:100%">
-            <h2 style="padding: 10px 0px 0px 0px">Free Time</h2>
-            <hr class="card-hr">
-            <p>
-                "Free Time" is a time management tool for freelancers. Here, freelancers can track their time and export
-                time sheets as well as create invoices for various employers. This app is meant to greatly reduce the
-                hassle of using Excel sheets to track working hours.
-            </p>
-            <br>
-            <a href="https://github.com/FinanceNik/free-time" class="github-button"><span>Go to GitHub</span></a>
-            <br>
-            <a href="/projects/project-free-time.html" class="button"><span>Learn More</span></a>
-
-        </div>
-        <div class="card">
-            <img src='{{ url_for("static", filename="image_assets/personal_website_second.png") }}'
-                 alt="Your Image"
-                 style="width:100%">
-            <h2 style="padding: 10px 0px 0px 0px">My Personal Website</h2>
-            <hr class="card-hr">
-            <p>
-                This project is a personal website that I created from scratch using HTML and CSS. I used the Flask
-                framework to deploy the website on a Raspberry Pi. The website is fully responsive and can be viewed on
-                any device. Here, I can showcase my previous work and have a way for potential clients to contact me.
-            </p>
-            <br>
-            <a href="https://github.com/FinanceNik/PersonalWebsite" class="github-button"><span>Go to GitHub</span></a>
-            <br>
-            <a href="/projects/project-personal-website.html" class="button"><span>Learn More</span></a>
-
-        </div>
-        <div class="card">
-            <img src='{{ url_for("static", filename="image_assets/duolingo_analysis_large.png") }}'
-                 alt="Your Image"
-                 style="width:100%;">
-            <h2 style="padding: 10px 0px 0px 0px">Duolingo Analysis Tool</h2>
-            <hr class="card-hr">
-            <p>
-                If you are a language learning geek just like I am, you probably wondered if there is a better way to
-                analyse more of your duolingo data. I have created such a tool to which you can upload your own Duolingo
-                data and see insights that the app itself does not give.
-            </p>
-            <br>
-            <a href="https://github.com/FinanceNik/duolingo-analysis"
-               class="github-button"><span>Go to GitHub</span></a>
-            <br>
-            <a href="/projects/project-duolingoanalysistool.html" class="button"><span>Learn More</span></a>
-
+            <a href="/projects/case-study-automated-reporting.html" class="button"><span>View Case Study</span></a>
         </div>
     </div>
 </div>
@@ -149,10 +76,4 @@
 <div class="container">
     {% include 'global-templates/pre-footer.html' %}
 </div>
-<div class="section"></div>
-<div class="container">
-    {% include 'global-templates/footer.html' %}
-</div>
-
-</body>
-</html>
+{% endblock %}

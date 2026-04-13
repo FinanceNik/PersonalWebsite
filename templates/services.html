@@ -1,34 +1,31 @@
-<!DOCTYPE html>
-<html lang="en" data-theme='light-mode'>
-<head>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css_components/styles.css') }}">
-</head>
-<body class="body">
-<header>
-    <!-- get the navigation bar from the navigation-bar.html file -->
-    {% include 'global-templates/navigation-bar.html' %}
-</header>
+{% extends "base.html" %}
+{% block title %}Services - Niklas Clasen Consulting{% endblock %}
+{% block meta_description %}Expert Microsoft Fabric and Power BI consulting services including dashboard development, Fabric implementation, data warehouse design, and training.{% endblock %}
+{% block extra_head %}
+<script src="{{ url_for('static', filename='js_components/click-reveal.js') }}" defer></script>
+{% endblock %}
+
+{% block content %}
 <div>
     <div class="container">
         <div class="modular-container-wrapper">
             <div class="modular-container" style="height: 400px">
                 <br>
-                <h1 class="hero-title" id="services-hero-title">Offered Services</h1>
+                <h1 class="hero-title">Services</h1>
                 <br>
                 <br>
-                <h3 class="hero-subtitle" id="services-hero-subtitle">Empowering Your Success Through Data Science
-                    Excellence!</h3>
+                <h3 class="hero-subtitle">Expert Microsoft Fabric & Power BI Consulting</h3>
                 <br>
                 <br>
-                <h5 class="hero-text" id="services-hero-text">
-                    Explore the possibilities and discover how my expertise can elevate your projects. Ready to
-                    collaborate? Let's chat!
+                <h5 class="hero-text">
+                    From strategy to implementation, I provide end-to-end consulting services
+                    that help your organization make the most of the Microsoft data platform.
                 </h5>
 
                 <div class="blob"></div>
                 <br>
                 <br>
-                <a aria-label="contact button" id="services-contact-button" href="/contact"
+                <a aria-label="Get in contact" href="/contact"
                    class="button"><span>Get in Contact!</span></a>
             </div>
         </div>
@@ -43,26 +40,21 @@
         <div class="modular-container-services-one">
             <div style="margin: 10px;">
                 <br>
-                <h5 class="service-card-type" id="service-card-type-1">Data Analysis on your Dataset</h5>
+                <h5 class="service-card-type">Power BI Report & Dashboard Development</h5>
                 <br>
-                <h2 class="service-card-header" id="service-card-header-1">Starting at CHF 500</h2>
+                <h2 class="service-card-header">Starting at CHF 2,000</h2>
                 <br>
-                <p class="service-card-text" id="service-card-text-1">Uncover insights and patterns within your dataset
-                    through meticulous data
-                    analysis. Leverage the power of data to make informed decisions and drive your business forward.
+                <p class="service-card-text">Turn your raw data into interactive, insightful Power BI reports
+                    and dashboards. I design solutions that empower your team with real-time
+                    visibility into the metrics that matter most.
                 </p>
                 <br>
                 <ul class="service-list">
-                    <li class="service-list-item" id="service-card-list-1-1">Tailored analysis
-                    </li>
-                    <li class="service-list-item" id="service-card-list-1-2">In-depth statistical assessments
-                    </li>
-                    <li class="service-list-item" id="service-card-list-1-3">Visual Data Representation
-                    </li>
-                    <li class="service-list-item" id="service-card-list-1-4">Actionable Recommendations
-                    </li>
-                    <li class="service-list-item" id="service-card-list-1-5">Continuous Support
-                    </li>
+                    <li class="service-list-item">Custom report design and development</li>
+                    <li class="service-list-item">Interactive dashboards with drill-through navigation</li>
+                    <li class="service-list-item">Data model optimization and DAX measures</li>
+                    <li class="service-list-item">Row-level security and access management</li>
+                    <li class="service-list-item">Deployment, sharing, and workspace setup</li>
                 </ul>
                 <br>
                 <a aria-label="Secure your package now!" href="/contact" class="secure-package-link">Secure your package
@@ -73,40 +65,26 @@
         <div class="modular-container-services-two">
             <div style="margin: 10px;">
                 <br>
-                <h5 class="service-card-type" id="service-card-type-2">Custom Data Science Dashboard</h5>
+                <h5 class="service-card-type">Microsoft Fabric Implementation</h5>
                 <br>
-                <h2 class="service-card-header" id="service-card-header-2">Starting at CHF 2,000</h2>
+                <h2 class="service-card-header">Individual Pricing</h2>
                 <br>
-                <p class="service-card-text" id="service-card-text-2">Transform your data into interactive dashboards,
-                    providing a comprehensive
-                    view of key metrics. Empower your team with real-time data visualization for strategic
-                    decision-making.
+                <p class="service-card-text">Adopt Microsoft Fabric with a structured, proven approach. I guide
+                    your organization through the full implementation -- from capacity planning
+                    to production deployment of Lakehouses and Warehouses.
                 </p>
                 <br>
                 <ul class="service-list">
-                    <li class="service-list-item" id="service-card-list-2-1">Customized dashboards reflecting your
-                        unique business metrics.
-                    </li>
-                    <li class="service-list-item" id="service-card-list-2-2">Stay informed with automatic, real-time
-                        updates for dynamic
-                        insights.
-                    </li>
-                    <li class="service-list-item" id="service-card-list-2-3">Intuitive interface for easy navigation and
-                        understanding.
-                    </li>
-                    <li class="service-list-item" id="service-card-list-2-4">Implement robust security measures to
-                        protect your sensitive
-                        information.
-                    </li>
-                    <li class="service-list-item" id="service-card-list-2-5">Comprehensive training and ongoing support
-                        for efficient usage.
-                    </li>
+                    <li class="service-list-item">Fabric capacity planning and workspace architecture</li>
+                    <li class="service-list-item">OneLake and Lakehouse configuration</li>
+                    <li class="service-list-item">Data pipeline and Dataflow development</li>
+                    <li class="service-list-item">Notebook integration for advanced analytics</li>
+                    <li class="service-list-item">Migration strategy from legacy platforms</li>
                 </ul>
                 <br>
                 <a aria-label="Secure your package now!" href="/contact" class="secure-package-link">Secure your package
                     now!</a>
             </div>
-
         </div>
         <div class="modular-container-buffer" style="width: 7%;"></div>
     </div>
@@ -119,30 +97,21 @@
         <div class="modular-container-services-two">
             <div style="margin: 10px;">
                 <br>
-                <h5 class="service-card-type" id="service-card-type-3">Custom Machine Learning Model</h5>
+                <h5 class="service-card-type">Data Warehouse & Lakehouse Design</h5>
                 <br>
-                <h2 class="service-card-header" id="service-card-header-3">Individual Pricing</h2>
+                <h2 class="service-card-header">Individual Pricing</h2>
                 <br>
-                <p class="service-card-text" id="service-card-text-3">Harness the power of custom machine learning
-                    models tailored to your
-                    specific
-                    needs. From predictive analytics to recommendation engines, transform your data into actionable
-                    insights.
+                <p class="service-card-text">Build a solid data foundation with a well-architected warehouse
+                    or lakehouse. I design schemas, ETL processes, and governance frameworks
+                    that scale with your business.
                 </p>
                 <br>
                 <ul class="service-list">
-                    <li class="service-list-item" id="service-card-list-3-1">Tailored ML algorithms for accurate
-                        predictions
-                    </li>
-                    <li class="service-list-item" id="service-card-list-3-2">Predictive modeling for future trends</li>
-                    <li class="service-list-item" id="service-card-list-3-3">Performance optimization to enhance
-                        efficiency
-                    </li>
-                    <li class="service-list-item" id="service-card-list-3-4">Integration support for seamless
-                        implementation
-                    </li>
-                    <li class="service-list-item" id="service-card-list-3-5">Continuous improvement for evolving needs
-                    </li>
+                    <li class="service-list-item">Dimensional modeling and schema design</li>
+                    <li class="service-list-item">ETL/ELT pipeline development</li>
+                    <li class="service-list-item">Data quality and validation frameworks</li>
+                    <li class="service-list-item">Performance tuning and query optimization</li>
+                    <li class="service-list-item">Migration planning from legacy systems</li>
                 </ul>
                 <br>
                 <a aria-label="Secure your package now!" href="/contact" class="secure-package-link">Secure your package
@@ -153,22 +122,21 @@
         <div class="modular-container-services-one">
             <div style="margin: 10px;">
                 <br>
-                <h5 class="service-card-type" id="service-card-type-4">Automating your Business Process</h5>
+                <h5 class="service-card-type">Power BI Training & Workshops</h5>
                 <br>
-                <h2 class="service-card-header" id="service-card-header-4">Individual Pricing</h2>
+                <h2 class="service-card-header">Starting at CHF 1,500</h2>
                 <br>
-                <p class="service-card-text" id="service-card-text-4">Streamline and automate your business processes
-                    for increased efficiency
-                    and
-                    productivity. From data entry to task automation, let technology work for you.
+                <p class="service-card-text">Enable your team to build and maintain their own reports with
+                    confidence. I deliver hands-on training programs tailored to your data,
+                    your tools, and your team's skill level.
                 </p>
                 <br>
                 <ul class="service-list">
-                    <li class="service-list-item" id="service-card-list-4-1">Workflow Analysis</li>
-                    <li class="service-list-item" id="service-card-list-4-2">Custom Automation Solutions</li>
-                    <li class="service-list-item" id="service-card-list-4-3">Integration with Existing Systems</li>
-                    <li class="service-list-item" id="service-card-list-4-4">User Training and Support</li>
-                    <li class="service-list-item" id="service-card-list-4-5">Scalable Automation Strategies</li>
+                    <li class="service-list-item">Beginner to advanced training tracks</li>
+                    <li class="service-list-item">Hands-on exercises with your real data</li>
+                    <li class="service-list-item">DAX, Power Query, and data modeling deep dives</li>
+                    <li class="service-list-item">Best practices and governance guidelines</li>
+                    <li class="service-list-item">Post-training support and Q&A sessions</li>
                 </ul>
                 <br>
                 <a aria-label="Secure your package now!" href="/contact" class="secure-package-link">Secure your package
@@ -186,24 +154,21 @@
         <div class="modular-container-services-one">
             <div style="margin: 10px;">
                 <br>
-                <h5 class="service-card-type" id="service-card-type-5">You have a Project Idea?</h5>
+                <h5 class="service-card-type">Ongoing Support & Maintenance</h5>
                 <br>
-                <h2 class="service-card-header" id="service-card-header-5">Individual Pricing</h2>
+                <h2 class="service-card-header">Starting at CHF 500/month</h2>
                 <br>
-                <p class="service-card-text" id="service-card-text-5">Bring your project idea to life with personalized
-                    solutions and flexible
-                    pricing options.
+                <p class="service-card-text">Keep your data platform running smoothly with a dedicated
+                    support retainer. I provide proactive monitoring, regular maintenance,
+                    and priority issue resolution.
                 </p>
                 <br>
-                <!-- please create a list with 5 bullet points-->
                 <ul class="service-list">
-                    <li class="service-list-item" id="service-card-list-5-1">Consultation and idea refinement</li>
-                    <li class="service-list-item" id="service-card-list-5-2">Customized project development plan</li>
-                    <li class="service-list-item" id="service-card-list-5-3">Regular updates and project milestones</li>
-                    <li class="service-list-item" id="service-card-list-5-4">Collaborative and transparent
-                        communication
-                    </li>
-                    <li class="service-list-item" id="service-card-list-5-5">Post-launch support and maintenance</li>
+                    <li class="service-list-item">Report and pipeline monitoring</li>
+                    <li class="service-list-item">Performance tuning and optimization</li>
+                    <li class="service-list-item">Bug fixes and feature enhancements</li>
+                    <li class="service-list-item">Quarterly review and recommendations</li>
+                    <li class="service-list-item">Priority support with guaranteed response times</li>
                 </ul>
                 <br>
                 <a aria-label="Secure your package now!" href="/contact" class="secure-package-link">Secure your package
@@ -214,34 +179,37 @@
         <div class="modular-container-services-two">
             <div style="margin: 10px;">
                 <br>
-                <h5 class="service-card-type" id="service-card-type-6">Your Personal Website</h5>
+                <h5 class="service-card-type">Custom Project Ideas</h5>
                 <br>
-                <h2 class="service-card-header" id="service-card-header-6">Starting at CHF 3,000</h2>
+                <h2 class="service-card-header">Individual Pricing</h2>
                 <br>
-                <p class="service-card-text" id="service-card-text-6">Transform your online presence with a personalized
-                    website tailored to your
-                    needs and preferences.
+                <p class="service-card-text">Have a unique challenge or idea? I love working on bespoke
+                    data projects. Let's discuss your vision and build a tailored
+                    solution together.
                 </p>
                 <br>
-                <!-- please create a list with 5 bullet points-->
                 <ul class="service-list">
-                    <li class="service-list-item" id="service-card-list-6-1">Custom website design and development</li>
-                    <li class="service-list-item" id="service-card-list-6-2">Responsive and user-friendly interface</li>
-                    <li class="service-list-item" id="service-card-list-6-3">Integration of essential features and
-                        functionalities
-                    </li>
-                    <li class="service-list-item" id="service-card-list-6-4">Optimization for search engines (SEO)</li>
-                    <li class="service-list-item" id="service-card-list-6-5">Training and support for managing your
-                        website
-                    </li>
+                    <li class="service-list-item">Consultation and project scoping</li>
+                    <li class="service-list-item">Custom development and integration</li>
+                    <li class="service-list-item">Proof of concept and prototyping</li>
+                    <li class="service-list-item">Testing, validation, and deployment</li>
+                    <li class="service-list-item">Post-launch support and knowledge transfer</li>
                 </ul>
                 <br>
                 <a aria-label="Secure your package now!" href="/contact" class="secure-package-link">Secure your package
                     now!</a>
             </div>
-
         </div>
         <div class="modular-container-buffer" style="width: 7%;"></div>
+    </div>
+</div>
+
+<div class="section"></div>
+<div class="container">
+    <div class="lead-banner">
+        <h2>Not sure what you need?</h2>
+        <p>Answer 5 quick questions and get a ballpark estimate for your project in under a minute.</p>
+        <a href="/calculator" class="button"><span>Get a Ballpark Estimate</span></a>
     </div>
 </div>
 
@@ -254,100 +222,83 @@
         <br>
         <div class="accordion">
             <div class="question">
-                <h3 id="faq-question-1">How can I hire your data science services?</h3>
+                <h3>How do I engage your consulting services?</h3>
                 <div class="answer">
-                    <p id="faq-answer-1">
-                        To hire my data science services, simply visit the "Contact" page on my website and fill out the
-                        contact form. I'll get back to you as soon as possible to discuss your project requirements.
-                    </p>
+                    <p>Simply fill out the contact form on my website or send me an email. I'll schedule a free
+                        initial consultation to understand your requirements, and then provide a tailored proposal
+                        with scope, timeline, and pricing.</p>
                 </div>
             </div>
             <div class="question">
-                <h3 id="faq-question-2">What industries do you specialize in?</h3>
+                <h3>What industries do you work with?</h3>
                 <div class="answer">
-                    <p id="faq-answer-2">
-                        I have experience in a wide range of industries, including finance, healthcare, e-commerce, and
-                        more. My data science expertise is adaptable to various sectors.
-                    </p>
+                    <p>I work across a wide range of industries including financial services, retail, manufacturing,
+                        healthcare, and logistics. The principles of good data architecture and reporting apply
+                        universally, and I adapt my approach to each industry's specific needs and regulations.</p>
                 </div>
             </div>
             <div class="question">
-                <h3 id="faq-question-3">What data analysis tools and languages do you use?</h3>
+                <h3>What tools and technologies do you specialize in?</h3>
                 <div class="answer">
-                    <p id="faq-answer-3">I primarily use Python for data analysis and machine learning. I'm proficient
-                        in
-                        libraries such
-                        as Pandas, NumPy, Scikit-Learn, and more. Additionally, I use visualization tools like
-                        Matplotlib and Seaborn.</p>
+                    <p>My core specializations are Microsoft Fabric and Power BI. I'm also experienced with
+                        Azure Data Factory, Azure Synapse Analytics, SQL Server, Python, and the broader
+                        Microsoft data stack. I choose the right tools based on your specific requirements.</p>
                 </div>
             </div>
             <div class="question">
-                <h3 id="faq-question-4">Can you provide examples of past projects?</h3>
+                <h3>Do you offer remote consulting?</h3>
                 <div class="answer">
-                    <p id="faq-answer-4">
-                        Yes, I can provide case studies and examples of previous projects in the "Portfolio" section of
-                        my website. These examples showcase the range of work I've done.
-                    </p>
+                    <p>Yes, I work with clients both on-site and remotely. Most of my engagements are conducted
+                        remotely using screen sharing and collaboration tools, though I'm available for on-site
+                        workshops and meetings in the Luzern/Zurich area and can travel as needed.</p>
                 </div>
             </div>
             <div class="question">
-                <h3 id="faq-question-5">What is the typical process for a data science project engagement?</h3>
+                <h3>What is a typical project timeline?</h3>
                 <div class="answer">
-                    <p id="faq-answer-5">
-                        The typical process involves project scoping, data collection, data cleaning, exploratory data
-                        analysis, model development, testing, and deployment. The exact steps may vary based on your
-                        project's requirements.
-                    </p>
+                    <p>Timelines vary based on project complexity. A focused Power BI dashboard project typically
+                        takes 2-4 weeks. A full Microsoft Fabric implementation can range from 1-3 months.
+                        I provide detailed timelines during our initial scoping conversation.</p>
                 </div>
             </div>
             <div class="question">
-                <h3 id="faq-question-6">Do you offer ongoing support for deployed models?</h3>
+                <h3>Do you provide training and knowledge transfer?</h3>
                 <div class="answer">
-                    <p id="faq-answer-6">Yes, I offer post-deployment support and maintenance to ensure the continued
-                        performance and
-                        accuracy of machine learning models. We can discuss a service-level agreement that suits your
-                        needs.</p>
+                    <p>Absolutely. Knowledge transfer is a key part of every engagement. I believe in empowering
+                        your team to maintain and extend the solutions I build. I also offer dedicated training
+                        workshops as a standalone service.</p>
                 </div>
             </div>
             <div class="question">
-                <h3 id="faq-question-7">What is the average turnaround time for a data science project?</h3>
+                <h3>How do you ensure data security and compliance?</h3>
                 <div class="answer">
-                    <p id="faq-answer-7">
-                        The project timeline depends on its complexity and scope. Small projects can be completed in a
-                        few weeks, while more extensive projects may take several months. I provide estimated timelines
-                        during our initial consultation.
-                    </p>
+                    <p>Data security is a top priority. I implement row-level security, follow the principle of
+                        least privilege, and ensure all solutions comply with relevant regulations such as GDPR.
+                        I can provide a detailed data protection plan tailored to your project.</p>
                 </div>
             </div>
             <div class="question">
-                <h3 id="faq-question-8">What sets you apart as a freelance data scientist?</h3>
+                <h3>Can you work with our existing Power BI reports?</h3>
                 <div class="answer">
-                    <p id="faq-answer-8">
-                        I combine technical expertise with a strong focus on understanding your business goals. This
-                        allows me to tailor data solutions that align with your specific needs and deliver actionable
-                        insights.
-                    </p>
+                    <p>Yes. I frequently help organizations optimize, refactor, or extend existing Power BI
+                        deployments. Whether you need performance improvements, a redesign, or migration to
+                        a new data model, I can work with what you already have.</p>
                 </div>
             </div>
             <div class="question">
-                <h3 id="faq-question-9">How do you ensure data privacy and security?</h3>
+                <h3>What is your pricing model?</h3>
                 <div class="answer">
-                    <p id="faq-answer-9">Data privacy and security are paramount. I implement best practices to protect
-                        your
-                        data and
-                        ensure compliance with privacy regulations, such as GDPR. I can provide a detailed data
-                        protection
-                        plan
-                        for your project.</p>
+                    <p>I offer both fixed-price project engagements and time-based consulting rates. Fixed pricing
+                        works well for clearly scoped projects, while hourly or daily rates are better for advisory
+                        work and ongoing support. I provide transparent quotes after our initial consultation.</p>
                 </div>
             </div>
             <div class="question">
-                <h3 id="faq-question-10">What is your pricing structure for data science services?</h3>
+                <h3>Do you offer ongoing support contracts?</h3>
                 <div class="answer">
-                    <p id="faq-answer-10">My pricing structure is flexible and based on project complexity and duration.
-                        I
-                        offer
-                        competitive rates and provide detailed quotes after discussing your project requirements.</p>
+                    <p>Yes. I offer monthly retainer packages starting at CHF 500/month that include monitoring,
+                        maintenance, bug fixes, and priority support. This ensures your data platform stays
+                        healthy and evolves with your business needs.</p>
                 </div>
             </div>
         </div>
@@ -358,14 +309,4 @@
 <div class="container">
     {% include 'global-templates/pre-footer.html' %}
 </div>
-<div class="section"></div>
-<div class="container">
-    <!-- reference footer.html -->
-    {% include 'global-templates/footer.html' %}
-</div>
-
-<script src="{{ url_for('static', filename='js_components/click-reveal.js') }}"></script>
-
-</body>
-</html>
-
+{% endblock %}

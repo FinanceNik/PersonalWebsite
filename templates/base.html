@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="{{ lang }}" data-theme='dark-mode'>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Niklas Clasen">
+    <meta name="description" content="{% block meta_description %}Niklas Clasen - Technology Consultant specializing in Microsoft Fabric, Power BI, and data platform strategy based in Luzern, Switzerland.{% endblock %}">
+    <meta property="og:title" content="{% block og_title %}Niklas Clasen - Technology Consultant{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}Expert Microsoft Fabric & Power BI consulting. Data platform strategy, dashboard development, and training.{% endblock %}">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary">
+    <meta name="theme-color" content="#0a1628">
+    <title>{% block title %}Niklas Clasen - Technology Consultant | Fabric & Power BI{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="icon" href="{{ url_for('static', filename='image_assets/logo.png') }}" type="image/png">
+    <!-- Canonical + hreflang -->
+    <link rel="canonical" href="{{ SITE_URL }}{{ request.path }}">
+    {% for alt_lang in SUPPORTED_LANGS %}
+    <link rel="alternate" hreflang="{{ alt_lang }}" href="{{ SITE_URL }}{{ request.path }}?lang={{ alt_lang }}">
+    {% endfor %}
+    <link rel="alternate" hreflang="x-default" href="{{ SITE_URL }}{{ request.path }}">
+    <!-- RSS feed -->
+    <link rel="alternate" type="application/rss+xml" title="Niklas Clasen Consulting Blog" href="{{ SITE_URL }}/blog/feed.xml">
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "LocalBusiness",
+                "name": "Niklas Clasen Consulting",
+                "description": "Technology Consultant specializing in Microsoft Fabric, Power BI, and data platform strategy.",
+                "url": "{{ SITE_URL }}",
+                "email": "niklas.clasen@gmail.com",
+                "address": {
+                    "@type": "PostalAddress",
+                    "streetAddress": "Kleinstrasse 9",
+                    "addressLocality": "Luzern",
+                    "postalCode": "6012",
+                    "addressCountry": "CH"
+                },
+                "priceRange": "CHF 500 - CHF 10,000+",
+                "areaServed": ["CH", "DE", "AT"],
+                "knowsLanguage": ["en", "de"]
+            },
+            {
+                "@type": "Person",
+                "name": "Niklas Clasen",
+                "jobTitle": "Technology Consultant",
+                "url": "{{ SITE_URL }}",
+                "knowsAbout": ["Microsoft Fabric", "Power BI", "Data Platform Strategy", "Azure", "DAX", "Data Warehousing"],
+                "worksFor": {
+                    "@type": "Organization",
+                    "name": "Niklas Clasen Consulting"
+                }
+            }
+        ]
+    }
+    </script>
+    {% block structured_data %}{% endblock %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css_components/colors.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css_components/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css_components/navigation-bar.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css_components/footer.css') }}">
+    {% block extra_head %}{% endblock %}
+</head>
+<body class="body">
+<a href="#main-content" class="skip-link">Skip to main content</a>
+{% include 'global-templates/navigation-bar.html' %}
+
+<main id="main-content">
+{% block content %}{% endblock %}
+</main>
+
+{% include 'global-templates/footer.html' %}
+{% include 'global-templates/cookie-consent.html' %}
+<script src="{{ url_for('static', filename='js_components/ui-enhancements.js') }}" defer></script>
+<script>
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js').catch(function() {});
+}
+</script>
+</body>
+</html>

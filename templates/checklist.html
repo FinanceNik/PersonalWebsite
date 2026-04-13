@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}Free Power BI Performance Checklist - Niklas Clasen Consulting{% endblock %}
+{% block meta_description %}Download a free 15-point Power BI Performance Checklist covering data modeling, DAX optimization, report design, and deployment best practices.{% endblock %}
+
+{% block content %}
+<div class="section"></div>
+
+<div class="container">
+    <div class="lead-banner" style="max-width: 700px; margin: 0 auto;">
+        <h1 class="hero-subtitle" style="margin-bottom: 0.5rem;">Free Power BI Performance Checklist</h1>
+        <br>
+        <p>15 actionable checks across data modeling, DAX measures, report design, and deployment
+            to make your Power BI reports faster and more reliable.</p>
+        <p style="color: var(--primary-text-color); font-family: var(--font-family-body);">
+            <strong>What's inside:</strong>
+        </p>
+        <div style="text-align: left; max-width: 500px; margin: 0 auto 1.5rem auto;">
+            <ul style="list-style: none; padding: 0;">
+                <li style="padding: 0.3rem 0; color: var(--secondary-text-color); font-family: var(--font-family-body);">&#10003; 4 data model optimizations that reduce memory usage</li>
+                <li style="padding: 0.3rem 0; color: var(--secondary-text-color); font-family: var(--font-family-body);">&#10003; 4 DAX best practices for faster calculations</li>
+                <li style="padding: 0.3rem 0; color: var(--secondary-text-color); font-family: var(--font-family-body);">&#10003; 3 report design rules to cut load times</li>
+                <li style="padding: 0.3rem 0; color: var(--secondary-text-color); font-family: var(--font-family-body);">&#10003; 4 deployment and refresh checks for reliability</li>
+            </ul>
+        </div>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="flash-{{ category }}" role="alert">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <form action="/download-checklist" method="post" class="lead-form">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <input type="text" name="name" placeholder="Your name" required>
+            <input type="email" name="email" placeholder="Your email" required>
+            <button type="submit" class="button"><span>Download Free PDF</span></button>
+        </form>
+        <p style="font-size: 0.75rem; color: var(--secondary-text-color); margin-top: 1rem; font-family: var(--font-family-body);">
+            No spam. Your email is only used to deliver the checklist.
+        </p>
+    </div>
+</div>
+
+<div class="section"></div>
+
+<div class="container">
+    {% include 'global-templates/pre-footer.html' %}
+</div>
+{% endblock %}

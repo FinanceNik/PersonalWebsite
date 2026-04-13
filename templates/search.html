@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}Search: {{ query }} - Niklas Clasen Consulting{% endblock %}
+
+{% block content %}
+<div class="section"></div>
+<div class="container">
+    <h1 class="hero-subtitle">Search Results for "{{ query }}"</h1>
+    <br>
+
+    <form class="search-form" action="/search" method="get" style="margin: 1.5rem auto; max-width: 450px;">
+        <div class="search-input-wrap">
+            <input type="text" name="q" value="{{ query }}" placeholder="Search the site..." aria-label="Search" class="search-input">
+            <button type="submit" class="search-btn" aria-label="Search">&#8594;</button>
+        </div>
+    </form>
+
+    <div class="section"></div>
+
+    {% if results %}
+        <p style="color: var(--secondary-text-color); margin-bottom: 1.5rem;">{{ results|length }} result{{ 's' if results|length != 1 }} found</p>
+        <div class="error-links">
+            {% for r in results %}
+            <a href="{{ r.url }}" class="error-link-card">
+                <strong>{{ r.title }}</strong>
+                <span>{{ r.desc }}</span>
+            </a>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p style="color: var(--secondary-text-color); text-align: center;">
+            No results found for "{{ query }}". Try a different search term or browse the pages below.
+        </p>
+        <br>
+        <div class="error-links">
+            <a href="/services" class="error-link-card"><strong>Services</strong><span>Power BI, Fabric & more</span></a>
+            <a href="/blog" class="error-link-card"><strong>Blog</strong><span>Insights & articles</span></a>
+            <a href="/contact" class="error-link-card"><strong>Contact</strong><span>Get in touch</span></a>
+        </div>
+    {% endif %}
+</div>
+<div class="section"></div>
+{% endblock %}

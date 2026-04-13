@@ -1,7 +1,10 @@
 document.addEventListener("DOMContentLoaded", function() {
     const canvas = document.getElementById('matrixCanvas');
+    if (!canvas) return;
+
     const ctx = canvas.getContext('2d');
     const container = document.querySelector('.matrix-container');
+    if (!container) return;
 
     function resizeCanvas() {
         canvas.width = container.clientWidth;
@@ -9,19 +12,20 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
 
-    const textColor = getComputedStyle(document.documentElement).getPropertyValue('--matrix-text-color').trim();
     const fontSize = 15;
-    const columns = Math.floor(window.innerWidth / fontSize);
+    let columns = Math.floor(container.clientWidth / fontSize);
     let drops = Array(columns).fill(0);
 
     function draw() {
-        ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--matrix-background-color').trim();
+        const bgColor = getComputedStyle(document.documentElement).getPropertyValue('--matrix-background-color').trim();
+        const textColor = getComputedStyle(document.documentElement).getPropertyValue('--matrix-text-color').trim();
+
+        ctx.fillStyle = bgColor;
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
         ctx.fillStyle = textColor;
-        ctx.font = `${fontSize}px monospace`;
+        ctx.font = fontSize + 'px monospace';
 
         for (let i = 0; i < drops.length; i++) {
             const text = String.fromCharCode(Math.random() * 128);
@@ -37,11 +41,11 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
-    setInterval(draw, 50);
+    const interval = setInterval(draw, 50);
 
-    window.addEventListener('resize', () => {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-        drops = Array(Math.floor(window.innerWidth / fontSize)).fill(0);
+    window.addEventListener('resize', function() {
+        resizeCanvas();
+        columns = Math.floor(container.clientWidth / fontSize);
+        drops = Array(columns).fill(0);
     });
 });

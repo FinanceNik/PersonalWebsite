@@ -1,0 +1,138 @@
+{% extends "base.html" %}
+{% block title %}How I Work - Niklas Clasen Consulting{% endblock %}
+{% block meta_description %}My structured 6-step consulting process: from discovery call to ongoing support. Transparent, collaborative, and results-driven.{% endblock %}
+
+{% block content %}
+<div>
+    <div class="container">
+        <div class="modular-container-wrapper">
+            <div class="modular-container" style="height: 400px">
+                <br>
+                <h1 class="hero-title">How I Work</h1>
+                <br>
+                <br>
+                <h3 class="hero-subtitle">A Structured, Transparent Process</h3>
+                <br>
+                <br>
+                <h5 class="hero-text">
+                    Every engagement follows a proven process designed to deliver results
+                    efficiently while keeping you informed and in control at every stage.
+                </h5>
+                <div class="blob"></div>
+                <br>
+                <br>
+                <a aria-label="Get in contact" href="/contact"
+                   class="button"><span>Get in Contact!</span></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section"></div>
+
+<div class="container">
+    <div class="process-timeline">
+        <div class="process-step">
+            <div class="process-step-number">1</div>
+            <div class="process-step-content">
+                <h2>Discovery Call</h2>
+                <p>We start with a free, no-obligation conversation. I want to understand your business,
+                    your data challenges, and what success looks like for you. This call typically lasts
+                    30-45 minutes and helps us both decide if there's a good fit.</p>
+                <ul class="process-details">
+                    <li>Understand your current data landscape</li>
+                    <li>Identify pain points and opportunities</li>
+                    <li>Discuss high-level goals and constraints</li>
+                    <li>Answer any questions about my approach</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="process-step">
+            <div class="process-step-number">2</div>
+            <div class="process-step-content">
+                <h2>Scoping & Proposal</h2>
+                <p>Based on our discovery call, I prepare a detailed proposal that outlines exactly what
+                    I'll deliver, how long it will take, and what it will cost. No surprises, no hidden fees.
+                    You'll know exactly what you're getting before we start.</p>
+                <ul class="process-details">
+                    <li>Detailed scope of work with deliverables</li>
+                    <li>Realistic timeline with milestones</li>
+                    <li>Transparent pricing (fixed or time-based)</li>
+                    <li>Technical approach and tool selection</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="process-step">
+            <div class="process-step-number">3</div>
+            <div class="process-step-content">
+                <h2>Kickoff</h2>
+                <p>Once you approve the proposal, we align on the practical details. I'll need access
+                    to your systems and data, and we'll agree on how we communicate, how often we check in,
+                    and who the key contacts are on your side.</p>
+                <ul class="process-details">
+                    <li>Set up system access and environments</li>
+                    <li>Agree on communication cadence (weekly calls, Slack, email)</li>
+                    <li>Identify stakeholders and decision-makers</li>
+                    <li>Confirm the project timeline</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="process-step">
+            <div class="process-step-number">4</div>
+            <div class="process-step-content">
+                <h2>Delivery</h2>
+                <p>This is where the work happens. I build iteratively, sharing progress regularly so you can
+                    give feedback early and often. No disappearing for weeks -- you'll see tangible results
+                    at each milestone and can steer the direction as needed.</p>
+                <ul class="process-details">
+                    <li>Iterative development with regular demos</li>
+                    <li>Weekly progress updates and check-ins</li>
+                    <li>Early feedback loops to avoid rework</li>
+                    <li>Documentation created alongside the solution</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="process-step">
+            <div class="process-step-number">5</div>
+            <div class="process-step-content">
+                <h2>Handoff & Training</h2>
+                <p>I don't just build and walk away. Every engagement includes knowledge transfer so your
+                    team understands the solution and can maintain it independently. You'll receive documentation,
+                    a walkthrough session, and hands-on training as needed.</p>
+                <ul class="process-details">
+                    <li>Comprehensive documentation of the solution</li>
+                    <li>Live walkthrough and Q&A sessions</li>
+                    <li>Hands-on training for your team</li>
+                    <li>Deployment to production with validation</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="process-step">
+            <div class="process-step-number">6</div>
+            <div class="process-step-content">
+                <h2>Ongoing Support</h2>
+                <p>After handoff, I'm still available. Whether you need a monthly retainer for continuous
+                    optimization, ad-hoc help when something breaks, or quarterly reviews to plan next steps --
+                    I'm here for the long term.</p>
+                <ul class="process-details">
+                    <li>Optional monthly support retainer (from CHF 500/month)</li>
+                    <li>Performance monitoring and optimization</li>
+                    <li>Quarterly strategic reviews</li>
+                    <li>Priority support for urgent issues</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section"></div>
+
+<div class="container">
+    {% include 'global-templates/pre-footer.html' %}
+</div>
+{% endblock %}

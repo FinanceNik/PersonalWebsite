@@ -1,55 +1,62 @@
-<head>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css_components/navigation-bar.css') }}">
-</head>
-<header class="header container">
-    <!-- Logo -->
-    <img src="{{ url_for('static', filename='/image_assets/logo.png') }}" alt="Logo" class="header__logo">
+<header class="header">
+    <a href="/" aria-label="Home">
+        <img src="{{ url_for('static', filename='image_assets/logo.png') }}" alt="Niklas Clasen Consulting" class="header__logo" width="2000" height="853">
+    </a>
 
     <nav>
         <ul class="header__menu">
-            <li id="home" class="">
-                <a class="header__link" href="/">Home</a>
+            <li>
+                <a class="header__link" href="/">{{ t.nav.home }}</a>
             </li>
-            <li id="projects" class="">
-                <a class="header__link" href="/projects">Projects</a>
+            <li>
+                <a class="header__link" href="/projects">{{ t.nav.projects }}</a>
             </li>
-            <li id="services" class="">
-                <a class="header__link" href="/services">Services</a>
+            <li>
+                <a class="header__link" href="/services">{{ t.nav.services }}</a>
+            </li>
+            <li>
+                <a class="header__link" href="/blog">{{ t.nav.blog }}</a>
+            </li>
+            <li>
+                <a class="header__link" href="/process">{{ t.nav.process }}</a>
+            </li>
+            <li class="header__line"></li>
+            <li>
+                <div class="lang-switch">
+                    <a href="?lang=en" class="{{ 'active-lang' if lang == 'en' }}">EN</a>
+                    <a href="?lang=de" class="{{ 'active-lang' if lang == 'de' }}">DE</a>
+                </div>
             </li>
             <li class="header__line"></li>
             <li class="toggle-switch">
-                <img src="{{ url_for('static', filename='/image_assets/contrast.png') }}" alt="Logo"
+                <img src="{{ url_for('static', filename='image_assets/contrast.png') }}" alt="Light mode"
                      class="color-mode">
-                <input type="checkbox" id="theme-toggle" class="toggle"/>
+                <input type="checkbox" id="theme-toggle" class="toggle" aria-label="Toggle dark mode"/>
                 <label for="theme-toggle"></label>
-                <img src="{{ url_for('static', filename='/image_assets/crescent-moon.png') }}" alt="Logo"
+                <img src="{{ url_for('static', filename='image_assets/crescent-moon.png') }}" alt="Dark mode"
                      class="color-mode">
             </li>
-            <!-- This will eventually trigger the language switching functionality -->
-            <!--            <li class="header__line"></li>
-                        <li class="language-switcher">
-                            <select id="language-select" onchange="loadJSON(value)">
-                                <option value="en">en</option>
-                                <option value="de">de</option>
-                            </select>
-                        </li>-->
             <li class="header__line"></li>
-            <li class="active">
-                <a class="header__contact button" href="/contact">Contact</a>
+            <li>
+                <a class="header__contact button" href="/contact">{{ t.nav.contact }}</a>
             </li>
         </ul>
     </nav>
 </header>
 <!-- Mobile Navigation -->
 <div class="dropdown">
-    <a class="mobile-menu" style="color: var(--primary-color);">Menu</a>
-    <div class="dropdown-content span">
-        <a href="/">Home</a>
-        <a href="/projects">Projects</a>
-        <a href="/services">Services</a>
-        <a href="/contact">Contact</a>
+    <button class="hamburger" aria-label="Toggle navigation menu" onclick="this.classList.toggle('is-active');this.parentElement.classList.toggle('open')">
+        <span class="hamburger__line"></span>
+        <span class="hamburger__line"></span>
+        <span class="hamburger__line"></span>
+    </button>
+    <div class="dropdown-content">
+        <a href="/">{{ t.nav.home }}</a>
+        <a href="/projects">{{ t.nav.projects }}</a>
+        <a href="/services">{{ t.nav.services }}</a>
+        <a href="/blog">{{ t.nav.blog }}</a>
+        <a href="/process">{{ t.nav.process }}</a>
+        <a href="/contact">{{ t.nav.contact }}</a>
     </div>
 </div>
-<!-- End of Mobile Navigation -->
-<script src="{{ url_for('static', filename='js_components/lang-changer.js') }}"></script>
 <script src="{{ url_for('static', filename='js_components/theme-toggler.js') }}"></script>

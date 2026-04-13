@@ -1,24 +1,33 @@
-<!-- Path: templates/footer.html -->
-<head>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css_components/footer.css') }}">
-</head>
+<div class="footer-wrapper">
 <footer class="footer">
-    <div class="contact">
-        <div class="footer-inner">
-            <h3 style="text-align: left;">Contact</h3>
-            <p>Kleinstrasse 9</p>
-            <p>Luzern, 6012</p>
-            <p>Switzerland</p>
-            <br>
-            <hr style="width: 20%; margin-left:0;">
-            <br>
-            <p>Email: niklas.clasen@gmail.com</p>
-            <p>Phone: (123) 456-7890</p>
-        </div>
+    <div class="footer-inner">
+        <h3>Niklas Clasen Consulting</h3>
+        <p>{{ t.footer.consulting_desc }}</p>
+    </div>
+    <div class="footer-inner">
+        <h3>{{ t.footer.contact }}</h3>
+        <p><a href="mailto:niklas.clasen@gmail.com">niklas.clasen@gmail.com</a></p>
+        <p><a href="https://www.linkedin.com/in/niklas-clasen/" target="_blank" rel="noopener noreferrer">LinkedIn</a></p>
+    </div>
+    <div class="footer-inner">
+        <h3>{{ t.footer.impressum }}</h3>
+        <p>Kleinstrasse 9</p>
+        <p>6012 Luzern</p>
+        <p>Switzerland</p>
+    </div>
+    <div class="footer-inner">
+        <h3>{{ t.footer.links }}</h3>
+        <p><a href="/services">{{ t.nav.services }}</a></p>
+        <p><a href="/projects">{{ t.nav.projects }}</a></p>
+        <p><a href="/blog">{{ t.nav.blog }}</a></p>
+        <p><a href="/process">{{ t.nav.process }}</a></p>
+        <p><a href="/calculator">{{ t.calculator.title }}</a></p>
+        <p><a href="/checklist">{{ t.checklist.title }}</a></p>
+        <p><a href="/contact">{{ t.nav.contact }}</a></p>
+        <p><a href="/privacy">Privacy Policy</a></p>
     </div>
 </footer>
-<footer class="copyright-footer">
-    <div class="copyright">
-        <p style="text-align: center;" id="copyright-footer">&copy; 2023 Clasen Data Science. All rights reserved.</p>
-    </div>
-</footer>
+<div class="copyright-footer">
+    <p>&copy; 2026 Niklas Clasen Consulting. {{ t.footer.copyright }}</p>
+</div>
+</div>

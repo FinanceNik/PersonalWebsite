@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% block title %}Analytics - Niklas Clasen Consulting{% endblock %}
+
+{% block content %}
+<div class="section"></div>
+<div class="container">
+    <h1 class="hero-subtitle">Site Analytics (Last {{ days }} days)</h1>
+    <br>
+    <div style="display: flex; gap: var(--space-3); justify-content: center; margin-bottom: var(--space-6);">
+        <a href="/analytics?days=7" class="button{% if days == 7 %}-secondary{% endif %}" style="font-size: var(--size-sm); padding: 6px 16px;"><span>7 days</span></a>
+        <a href="/analytics?days=30" class="button{% if days == 30 %}-secondary{% endif %}" style="font-size: var(--size-sm); padding: 6px 16px;"><span>30 days</span></a>
+        <a href="/analytics?days=90" class="button{% if days == 90 %}-secondary{% endif %}" style="font-size: var(--size-sm); padding: 6px 16px;"><span>90 days</span></a>
+    </div>
+
+    <!-- Total views -->
+    <div class="stats-bar" style="margin-bottom: var(--space-8);">
+        <div class="stat">
+            <span class="stat-number" data-target="{{ stats.total }}">0</span>
+            <span class="stat-label">Total Page Views</span>
+        </div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--space-6);">
+        <!-- Top pages -->
+        <div class="blog-post-card">
+            <h2 style="color: var(--primary-text-color); margin-bottom: var(--space-4);">Top Pages</h2>
+            {% if stats.by_page %}
+                {% for row in stats.by_page %}
+                <div style="display: flex; justify-content: space-between; padding: var(--space-2) 0; border-bottom: 1px solid var(--border-color-card);">
+                    <span style="color: var(--primary-color); font-family: var(--font-family-header); font-size: var(--size-sm);">{{ row.path }}</span>
+                    <span style="color: var(--secondary-text-color); font-weight: 600;">{{ row.views }}</span>
+                </div>
+                {% endfor %}
+            {% else %}
+                <p style="color: var(--secondary-text-color);">No data yet</p>
+            {% endif %}
+        </div>
+
+        <!-- By language -->
+        <div class="blog-post-card">
+            <h2 style="color: var(--primary-text-color); margin-bottom: var(--space-4);">By Language</h2>
+            {% if stats.by_lang %}
+                {% for row in stats.by_lang %}
+                <div style="display: flex; justify-content: space-between; padding: var(--space-2) 0; border-bottom: 1px solid var(--border-color-card);">
+                    <span style="color: var(--primary-color); font-weight: 600; text-transform: uppercase;">{{ row.lang }}</span>
+                    <span style="color: var(--secondary-text-color); font-weight: 600;">{{ row.views }}</span>
+                </div>
+                {% endfor %}
+            {% else %}
+                <p style="color: var(--secondary-text-color);">No data yet</p>
+            {% endif %}
+        </div>
+
+        <!-- Top referrers -->
+        <div class="blog-post-card">
+            <h2 style="color: var(--primary-text-color); margin-bottom: var(--space-4);">Top Referrers</h2>
+            {% if stats.by_referrer %}
+                {% for row in stats.by_referrer %}
+                <div style="display: flex; justify-content: space-between; padding: var(--space-2) 0; border-bottom: 1px solid var(--border-color-card);">
+                    <span style="color: var(--secondary-text-color); font-size: var(--size-sm); overflow: hidden; text-overflow: ellipsis; max-width: 70%;">{{ row.referrer }}</span>
+                    <span style="color: var(--secondary-text-color); font-weight: 600;">{{ row.views }}</span>
+                </div>
+                {% endfor %}
+            {% else %}
+                <p style="color: var(--secondary-text-color);">No referrer data yet</p>
+            {% endif %}
+        </div>
+
+        <!-- Daily views -->
+        <div class="blog-post-card">
+            <h2 style="color: var(--primary-text-color); margin-bottom: var(--space-4);">Daily Views</h2>
+            {% if stats.by_day %}
+                {% for row in stats.by_day %}
+                <div style="display: flex; justify-content: space-between; padding: var(--space-2) 0; border-bottom: 1px solid var(--border-color-card);">
+                    <span style="color: var(--secondary-text-color); font-size: var(--size-sm);">{{ row.day }}</span>
+                    <span style="color: var(--secondary-text-color); font-weight: 600;">{{ row.views }}</span>
+                </div>
+                {% endfor %}
+            {% else %}
+                <p style="color: var(--secondary-text-color);">No data yet</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+<div class="section"></div>
+{% endblock %}

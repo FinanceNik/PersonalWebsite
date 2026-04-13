@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% block title %}{{ post.title }} - Niklas Clasen Consulting{% endblock %}
+{% block meta_description %}{{ post.summary }}{% endblock %}
+{% block og_title %}{{ post.title }}{% endblock %}
+{% block og_description %}{{ post.summary }}{% endblock %}
+
+{% block structured_data %}
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "{{ post.title }}",
+    "description": "{{ post.summary }}",
+    "datePublished": "{{ post.date }}",
+    "author": {
+        "@type": "Person",
+        "name": "Niklas Clasen",
+        "url": "{{ SITE_URL }}"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Niklas Clasen Consulting"
+    },
+    "url": "{{ SITE_URL }}/blog/{{ post.slug }}",
+    "inLanguage": "{{ lang }}"
+}
+</script>
+{% endblock %}
+
+{% block content %}
+<div class="section"></div>
+
+<div class="container">
+    <div class="breadcrumb">
+        <a href="/">Home</a> <span>/</span>
+        <a href="/blog">Blog</a> <span>/</span>
+        {{ post.title }}
+    </div>
+    <h1 class="hero-title" style="text-align: left;">{{ post.title }}</h1>
+    <br>
+    <p class="blog-date">{{ post.date }}</p>
+    <br>
+    <hr>
+</div>
+
+<div class="section"></div>
+
+<div class="container">
+    <div class="blog-content">
+        {{ post.content_html | safe }}
+    </div>
+</div>
+
+<div class="section"></div>
+
+<div class="container">
+    <a href="/blog" class="blog-back-link">&larr; Back to Blog</a>
+</div>
+
+{% if related %}
+<div class="section"></div>
+<div class="container">
+    <h2 class="section-header">Read Next</h2>
+    <br>
+    <hr>
+    <br>
+    <div class="card-container">
+        {% for p in related %}
+        <div class="card">
+            <h2><a href="/blog/{{ p.slug }}" style="color: var(--primary-color); text-decoration: none;">{{ p.title }}</a></h2>
+            <hr class="card-hr">
+            <p class="blog-date">{{ p.date }}</p>
+            <p>{{ p.summary }}</p>
+            <br>
+            <a href="/blog/{{ p.slug }}" class="button"><span>Read More</span></a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+
+<div class="section"></div>
+
+<div class="container">
+    {% include 'global-templates/pre-footer.html' %}
+</div>
+{% endblock %}

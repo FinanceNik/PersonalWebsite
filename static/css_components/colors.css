@@ -1,59 +1,87 @@
-:root[data-theme='light-mode'] {  /*light mode here*/
-    --secondary-color: #000066;
-    --primary-color: #0000FF;
-    --tertiary-color: #4B7BF5;
-    --accent-color: #4cd964;
+:root[data-theme='light-mode'] {
+    --secondary-color: #1a365d;
+    --primary-color: #2b6cb0;
+    --tertiary-color: #4299e1;
+    --accent-color: #d69e2e;
 
-    --light-color: #C2E2F5;
-    --background-color: white;
-    --background-color-card: rgba(247, 247, 247, 0.6);
-    --border-color-card: #cccccc;
+    --light-color: #e2e8f0;
+    --lightgrey: #f7fafc;
+    --background-color: #ffffff;
+    --background-color-card: rgba(247, 250, 252, 0.8);
+    --border-color-card: #e2e8f0;
 
-    --primary-text-color: black;
-    --secondary-text-color: #2e2e2e;
-    --tertiary-text-color: #2e2e2e;
+    --primary-text-color: #1a202c;
+    --secondary-text-color: #4a5568;
+    --tertiary-text-color: #2d3748;
     --primary-text-color-contrary: #ffffff;
 
-    --footer-color: #121212;
-    --copyright-footer-color: black;
+    --footer-color: #18181b;
+    --copyright-footer-color: #0f0f12;
 
-    --github-button-color: #333;
+    --github-button-color: #2d3748;
     --button-color: var(--primary-color);
 
-    --blobcolor: rgba(245, 195, 15, 0.35);
-    --blobtwocolor: rgba(245, 195, 15, 0.35);
-    --blobthreecolor: rgba(245, 195, 15, 0.35);
+    --blobcolor: rgba(214, 158, 46, 0.15);
+    --blobtwocolor: rgba(66, 153, 225, 0.12);
+    --blobthreecolor: rgba(43, 108, 176, 0.10);
 
     --matrix-text-color: var(--primary-color);
-    --matrix-background-color:rgba(5, 7, 38, 0.1);
+    --matrix-background-color: rgba(26, 54, 93, 0.08);
+
+    --shadow-glow: 0 0 20px rgba(43, 108, 176, 0.15);
+    --shadow-card-hover: 0 8px 30px rgba(43, 108, 176, 0.12);
+    --focus-ring: 0 0 0 3px rgba(43, 108, 176, 0.25);
+    --nav-bg: rgba(255, 255, 255, 0.72);
+    --gradient-primary: linear-gradient(135deg, var(--primary-color), var(--tertiary-color));
+
+    --error-color: #c53030;
+    --error-bg: #fff5f5;
+    --success-color: #276749;
+    --success-bg: #f0fff4;
+
+    --toggle-off-color: #cbd5e0;
 }
 
-:root[data-theme='dark-mode'] { /*dark mode here*/
-  --secondary-color: #000066;
-  --primary-color: #0000ff;
-  --tertiary-color: #4B7BF5;
-  --accent-color: #4cd964;
+:root[data-theme='dark-mode'] {
+    --secondary-color: #90cdf4;
+    --primary-color: #63b3ed;
+    --tertiary-color: #4299e1;
+    --accent-color: #ecc94b;
 
-  --light-color: #C2E2F5;
-  --background-color: #00011a;
-  --background-color-card: rgba(0, 1, 35, 0.8);
-  --border-color-card: #3a3a3a;
+    --light-color: #2d3748;
+    --lightgrey: #1a202c;
+    --background-color: #0a1628;
+    --background-color-card: rgba(10, 22, 40, 0.8);
+    --border-color-card: #2d3748;
 
-  --primary-text-color: #ffffff;
-  --secondary-text-color: #c7d2ff;
-  --tertiary-text-color: #ffffff;
-  --primary-text-color-contrary: #ffffff;
+    --primary-text-color: #e2e8f0;
+    --secondary-text-color: #a0aec0;
+    --tertiary-text-color: #e2e8f0;
+    --primary-text-color-contrary: #ffffff;
 
-  --footer-color: #121212;
-  --copyright-footer-color: black;
+    --footer-color: #121216;
+    --copyright-footer-color: #0a0a0e;
 
-  --github-button-color: #333;
-  --button-color: var(--primary-color);
+    --github-button-color: #2d3748;
+    --button-color: var(--primary-color);
 
-  --blobcolor: rgba(9, 142, 219, 0.35);
-  --blobtwocolor: rgba(139, 182, 250, 0.3);
-  --blobthreecolor: rgba(139, 122, 200, 0.3);
+    --blobcolor: rgba(99, 179, 237, 0.12);
+    --blobtwocolor: rgba(144, 205, 244, 0.10);
+    --blobthreecolor: rgba(236, 201, 75, 0.08);
 
-  --matrix-text-color: var(--primary-color);
-  --matrix-background-color:rgba(5, 7, 38, 0.1);
+    --matrix-text-color: var(--primary-color);
+    --matrix-background-color: rgba(10, 22, 40, 0.15);
+
+    --shadow-glow: 0 0 20px rgba(99, 179, 237, 0.2);
+    --shadow-card-hover: 0 8px 30px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(99, 179, 237, 0.1);
+    --focus-ring: 0 0 0 3px rgba(99, 179, 237, 0.35);
+    --nav-bg: rgba(10, 22, 40, 0.72);
+    --gradient-primary: linear-gradient(135deg, var(--primary-color), var(--tertiary-color));
+
+    --error-color: #fc8181;
+    --error-bg: rgba(254, 178, 178, 0.1);
+    --success-color: #68d391;
+    --success-bg: rgba(104, 211, 145, 0.1);
+
+    --toggle-off-color: #4a5568;
 }

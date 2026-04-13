@@ -1,0 +1,90 @@
+{
+    "nav": {
+        "home": "Startseite",
+        "projects": "Projekte",
+        "services": "Dienstleistungen",
+        "blog": "Blog",
+        "process": "Prozess",
+        "contact": "Kontakt"
+    },
+    "hero": {
+        "greeting": "Hallo Welt,",
+        "im": "Ich bin",
+        "subtitle": "Technologie Berater | Microsoft Fabric & Power BI",
+        "text": "Transformieren Sie Ihre Datenlandschaft mit <strong>kompetenter Beratung</strong>. Ich helfe Unternehmen, das volle Potenzial von <strong>Microsoft Fabric</strong> und <strong>Power BI</strong> auszuschöpfen, um moderne Datenplattformen, aussagekräftige Dashboards und datengetriebene Strategien zu entwickeln, die echte Ergebnisse liefern.",
+        "cta_primary": "Kostenlose Beratung buchen",
+        "cta_secondary": "Meine Arbeit ansehen"
+    },
+    "sections": {
+        "expertise": "Meine Expertise",
+        "technologies": "Technologien",
+        "certifications": "Zertifizierungen",
+        "testimonials": "Das sagen Kunden",
+        "case_studies": "Fallstudien",
+        "faq": "Häufig gestellte Fragen",
+        "how_i_work": "Mein Arbeitsprozess",
+        "blog_title": "Blog",
+        "blog_subtitle": "Einblicke zu Fabric, Power BI & Datenstrategie"
+    },
+    "services_page": {
+        "title": "Dienstleistungen",
+        "subtitle": "Microsoft Fabric & Power BI Beratung",
+        "text": "Von der Strategie bis zur Umsetzung biete ich umfassende Beratungsleistungen, damit Ihr Unternehmen das Beste aus der Microsoft-Datenplattform herausholt."
+    },
+    "process_page": {
+        "title": "Mein Arbeitsprozess",
+        "subtitle": "Ein strukturierter, transparenter Prozess",
+        "text": "Jedes Engagement folgt einem bewährten Prozess, der darauf ausgelegt ist, effizient Ergebnisse zu liefern und Sie in jeder Phase informiert und im Griff zu halten.",
+        "steps": {
+            "1": {"title": "Erstgespräch", "desc": "Wir beginnen mit einem kostenlosen, unverbindlichen Gespräch. Ich möchte Ihr Unternehmen, Ihre Daten-Herausforderungen und Ihre Erfolgskriterien verstehen."},
+            "2": {"title": "Umfang & Angebot", "desc": "Basierend auf unserem Erstgespräch erstelle ich ein detailliertes Angebot mit Umfang, Zeitplan und Kosten. Keine Überraschungen."},
+            "3": {"title": "Kickoff", "desc": "Sobald Sie das Angebot genehmigen, klären wir die praktischen Details: Systemzugang, Kommunikationsrhythmus und Ansprechpartner."},
+            "4": {"title": "Umsetzung", "desc": "Iterative Entwicklung mit regelmässigen Updates. Keine wochenlange Stille — Sie sehen bei jedem Meilenstein greifbare Ergebnisse."},
+            "5": {"title": "Übergabe & Schulung", "desc": "Jedes Engagement beinhaltet Wissenstransfer, damit Ihr Team die Lösung versteht und eigenständig pflegen kann."},
+            "6": {"title": "Laufende Betreuung", "desc": "Nach der Übergabe stehe ich weiterhin zur Verfügung — ob monatlicher Retainer, Ad-hoc-Hilfe oder quartalsweise Reviews."}
+        }
+    },
+    "contact_page": {
+        "title": "Kontaktformular",
+        "firstname": "Vorname",
+        "lastname": "Nachname",
+        "country": "Land",
+        "email": "E-Mail",
+        "message": "Nachricht",
+        "submit": "Absenden",
+        "placeholder_name": "Ihr Vorname..",
+        "placeholder_lastname": "Ihr Nachname..",
+        "placeholder_country": "Ihr Land..",
+        "placeholder_email": "Ihre E-Mail..",
+        "placeholder_message": "Schreiben Sie etwas.."
+    },
+    "footer": {
+        "consulting_desc": "Technologie Berater spezialisiert auf Microsoft Fabric, Power BI und Datenplattform-Strategie.",
+        "contact": "Kontakt",
+        "impressum": "Impressum",
+        "links": "Links",
+        "copyright": "Alle Rechte vorbehalten."
+    },
+    "prefooter": {
+        "text": "Habe ich Ihr Interesse geweckt?",
+        "cta": "Kontakt aufnehmen!"
+    },
+    "calculator": {
+        "title": "Projekt-Schätzer",
+        "intro": "Beantworten Sie 5 kurze Fragen für eine grobe Schätzung Ihres Projekts."
+    },
+    "checklist": {
+        "title": "Kostenlose Power BI Performance Checkliste",
+        "cta": "Kostenlos herunterladen"
+    },
+    "search": {
+        "placeholder": "Seite durchsuchen...",
+        "results_for": "Suchergebnisse für",
+        "no_results": "Keine Ergebnisse gefunden."
+    },
+    "error": {
+        "title": "Seite nicht gefunden",
+        "text": "Die gesuchte Seite existiert nicht oder wurde verschoben. Versuchen Sie eine Suche oder besuchen Sie eine der folgenden Seiten.",
+        "popular": "Beliebte Seiten"
+    }
+}

@@ -1,24 +1,53 @@
-<!DOCTYPE html>
-<html lang="en" data-theme='light-mode'>
-<head>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
-</head>
-<body class="body">
-    <!-- get the navigation bar from the navigation-bar.html file -->
-    {% include 'global-templates/navigation-bar.html' %}
-    <div style="display: flex;
-                justify-content: center; /* Center horizontally */
-                align-items: center; /* Center vertically */
-                height: 100vh">
+{% extends "base.html" %}
+{% block title %}{{ t.error.title }} - Niklas Clasen Consulting{% endblock %}
 
-    <h1 style="align-items: center; width: 100%;">
-        Oops! Looks like the page doesn't exist anymore</h1>
+{% block content %}
+<div class="section"></div>
+<div class="container">
+    <div class="error-page">
+        <h1 class="error-code">404</h1>
+        <h2 class="hero-subtitle">{{ t.error.title }}</h2>
+        <p class="hero-text" style="max-width: 500px; margin: 1rem auto;">
+            {{ t.error.text }}
+        </p>
 
+        <form class="search-form" action="/search" method="get" style="margin: 2rem auto; max-width: 450px;">
+            <div class="search-input-wrap">
+                <input type="text" name="q" placeholder="{{ t.search.placeholder }}" aria-label="Search" class="search-input">
+                <button type="submit" class="search-btn" aria-label="Search">&#8594;</button>
+            </div>
+        </form>
+
+        <div class="section"></div>
+
+        <h3 class="section-header" style="font-size: var(--size-xl);">{{ t.error.popular }}</h3>
+        <br>
+        <div class="error-links">
+            <a href="/" class="error-link-card">
+                <strong>{{ t.nav.home }}</strong>
+                <span>{{ t.hero.greeting }}</span>
+            </a>
+            <a href="/services" class="error-link-card">
+                <strong>{{ t.nav.services }}</strong>
+                <span>Power BI, Fabric & more</span>
+            </a>
+            <a href="/projects" class="error-link-card">
+                <strong>{{ t.sections.case_studies }}</strong>
+                <span>{{ t.hero.cta_secondary }}</span>
+            </a>
+            <a href="/blog" class="error-link-card">
+                <strong>{{ t.nav.blog }}</strong>
+                <span>{{ t.sections.blog_subtitle }}</span>
+            </a>
+            <a href="/process" class="error-link-card">
+                <strong>{{ t.nav.process }}</strong>
+                <span>{{ t.process_page.subtitle }}</span>
+            </a>
+            <a href="/contact" class="error-link-card">
+                <strong>{{ t.nav.contact }}</strong>
+                <span>{{ t.hero.cta_primary }}</span>
+            </a>
+        </div>
     </div>
-
-
-
-    <!-- reference footer.html -->
-    {% include 'global-templates/footer.html' %}
-</body>
-</html>
+</div>
+{% endblock %}

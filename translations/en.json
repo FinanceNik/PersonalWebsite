@@ -1,0 +1,90 @@
+{
+    "nav": {
+        "home": "Home",
+        "projects": "Projects",
+        "services": "Services",
+        "blog": "Blog",
+        "process": "Process",
+        "contact": "Contact"
+    },
+    "hero": {
+        "greeting": "Hello World,",
+        "im": "I'm",
+        "subtitle": "Technology Consultant | Microsoft Fabric & Power BI",
+        "text": "Transform your data landscape with <strong>expert consulting</strong>. I help businesses unlock the full potential of <strong>Microsoft Fabric</strong> and <strong>Power BI</strong> to build modern data platforms, insightful dashboards, and data-driven strategies that deliver real results.",
+        "cta_primary": "Book a Free Consultation",
+        "cta_secondary": "View My Work"
+    },
+    "sections": {
+        "expertise": "My Expertise",
+        "technologies": "Technologies",
+        "certifications": "Certifications",
+        "testimonials": "What Clients Say",
+        "case_studies": "Case Studies",
+        "faq": "Frequently Asked Questions",
+        "how_i_work": "How I Work",
+        "blog_title": "Blog",
+        "blog_subtitle": "Insights on Fabric, Power BI & Data Strategy"
+    },
+    "services_page": {
+        "title": "Services",
+        "subtitle": "Expert Microsoft Fabric & Power BI Consulting",
+        "text": "From strategy to implementation, I provide end-to-end consulting services that help your organization make the most of the Microsoft data platform."
+    },
+    "process_page": {
+        "title": "How I Work",
+        "subtitle": "A Structured, Transparent Process",
+        "text": "Every engagement follows a proven process designed to deliver results efficiently while keeping you informed and in control at every stage.",
+        "steps": {
+            "1": {"title": "Discovery Call", "desc": "We start with a free, no-obligation conversation. I want to understand your business, your data challenges, and what success looks like for you."},
+            "2": {"title": "Scoping & Proposal", "desc": "Based on our discovery call, I prepare a detailed proposal that outlines exactly what I'll deliver, how long it will take, and what it will cost."},
+            "3": {"title": "Kickoff", "desc": "Once you approve the proposal, we align on the practical details: system access, communication cadence, and key contacts."},
+            "4": {"title": "Delivery", "desc": "Iterative development with regular progress sharing. No disappearing for weeks — you'll see tangible results at each milestone."},
+            "5": {"title": "Handoff & Training", "desc": "Every engagement includes knowledge transfer so your team understands the solution and can maintain it independently."},
+            "6": {"title": "Ongoing Support", "desc": "After handoff, I'm still available — whether you need a monthly retainer, ad-hoc help, or quarterly reviews."}
+        }
+    },
+    "contact_page": {
+        "title": "Contact Form",
+        "firstname": "First Name",
+        "lastname": "Last Name",
+        "country": "Country",
+        "email": "Email",
+        "message": "Message",
+        "submit": "Submit",
+        "placeholder_name": "Your name..",
+        "placeholder_lastname": "Your last name..",
+        "placeholder_country": "Your country..",
+        "placeholder_email": "Your e-mail..",
+        "placeholder_message": "Write something.."
+    },
+    "footer": {
+        "consulting_desc": "Technology Consultant specializing in Microsoft Fabric, Power BI, and data platform strategy.",
+        "contact": "Contact",
+        "impressum": "Impressum",
+        "links": "Links",
+        "copyright": "All rights reserved."
+    },
+    "prefooter": {
+        "text": "Have I sparked your interest?",
+        "cta": "Get in Contact!"
+    },
+    "calculator": {
+        "title": "Project Estimator",
+        "intro": "Answer 5 quick questions to get a ballpark estimate for your project."
+    },
+    "checklist": {
+        "title": "Free Power BI Performance Checklist",
+        "cta": "Download Free PDF"
+    },
+    "search": {
+        "placeholder": "Search the site...",
+        "results_for": "Search Results for",
+        "no_results": "No results found."
+    },
+    "error": {
+        "title": "Page Not Found",
+        "text": "The page you're looking for doesn't exist or has been moved. Try searching or visit one of the pages below.",
+        "popular": "Popular Pages"
+    }
+}

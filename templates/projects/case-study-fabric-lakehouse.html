@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+{% block title %}Microsoft Fabric Lakehouse - Niklas Clasen Consulting{% endblock %}
+{% block meta_description %}Case study: Implemented a Microsoft Fabric Lakehouse for a retail company with 50+ stores, unifying 5 data silos and enabling near real-time analytics.{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="modular-container-wrapper">
+        <div class="modular-container" style="height: auto; padding: 2rem 0;">
+            <h1 class="hero-title">Microsoft Fabric Lakehouse</h1>
+            <br>
+            <h3 class="hero-subtitle">Retail Analytics | Microsoft Fabric</h3>
+        </div>
+    </div>
+</div>
+
+<div class="section"></div>
+
+<div class="container">
+    <h2 class="section-header">Technologies Used</h2>
+    <br>
+    <hr>
+    <br>
+    <div class="card-container">
+        <div class="card">
+            <h2>Microsoft Fabric</h2>
+            <hr class="card-hr">
+            <p>Unified analytics platform with OneLake, Lakehouse, and integrated data pipelines.</p>
+        </div>
+        <div class="card">
+            <h2>PySpark / Notebooks</h2>
+            <hr class="card-hr">
+            <p>Large-scale data processing and transformation for millions of daily transactions.</p>
+        </div>
+        <div class="card">
+            <h2>Power BI</h2>
+            <hr class="card-hr">
+            <p>Direct Lake mode reports connected to the Lakehouse for near real-time analytics.</p>
+        </div>
+    </div>
+</div>
+
+<div class="section"></div>
+
+<div class="container">
+    <h2 class="section-header">The Challenge</h2>
+    <br>
+    <hr>
+    <br>
+    <div class="project-text">
+        <p>A growing retail company with 50+ stores was drowning in data silos. Point-of-sale data,
+            inventory systems, e-commerce platforms, and CRM tools all operated independently. The analytics
+            team spent most of their time extracting and reconciling data rather than generating insights.
+            They needed a unified platform that could handle their scale and grow with the business.</p>
+    </div>
+</div>
+
+<div class="section"></div>
+
+<div class="container">
+    <h2 class="section-header">The Solution</h2>
+    <br>
+    <hr>
+    <br>
+    <div class="project-text">
+        <p>I implemented a Microsoft Fabric Lakehouse architecture that centralized data from all source
+            systems into OneLake. PySpark notebooks handled the heavy ETL processing -- ingesting millions
+            of daily transactions, applying business rules, and building curated analytical tables. The
+            medallion architecture (bronze/silver/gold layers) ensured data quality at every stage. Power BI
+            reports using Direct Lake mode provided near real-time dashboards for store managers and
+            executives alike.</p>
+    </div>
+</div>
+
+<div class="section"></div>
+
+<div class="container">
+    <h2 class="section-header">Business Impact</h2>
+    <br>
+    <hr>
+    <br>
+    <div class="card-container">
+        <div class="card">
+            <h2>60% Faster</h2>
+            <hr class="card-hr">
+            <p>Time-to-insight reduced from days to hours with automated pipelines and Direct Lake reporting.</p>
+        </div>
+        <div class="card">
+            <h2>Unified Data</h2>
+            <hr class="card-hr">
+            <p>5 previously siloed systems consolidated into one governed, scalable Lakehouse platform.</p>
+        </div>
+        <div class="card">
+            <h2>Self-Service Analytics</h2>
+            <hr class="card-hr">
+            <p>Store managers gained direct access to their performance data without IT bottlenecks.</p>
+        </div>
+    </div>
+</div>
+
+<div class="section"></div>
+
+<div class="container">
+    {% include 'global-templates/pre-footer.html' %}
+</div>
+{% endblock %}

@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+{% block title %}Automated Reporting Pipeline - Niklas Clasen Consulting{% endblock %}
+{% block meta_description %}Case study: Built an automated reporting pipeline for a manufacturing company, saving 20+ hours per week and enabling real-time KPI monitoring.{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="modular-container-wrapper">
+        <div class="modular-container" style="height: auto; padding: 2rem 0;">
+            <h1 class="hero-title">Automated Reporting Pipeline</h1>
+            <br>
+            <h3 class="hero-subtitle">Manufacturing | Power BI & Azure Data Factory</h3>
+        </div>
+    </div>
+</div>
+
+<div class="section"></div>
+
+<div class="container">
+    <h2 class="section-header">Technologies Used</h2>
+    <br>
+    <hr>
+    <br>
+    <div class="card-container">
+        <div class="card">
+            <h2>Azure Data Factory</h2>
+            <hr class="card-hr">
+            <p>Orchestrating data movement from shop floor systems, ERP, and IoT sensors.</p>
+        </div>
+        <div class="card">
+            <h2>Power BI</h2>
+            <hr class="card-hr">
+            <p>Operational dashboards for production managers and executive KPI summaries.</p>
+        </div>
+        <div class="card">
+            <h2>Power Automate</h2>
+            <hr class="card-hr">
+            <p>Automated alerts and report distribution to stakeholders via email and Teams.</p>
+        </div>
+    </div>
+</div>
+
+<div class="section"></div>
+
+<div class="container">
+    <h2 class="section-header">The Challenge</h2>
+    <br>
+    <hr>
+    <br>
+    <div class="project-text">
+        <p>A manufacturing company with multiple production lines was relying on manual data collection
+            and Excel-based reporting to track KPIs like OEE (Overall Equipment Effectiveness), scrap rates,
+            and production throughput. Reports were generated weekly by a dedicated analyst, often arriving
+            too late to act on emerging quality issues. Management needed real-time visibility into
+            production performance.</p>
+    </div>
+</div>
+
+<div class="section"></div>
+
+<div class="container">
+    <h2 class="section-header">The Solution</h2>
+    <br>
+    <hr>
+    <br>
+    <div class="project-text">
+        <p>I built an end-to-end automated reporting pipeline using Azure Data Factory to ingest data
+            from shop floor systems, ERP, and IoT sensors on a scheduled basis. The data was transformed
+            and loaded into a SQL-based data warehouse with optimized star schemas for analytical queries.
+            Power BI dashboards provided real-time production monitoring, and Power Automate triggered
+            alerts when KPIs fell below threshold values, enabling immediate corrective action.</p>
+    </div>
+</div>
+
+<div class="section"></div>
+
+<div class="container">
+    <h2 class="section-header">Business Impact</h2>
+    <br>
+    <hr>
+    <br>
+    <div class="card-container">
+        <div class="card">
+            <h2>20+ Hours Saved</h2>
+            <hr class="card-hr">
+            <p>Weekly manual reporting effort eliminated through fully automated data pipelines.</p>
+        </div>
+        <div class="card">
+            <h2>Real-Time Monitoring</h2>
+            <hr class="card-hr">
+            <p>Production managers gained live dashboards replacing weekly static Excel reports.</p>
+        </div>
+        <div class="card">
+            <h2>Proactive Alerts</h2>
+            <hr class="card-hr">
+            <p>Automated threshold alerts reduced quality issue response time from days to minutes.</p>
+        </div>
+    </div>
+</div>
+
+<div class="section"></div>
+
+<div class="container">
+    {% include 'global-templates/pre-footer.html' %}
+</div>
+{% endblock %}

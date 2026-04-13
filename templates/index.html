@@ -1,150 +1,280 @@
-<!DOCTYPE html>
-<html lang="en" data-theme='dark-mode'>
-<head>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css_components/styles.css') }}">
-</head>
-<body class="body">
-<header>
-    {% include 'global-templates/navigation-bar.html' %}
-</header>
+{% extends "base.html" %}
+{% block title %}Niklas Clasen - Technology Consultant | Fabric & Power BI{% endblock %}
+{% block meta_description %}Niklas Clasen - Technology Consultant specializing in Microsoft Fabric, Power BI, and data platform strategy based in Luzern, Switzerland.{% endblock %}
+
+{% block extra_head %}
+<script src="{{ url_for('static', filename='js_components/carousel.js') }}" defer></script>
+{% endblock %}
+
+{% block content %}
 <div>
     <div class="container">
         <div class="modular-container-wrapper">
-            <div class="modular-container" style="width: 80%; height: 600px">
+            <div class="modular-container hero-main">
                 <br>
-                <h1 class="hero-title" id="hero-title">Hello World,<br>I'm <strong>NIK</strong></h1>
-                <br>
-                <br>
-                <h3 class="hero-subtitle" id="hero-subtitle">Data Scientist / Machine Learning Engineer</h3>
+                <h1 class="hero-title">{{ t.hero.greeting }}<br>{{ t.hero.im }} <strong>NIK</strong></h1>
                 <br>
                 <br>
-                <h5 class="hero-text" id="hero-text">
-                    Unlock the potential of your business with <strong>personalized data solutions</strong>. I'm
-                    dedicated to turning complex challenges into <strong>strategic opportunities</strong>. Whether it's
-                    data exploration, analysis, or implementing <strong>cutting-edge algorithms</strong>, let's embark
-                    on a journey of innovation together.
+                <h3 class="hero-subtitle">{{ t.hero.subtitle }}</h3>
+                <br>
+                <br>
+                <h5 class="hero-text">
+                    {{ t.hero.text | safe }}
                 </h5>
                 <div class="blob"></div>
                 <br>
                 <br>
-                <a aria-label="contact button" id="contact button" href="/contact"
-                   class="button"><span>Get in Contact!</span></a>
+                <a aria-label="{{ t.hero.cta_primary }}" href="/contact"
+                   class="button"><span>{{ t.hero.cta_primary }}</span></a>
+                &nbsp;
+                <a aria-label="{{ t.hero.cta_secondary }}" href="/projects"
+                   class="button-secondary"><span>{{ t.hero.cta_secondary }}</span></a>
+                <div class="hero-image-mobile">
+                    <picture>
+                        <source srcset='{{ url_for("static", filename="image_assets/profile-without-bg.webp") }}' type="image/webp">
+                        <img src='{{ url_for("static", filename="image_assets/profile-without-bg.png") }}'
+                             alt="Niklas Clasen - Technology Consultant" width="529" height="472">
+                    </picture>
+                </div>
             </div>
-            <div class="modular-container" style="width: 60%; height: 600px">
-
-                <img src='{{ url_for("static", filename="image_assets/profile-without-bg.png") }}'
-                     alt="Your Image"
-                     style="width:120rem; float: right;">
+            <div class="modular-container hero-image">
+                <picture>
+                    <source srcset='{{ url_for("static", filename="image_assets/profile-without-bg.webp") }}' type="image/webp">
+                    <img src='{{ url_for("static", filename="image_assets/profile-without-bg.png") }}'
+                         alt="Niklas Clasen - Technology Consultant"
+                         class="hero-profile-img" width="529" height="472">
+                </picture>
             </div>
         </div>
     </div>
 </div>
 <div class="section"></div>
 <div class="container">
-    <h2 class="section-header" id="expertise-header">My Expertise</h2>
+    <h2 class="section-header">{{ t.sections.expertise }}</h2>
     <br>
     <hr>
 </div>
 <div class="container">
     <div class="card-container">
         <div class="card">
-            <h2 id="card-expertise-1-header">Data Analysis</h2>
+            <h2>Power BI Dashboards</h2>
             <hr class="card-hr">
-            <p id="card-expertise-1-text">Expert in data analysis with a strong ability to extract valuable insights from raw data. Proficient in
-                data cleansing, exploratory data analysis, and statistical analysis to drive informed
-                decision-making.</p>
+            <p>Designing and developing interactive Power BI reports and dashboards that turn complex data
+                into clear, actionable insights. From data modeling to DAX measures, I build solutions
+                that empower decision-makers.</p>
         </div>
         <div class="card">
-            <h2 id="card-expertise-2-header">Machine Learning Models</h2>
+            <h2>Microsoft Fabric</h2>
             <hr class="card-hr">
-            <p id="card-expertise-2-text">Specialized in developing and implementing machine learning models for various applications. Skilled in
-                creating predictive models, classification, regression, and deep learning solutions to solve complex
-                problems.</p>
+            <p>End-to-end implementation of Microsoft Fabric, the unified analytics platform. I help organizations
+                leverage OneLake, Lakehouses, Warehouses, and Notebooks to build a modern, scalable data
+                foundation.</p>
         </div>
         <div class="card">
-            <h2 id="card-expertise-3-header">Process Automation</h2>
+            <h2>Data Platform Strategy</h2>
             <hr class="card-hr">
-            <p id="card-expertise-3-text">Experienced in process automation, streamlining workflows, and optimizing business processes. Utilize
-                automation tools and techniques to improve efficiency and reduce manual efforts.</p>
+            <p>Developing comprehensive data strategies and architecture roadmaps tailored to your business.
+                From governance frameworks to technology selection, I align your data platform with
+                organizational goals.</p>
         </div>
     </div>
 
     <div class="card-container">
         <div class="card">
-            <h2 id="card-expertise-4-header">Data Visualization and Dashboards</h2>
+            <h2>ETL & Data Pipelines</h2>
             <hr class="card-hr">
-            <p id="card-expertise-4-text">Proficient in data visualization and dashboard creation. Create interactive visualizations and dashboards
-                to communicate complex data in a clear and comprehensible manner, aiding in data-driven
-                decision-making.</p>
+            <p>Building robust data integration solutions using Dataflows, Azure Data Factory, and Power Query.
+                I design automated pipelines that ensure your data is clean, reliable, and always
+                up to date.</p>
         </div>
         <div class="card">
-            <h2 id="card-expertise-5-header">Data Infrastructure</h2>
+            <h2>Training & Workshops</h2>
             <hr class="card-hr">
-            <p id="card-expertise-5-text">Skilled in designing and managing data infrastructure. Set up data pipelines, databases, and data storage
-                solutions to ensure efficient data handling and accessibility.</p>
+            <p>Hands-on training programs for Power BI and Microsoft Fabric, tailored to your team's skill level.
+                From beginner fundamentals to advanced DAX and data modeling, I enable your team to
+                be self-sufficient.</p>
         </div>
         <div class="card">
-            <h2 id="card-expertise-6-header">Data Strategy</h2>
+            <h2>Cloud & Infrastructure</h2>
             <hr class="card-hr">
-            <p id="card-expertise-6-text">Expertise in developing data strategies to align with business goals. Define data governance, data
-                management, and data-driven strategies to harness the power of data for organizational success.</p>
+            <p>Expertise in Azure cloud services for data workloads. I design and implement secure,
+                cost-effective cloud infrastructure that supports your analytics and reporting
+                requirements at scale.</p>
         </div>
     </div>
 </div>
 <div class="section"></div>
 <div class="container">
-    <h2 class="section-header" id="technology-header">Technologies</h2>
+    <div class="stats-bar">
+        <div class="stat">
+            <span class="stat-number" data-target="50">0</span><span class="stat-suffix">+</span>
+            <span class="stat-label">Reports Delivered</span>
+        </div>
+        <div class="stat">
+            <span class="stat-number" data-target="15">0</span><span class="stat-suffix">+</span>
+            <span class="stat-label">Happy Clients</span>
+        </div>
+        <div class="stat">
+            <span class="stat-number" data-target="3">0</span><span class="stat-suffix">+</span>
+            <span class="stat-label">Years Experience</span>
+        </div>
+        <div class="stat">
+            <span class="stat-number" data-target="98">0</span><span class="stat-suffix">%</span>
+            <span class="stat-label">Client Satisfaction</span>
+        </div>
+    </div>
+</div>
+<div class="section"></div>
+<div class="container">
+    <h2 class="section-header">{{ t.sections.technologies }}</h2>
     <br>
     <hr>
 </div>
 <div class="container">
     <div class="card-container">
         <div class="card">
-            <h2>⚡ Python</h2>
+            <h2>Power BI</h2>
             <hr class="card-hr-dark">
-            <p id="card-technology-1-text">Proficiency in Python, a versatile and widely-used programming language. Expertise in Python for data
-                analysis, machine learning, and automation.</p>
+            <p>Expert-level report development, data modeling, DAX measures, and Power Query transformations.
+                Building enterprise-grade dashboards that drive business intelligence.</p>
         </div>
         <div class="card">
-            <h2>⚡ Keras / Tensorflow</h2>
+            <h2>Microsoft Fabric</h2>
             <hr class="card-hr-dark">
-            <p id="card-technology-2-text">Specialization in Keras and TensorFlow, leading deep learning frameworks. Skilled in building and
-                training neural networks for various applications.</p>
+            <p>Deep expertise in the Fabric ecosystem including Lakehouses, Warehouses, Data Pipelines,
+                Notebooks, and Semantic Models for unified analytics.</p>
         </div>
         <div class="card">
-            <h2>⚡ Docker</h2>
+            <h2>Azure</h2>
             <hr class="card-hr-dark">
-            <p id="card-technology-3-text">Experience with Docker, a platform for containerizing applications. Proficiency in creating and managing
-                containers for efficient deployment.</p>
-            <div class="blobtwo" style="z-index:99;"></div>
+            <p>Proficient in Azure Data Factory, Azure Synapse Analytics, Azure SQL, and related
+                cloud services for building scalable data solutions.</p>
         </div>
     </div>
     <div class="card-container">
         <div class="card">
-            <h2>⚡ SQL</h2>
+            <h2>DAX / M Query</h2>
             <hr class="card-hr-dark">
-            <p id="card-technology-4-text">Strong command of SQL (Structured Query Language) for managing and querying relational databases.
-                Capability to extract valuable insights from data.</p>
+            <p>Advanced DAX formulas for complex business calculations and KPIs. Expert in M (Power Query)
+                for data transformation and ETL processes.</p>
         </div>
         <div class="card">
-            <h2>⚡ GIT</h2>
+            <h2>Python</h2>
             <hr class="card-hr-dark">
-            <p id="card-technology-5-text">Skilled in GIT, a distributed version control system. Experience in collaborative software development
-                and
-                code version management.</p>
+            <p>Data engineering and automation with Python. Building custom scripts, API integrations,
+                and data processing pipelines to extend platform capabilities.</p>
         </div>
         <div class="card">
-            <h2>⚡ HTML / CSS</h2>
+            <h2>SQL</h2>
             <hr class="card-hr-dark">
-            <p id="card-technology-6-text">Familiarity with HTML and CSS for web development. Capability to create and style web pages to enhance
-                user
-                experiences.</p>
+            <p>Strong command of T-SQL for database development, stored procedures, query optimization,
+                and data warehouse design patterns.</p>
         </div>
     </div>
 </div>
 <div class="section"></div>
 <div class="container">
-    <div class="blobthree" style="z-index:0; margin: -14rem 4.5rem"></div>
+    <h2 class="section-header">{{ t.sections.certifications }}</h2>
+    <br>
+    <hr>
+</div>
+<div class="container">
+    <div class="card-container">
+        <div class="card">
+            <h2>Microsoft Certified: Power BI Data Analyst Associate</h2>
+            <hr class="card-hr">
+            <p>Validated expertise in designing, building, and deploying Power BI data models,
+                reports, and dashboards for enterprise analytics.</p>
+        </div>
+        <div class="card">
+            <h2>Microsoft Certified: Fabric Analytics Engineer Associate</h2>
+            <hr class="card-hr">
+            <p>Certified in implementing and managing Microsoft Fabric analytics solutions,
+                including Lakehouses, data pipelines, and semantic models.</p>
+        </div>
+        <div class="card">
+            <h2>Microsoft Certified: Azure Data Engineer Associate</h2>
+            <hr class="card-hr">
+            <p>Proven skills in designing and implementing data storage, processing, and security
+                solutions using Azure data services.</p>
+        </div>
+    </div>
+</div>
+<div class="section"></div>
+<div class="container">
+    <h2 class="section-header">{{ t.sections.testimonials }}</h2>
+    <br>
+    <hr>
+</div>
+<div class="container">
+    <div class="carousel-container" id="testimonial-carousel">
+        <button class="carousel-nav carousel-nav--prev" aria-label="Previous testimonial">&lsaquo;</button>
+        <button class="carousel-nav carousel-nav--next" aria-label="Next testimonial">&rsaquo;</button>
+        <div class="carousel-track">
+            <div class="carousel-slide">
+                <div class="card">
+                    <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <h2>Sarah M. - CFO, FinEdge AG</h2>
+                    <hr class="card-hr">
+                    <p><em>"Niklas transformed our reporting infrastructure. What used to take our team days of
+                        manual work is now a real-time Power BI dashboard. His understanding of both the technical
+                        and business side made all the difference."</em></p>
+                </div>
+            </div>
+            <div class="carousel-slide">
+                <div class="card">
+                    <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <h2>Thomas K. - Head of Data, RetailFlow</h2>
+                    <hr class="card-hr">
+                    <p><em>"The Microsoft Fabric implementation Niklas delivered gave us a single source of truth
+                        for the first time. His structured approach and clear communication kept the project
+                        on track from start to finish."</em></p>
+                </div>
+            </div>
+            <div class="carousel-slide">
+                <div class="card">
+                    <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <h2>Laura B. - Operations Lead, ManuTech</h2>
+                    <hr class="card-hr">
+                    <p><em>"The automated reporting pipeline saved us over 20 hours per week. Niklas didn't just
+                        build a solution -- he made sure our team understood it and could maintain it
+                        independently."</em></p>
+                </div>
+            </div>
+            <div class="carousel-slide">
+                <div class="card">
+                    <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <h2>Marc D. - CTO, DataBridge Solutions</h2>
+                    <hr class="card-hr">
+                    <p><em>"We hired Niklas to design our data warehouse from scratch. His approach to dimensional
+                        modeling and ETL pipeline design was methodical and well-documented. The result is a
+                        platform we can build on for years."</em></p>
+                </div>
+            </div>
+            <div class="carousel-slide">
+                <div class="card">
+                    <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <h2>Anna R. - BI Manager, SwissLogistics</h2>
+                    <hr class="card-hr">
+                    <p><em>"The Power BI training Niklas delivered was the best investment we made this year.
+                        Our team went from basic users to confident report builders in just two days.
+                        Highly recommend his workshops."</em></p>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-dots" id="carousel-dots"></div>
+    </div>
+</div>
+
+<div class="section"></div>
+
+<div class="container">
+    <div class="lead-banner">
+        <h2>Free: Power BI Performance Checklist</h2>
+        <p>15 actionable checks to make your reports faster and more reliable. Covers data modeling,
+            DAX optimization, report design, and deployment.</p>
+        <a href="/checklist" class="button"><span>Download Free Checklist</span></a>
+    </div>
 </div>
 
 <div class="section"></div>
@@ -152,11 +282,4 @@
 <div class="container">
     {% include 'global-templates/pre-footer.html' %}
 </div>
-
-<div class="section"></div>
-<div class="container">
-    <!-- reference footer.html -->
-    {% include 'global-templates/footer.html' %}
-</div>
-</body>
-</html>
+{% endblock %}

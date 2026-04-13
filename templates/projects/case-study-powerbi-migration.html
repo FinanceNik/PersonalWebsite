@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+{% block title %}Enterprise Power BI Migration - Niklas Clasen Consulting{% endblock %}
+{% block meta_description %}Case study: Consolidated 50+ Excel reports into a centralized Power BI platform for a financial services company, reducing manual reporting effort by 80%.{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="modular-container-wrapper">
+        <div class="modular-container" style="height: auto; padding: 2rem 0;">
+            <h1 class="hero-title">Enterprise Power BI Migration</h1>
+            <br>
+            <h3 class="hero-subtitle">Financial Services | Power BI & Azure</h3>
+        </div>
+    </div>
+</div>
+
+<div class="section"></div>
+
+<div class="container">
+    <h2 class="section-header">Technologies Used</h2>
+    <br>
+    <hr>
+    <br>
+    <div class="card-container">
+        <div class="card">
+            <h2>Power BI</h2>
+            <hr class="card-hr">
+            <p>Enterprise report development, semantic models, and workspace management for 200+ users.</p>
+        </div>
+        <div class="card">
+            <h2>Azure Synapse</h2>
+            <hr class="card-hr">
+            <p>Cloud-based data warehouse replacing legacy on-premise SQL Server infrastructure.</p>
+        </div>
+        <div class="card">
+            <h2>DAX / Power Query</h2>
+            <hr class="card-hr">
+            <p>Advanced calculations for financial KPIs and automated data transformation pipelines.</p>
+        </div>
+    </div>
+</div>
+
+<div class="section"></div>
+
+<div class="container">
+    <h2 class="section-header">The Challenge</h2>
+    <br>
+    <hr>
+    <br>
+    <div class="project-text">
+        <p>A mid-sized financial services company was struggling with a fragmented reporting landscape.
+            Over 50 Excel-based reports were being manually maintained by different departments, leading
+            to inconsistent numbers, duplicated effort, and delayed decision-making. Leadership had no
+            single source of truth for key financial metrics.</p>
+    </div>
+</div>
+
+<div class="section"></div>
+
+<div class="container">
+    <h2 class="section-header">The Solution</h2>
+    <br>
+    <hr>
+    <br>
+    <div class="project-text">
+        <p>I designed and implemented a centralized Power BI reporting platform backed by Azure Synapse
+            Analytics. The project involved consolidating data from 8 source systems into a unified
+            data warehouse, building a semantic layer with standardized financial measures, and deploying
+            15 interactive dashboards across the organization. Row-level security ensured each department
+            only saw their relevant data, while scheduled refreshes eliminated manual data preparation.</p>
+    </div>
+</div>
+
+<div class="section"></div>
+
+<div class="container">
+    <h2 class="section-header">Business Impact</h2>
+    <br>
+    <hr>
+    <br>
+    <div class="card-container">
+        <div class="card">
+            <h2>80% Reduction</h2>
+            <hr class="card-hr">
+            <p>In manual reporting effort -- from 40+ hours/week across teams to under 8 hours.</p>
+        </div>
+        <div class="card">
+            <h2>Single Source of Truth</h2>
+            <hr class="card-hr">
+            <p>Eliminated conflicting numbers across departments with one unified data model.</p>
+        </div>
+        <div class="card">
+            <h2>Real-Time Insights</h2>
+            <hr class="card-hr">
+            <p>Leadership dashboard refreshed automatically, replacing monthly static PDF reports.</p>
+        </div>
+    </div>
+</div>
+
+<div class="section"></div>
+
+<div class="container">
+    {% include 'global-templates/pre-footer.html' %}
+</div>
+{% endblock %}

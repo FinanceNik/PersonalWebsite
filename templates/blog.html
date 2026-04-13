@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% block title %}Blog - Niklas Clasen Consulting{% endblock %}
+{% block meta_description %}Insights and articles on Microsoft Fabric, Power BI best practices, and data platform strategy.{% endblock %}
+
+{% block content %}
+<div>
+    <div class="container">
+        <div class="modular-container-wrapper">
+            <div class="modular-container" style="height: 400px">
+                <br>
+                <h1 class="hero-title">{{ t.sections.blog_title }}</h1>
+                <br>
+                <br>
+                <h3 class="hero-subtitle">{{ t.sections.blog_subtitle }}</h3>
+                <br>
+                <br>
+                <h5 class="hero-text">
+                    Practical articles and thought pieces on building modern data platforms,
+                    creating impactful reports, and making data work for your business.
+                </h5>
+                <div class="blob"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section"></div>
+
+<div class="container">
+    <!-- Tag filter pills -->
+    {% if all_tags %}
+    <div class="tag-filters">
+        <a href="/blog" class="tag-pill {{ 'tag-pill--active' if not active_tag }}">All</a>
+        {% for tag in all_tags %}
+        <a href="/blog?tag={{ tag }}" class="tag-pill {{ 'tag-pill--active' if active_tag == tag }}">{{ tag }}</a>
+        {% endfor %}
+    </div>
+    <br>
+    {% endif %}
+
+    {% if posts %}
+        {% for post in posts %}
+        <div class="blog-post-card">
+            <h2><a href="/blog/{{ post.slug }}">{{ post.title }}</a></h2>
+            <p class="blog-date">{{ post.date }}</p>
+            {% if post.tags %}
+            <div class="tag-list">
+                {% for tag in post.tags %}
+                <a href="/blog?tag={{ tag }}" class="tag-badge">{{ tag }}</a>
+                {% endfor %}
+            </div>
+            {% endif %}
+            <p class="blog-summary">{{ post.summary }}</p>
+            <br>
+            <a href="/blog/{{ post.slug }}" class="button"><span>Read More</span></a>
+        </div>
+        {% endfor %}
+    {% else %}
+        <p style="text-align: center; color: var(--secondary-text-color);">
+            {% if active_tag %}
+                No posts tagged "{{ active_tag }}". <a href="/blog" style="color: var(--primary-color);">View all posts</a>
+            {% else %}
+                No blog posts yet. Check back soon!
+            {% endif %}
+        </p>
+    {% endif %}
+</div>
+
+<div class="section"></div>
+
+<div class="container">
+    {% include 'global-templates/pre-footer.html' %}
+</div>
+{% endblock %}

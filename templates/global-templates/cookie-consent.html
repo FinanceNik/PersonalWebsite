@@ -1,0 +1,74 @@
+<div id="cookie-consent-banner" class="cookie-overlay" role="region" aria-label="Cookie consent" style="display:none;">
+    <div class="cookie-card">
+        <h3>Cookie Settings</h3>
+        <p>This website uses essential cookies to function properly. We also use analytics cookies
+            to understand how you interact with the site.
+            <a href="/privacy">Learn more in our Privacy Policy</a>.
+        </p>
+        <div class="cookie-buttons">
+            <button class="cookie-btn-reject" id="cookie-reject">Reject All</button>
+            <button class="button" id="cookie-accept"><span>Accept All</span></button>
+        </div>
+    </div>
+</div>
+<script>
+(function() {
+    var STORAGE_KEY = 'cookie-consent';
+    var EXPIRY_DAYS = 365;
+
+    function getConsent() {
+        try {
+            var data = JSON.parse(localStorage.getItem(STORAGE_KEY));
+            if (!data || !data.expiry) return null;
+            if (new Date().getTime() > data.expiry) {
+                localStorage.removeItem(STORAGE_KEY);
+                return null;
+            }
+            return data;
+        } catch (e) { return null; }
+    }
+
+    function setConsent(analytics) {
+        var data = {
+            essential: true,
+            analytics: analytics,
+            timestamp: new Date().toISOString(),
+            expiry: new Date().getTime() + EXPIRY_DAYS * 24 * 60 * 60 * 1000
+        };
+        try { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); } catch (e) {}
+        if (analytics) trackPageview();
+    }
+
+    function trackPageview() {
+        try {
+            fetch('/api/pageview', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    path: window.location.pathname,
+                    referrer: document.referrer || '',
+                    lang: document.documentElement.lang || 'en'
+                })
+            }).catch(function() {});
+        } catch (e) {}
+    }
+
+    var consent = getConsent();
+    if (!consent) {
+        var banner = document.getElementById('cookie-consent-banner');
+        banner.style.display = 'flex';
+
+        document.getElementById('cookie-accept').addEventListener('click', function () {
+            setConsent(true);
+            banner.style.display = 'none';
+        });
+
+        document.getElementById('cookie-reject').addEventListener('click', function () {
+            setConsent(false);
+            banner.style.display = 'none';
+        });
+    } else if (consent.analytics) {
+        trackPageview();
+    }
+})();
+</script>

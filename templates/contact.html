@@ -1,62 +1,49 @@
-<!DOCTYPE html>
-<html lang="en" data-theme='light-mode'>
-<head>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css_components/styles.css') }}">
-</head>
-<body class="body">
-<!-- get the navigation bar from the navigation-bar.html file -->
-{% include 'global-templates/navigation-bar.html' %}
+{% extends "base.html" %}
+{% block title %}{{ t.nav.contact }} - Niklas Clasen Consulting{% endblock %}
+{% block meta_description %}Get in touch with Niklas Clasen for Microsoft Fabric, Power BI consulting, and data platform strategy.{% endblock %}
+
+{% block extra_head %}
+<script src="{{ url_for('static', filename='js_components/form-validation.js') }}" defer></script>
+{% endblock %}
+
+{% block content %}
 <br>
 <br>
 <div class="layout-contact-box-container">
-    <div class="blobtwo" style="float:center"></div>
+    <div class="blobtwo"></div>
     <div class="layout-contact-box" style="background-color: var(--lightgrey)">
-        <h3>Contact Form</h3>
+        <h1 class="hero-subtitle" style="margin-bottom: 1rem;">{{ t.contact_page.title }}</h1>
         <div class="container">
-            <form action="http://localhost:5000/submit_contact_form" method="post">
-                <label for="fname">First Name</label>
-                <input type="text" id="fname" name="firstname" placeholder="Your name..">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="flash-{{ category }}" role="alert">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            <form action="/submit_contact_form" method="post">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
 
-                <label for="lname">Last Name</label>
-                <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+                <label for="fname">{{ t.contact_page.firstname }} <span class="required">*</span></label>
+                <input type="text" id="fname" name="firstname" placeholder="{{ t.contact_page.placeholder_name }}" required>
 
-                <label for="country">Country</label>
-                <select id="country" name="country">
-                    <option value="Switzerland">Switzerland</option>
-                    <option value="Germany">Germany</option>
-                    <option value="Austria">Austria</option>
-                    <option value="Italy">Italy</option>
-                    <option value="France">France</option>
-                    <option value="Netherlands">Netherlands</option>
-                    <option value="Belgium">Belgium</option>
-                </select>
-                <label for="mail">Last Name</label>
-                <input type="text" id="mail" name="email" placeholder="Your e-mail..">
-                <label for="message">Message</label>
-                <textarea id="message" name="message" placeholder="Write something.." style="height:200px"></textarea>
-                <button class="button" style="font-size: 20px;" type="submit"><span>Submit</span></button>
+                <label for="lname">{{ t.contact_page.lastname }} <span class="required">*</span></label>
+                <input type="text" id="lname" name="lastname" placeholder="{{ t.contact_page.placeholder_lastname }}" required>
+
+                <label for="country">{{ t.contact_page.country }}</label>
+                <input type="text" id="country" name="country" placeholder="{{ t.contact_page.placeholder_country }}">
+
+                <label for="mail">{{ t.contact_page.email }} <span class="required">*</span></label>
+                <input type="email" id="mail" name="email" placeholder="{{ t.contact_page.placeholder_email }}" required>
+
+                <label for="message">{{ t.contact_page.message }} <span class="required">*</span></label>
+                <textarea id="message" name="message" placeholder="{{ t.contact_page.placeholder_message }}" style="height:200px" required></textarea>
+
+                <button class="button" style="font-size: 20px;" type="submit"><span>{{ t.contact_page.submit }}</span></button>
             </form>
         </div>
-
     </div>
 </div>
-<div class="blobthree" style="z-index:0;"></div>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<div class="container">
-    <!-- reference footer.html -->
-    {% include 'global-templates/footer.html' %}
-</div>
-
-</body>
-</html>
+<div class="blobthree"></div>
+<div style="margin-top: 4rem;"></div>
+{% endblock %}

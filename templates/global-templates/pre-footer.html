@@ -1,10 +1,10 @@
 <div class="matrix-container">
-    <canvas id="matrixCanvas"></canvas>
+    <canvas id="matrixCanvas" aria-label="Decorative matrix rain effect" role="img"></canvas>
     <div class="content">
         <div class="pre-footer">
-            <h5 id="pre-footer">Have I sparked your interest?</h5>
-            <a aria-label="prefooter-button" id="prefooter-button" href="/contact" style="margin: 0% 5%;"
-               class="prefooter-button"><span>Get in Contact!</span></a>
+            <h5>{{ t.prefooter.text }}</h5>
+            <a aria-label="Contact" href="/contact" style="margin: 0% 5%;"
+               class="prefooter-button"><span>{{ t.prefooter.cta }}</span></a>
         </div>
     </div>
 </div>

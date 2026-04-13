@@ -1,68 +1,74 @@
-![Alt Text](../ClasenDataScience/static/image_assets/personal_website_second.png)
+# Niklas Clasen Consulting - Website
 
----
-
-### Version: 0.9.0
-
-### Author: Finance Nik
-
-### Date: 03.12.2023
-
----
-
-# Clasen Data Science - Website
-
-This is the source code for my personal website. It is built using the Flask web framework and deployed on Vercel. It is
-meant as a portfolio of my data science projects and a place to share my thoughts on data science and machine learning.
-
-## Table of Contents
-
-- [Prerequisites](#prerequisites)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Configuration](#configuration)
-- [Deployment](#deployment)
-- [Contributing](#contributing)
-- [License](#license)
+Personal website and blog for a technology consultant specializing in Microsoft Fabric, Power BI, and data platform strategy. Built with Flask.
 
 ## Prerequisites
 
-List any prerequisites that users need to have installed or set up to run your application. This might include Python,
-Flask, or specific libraries.
+- Python 3.10+
+- pip
 
 ## Installation
 
-Provide instructions on how to install and set up your application. You can include the following steps:
-
-1. Clone this repository to your local machine:
-
+1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/your-flask-app.git
+   git clone https://github.com/FinanceNik/PersonalWebsite.git
+   cd PersonalWebsite
    ```
-2. Create a virtual environment (recommended):
+
+2. Create a virtual environment:
    ```bash
    python -m venv venv
-   source venv/bin/activate  # On Windows, use: venv\Scripts\activate
+   source venv/bin/activate
    ```
-3. Install the required dependencies:
+
+3. Install dependencies:
    ```bash
    pip install -r requirements.txt
    ```
 
-## Usage
-
-Start the app by running:
-
-   ```bash
-   python app.py
+4. Create a `.env` file in the project root:
+   ```
+   FLASK_DEBUG=True
+   SECRET_KEY=your-secret-key-here
+   DATABASE_PATH=staging.db
    ```
 
-Once the application is running, you can access it in your web browser at http://localhost:5000.
+## Usage
 
-## Configuration
+```bash
+python app.py
+```
 
-## Deployment
+The site will be available at `http://localhost:5000`.
 
-## Contributing
+## Blog
 
-## License
+Blog posts are markdown files in the `blog_posts/` directory. Each post uses frontmatter for metadata:
+
+```markdown
+---
+title: Your Post Title
+date: 2026-04-01
+summary: A short summary of the post.
+---
+
+Your markdown content here...
+```
+
+New posts are automatically picked up when the page loads.
+
+## Project Structure
+
+```
+PersonalWebsite/
+  app.py                  # Flask application and routes
+  database_helper.py      # SQLite database helpers
+  blog_posts/             # Markdown blog posts
+  templates/              # Jinja2 HTML templates
+    global-templates/     # Shared nav, footer, pre-footer
+    projects/             # Case study detail pages
+  static/
+    css_components/       # Modular CSS (colors, sizes, nav, footer, main styles)
+    js_components/        # Theme toggler, FAQ accordion, matrix animation
+    image_assets/         # Logos, profile image, icons
+```
