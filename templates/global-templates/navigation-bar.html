@@ -31,8 +31,10 @@
             <li class="toggle-switch">
                 <img src="{{ url_for('static', filename='image_assets/contrast.png') }}" alt="Light mode"
                      class="color-mode">
-                <input type="checkbox" id="theme-toggle" class="toggle" aria-label="Toggle dark mode"/>
-                <label for="theme-toggle"></label>
+                <span class="toggle-knob-wrap">
+                    <input type="checkbox" id="theme-toggle" class="toggle" aria-label="Toggle dark mode"/>
+                    <label for="theme-toggle"></label>
+                </span>
                 <img src="{{ url_for('static', filename='image_assets/crescent-moon.png') }}" alt="Dark mode"
                      class="color-mode">
             </li>

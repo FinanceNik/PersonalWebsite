@@ -7,13 +7,39 @@
 {% endblock %}
 
 {% block content %}
-<br>
-<br>
-<div class="layout-contact-box-container">
-    <div class="blobtwo"></div>
-    <div class="layout-contact-box" style="background-color: var(--lightgrey)">
-        <h1 class="hero-subtitle" style="margin-bottom: 1rem;">{{ t.contact_page.title }}</h1>
-        <div class="container">
+<div class="section"></div>
+<div class="container">
+    <div class="contact-page-grid">
+        <!-- Left: info panel -->
+        <div class="contact-info-panel">
+            <h1 class="hero-title" style="text-align: left; font-size: clamp(1.8rem, 4vw, 2.5rem);">Let's Talk</h1>
+            <br>
+            <p class="hero-text" style="max-width: 400px;">
+                Have a project in mind or want to explore how I can help?
+                Fill out the form and I'll get back to you within 24 hours.
+            </p>
+            <br>
+            <div class="contact-detail">
+                <strong>Email</strong>
+                <a href="mailto:niklas.clasen@gmail.com" style="color: var(--primary-color); text-decoration: none;">niklas.clasen@gmail.com</a>
+            </div>
+            <div class="contact-detail">
+                <strong>Location</strong>
+                <span>Luzern, Switzerland</span>
+            </div>
+            <div class="contact-detail">
+                <strong>Response time</strong>
+                <span>Usually within 24 hours</span>
+            </div>
+            <br>
+            <p style="color: var(--secondary-text-color); font-size: var(--size-sm); font-family: var(--font-family-body);">
+                Prefer to schedule directly?
+                <a href="/process" style="color: var(--primary-color);">See how I work</a>
+            </p>
+        </div>
+
+        <!-- Right: form -->
+        <div class="contact-form-panel">
             {% with messages = get_flashed_messages(with_categories=true) %}
                 {% if messages %}
                     {% for category, message in messages %}
@@ -24,26 +50,35 @@
             <form action="/submit_contact_form" method="post">
                 <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
 
-                <label for="fname">{{ t.contact_page.firstname }} <span class="required">*</span></label>
-                <input type="text" id="fname" name="firstname" placeholder="{{ t.contact_page.placeholder_name }}" required>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="fname">{{ t.contact_page.firstname }} <span class="required">*</span></label>
+                        <input type="text" id="fname" name="firstname" placeholder="{{ t.contact_page.placeholder_name }}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lname">{{ t.contact_page.lastname }} <span class="required">*</span></label>
+                        <input type="text" id="lname" name="lastname" placeholder="{{ t.contact_page.placeholder_lastname }}" required>
+                    </div>
+                </div>
 
-                <label for="lname">{{ t.contact_page.lastname }} <span class="required">*</span></label>
-                <input type="text" id="lname" name="lastname" placeholder="{{ t.contact_page.placeholder_lastname }}" required>
-
-                <label for="country">{{ t.contact_page.country }}</label>
-                <input type="text" id="country" name="country" placeholder="{{ t.contact_page.placeholder_country }}">
-
-                <label for="mail">{{ t.contact_page.email }} <span class="required">*</span></label>
-                <input type="email" id="mail" name="email" placeholder="{{ t.contact_page.placeholder_email }}" required>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="mail">{{ t.contact_page.email }} <span class="required">*</span></label>
+                        <input type="email" id="mail" name="email" placeholder="{{ t.contact_page.placeholder_email }}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="country">{{ t.contact_page.country }}</label>
+                        <input type="text" id="country" name="country" placeholder="{{ t.contact_page.placeholder_country }}">
+                    </div>
+                </div>
 
                 <label for="message">{{ t.contact_page.message }} <span class="required">*</span></label>
-                <textarea id="message" name="message" placeholder="{{ t.contact_page.placeholder_message }}" style="height:200px" required></textarea>
+                <textarea id="message" name="message" placeholder="{{ t.contact_page.placeholder_message }}" style="height:180px" required></textarea>
 
-                <button class="button" style="font-size: 20px;" type="submit"><span>{{ t.contact_page.submit }}</span></button>
+                <button class="button" style="width: 100%; font-size: 18px;" type="submit"><span>{{ t.contact_page.submit }}</span></button>
             </form>
         </div>
     </div>
 </div>
-<div class="blobthree"></div>
-<div style="margin-top: 4rem;"></div>
+<div class="section"></div>
 {% endblock %}

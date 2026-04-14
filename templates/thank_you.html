@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}Thank You - Niklas Clasen Consulting{% endblock %}
+
+{% block content %}
+<div class="section"></div>
+<div class="container">
+    <div style="text-align: center; max-width: 600px; margin: 0 auto;">
+        <h1 class="hero-title" style="font-size: clamp(2rem, 5vw, 3rem);">Thank You{% if name %}, {{ name }}{% endif %}!</h1>
+        <br>
+        <p class="hero-text" style="max-width: 500px; margin: 0 auto;">
+            Your message has been received. I'll get back to you within 24 hours.
+        </p>
+
+        <div class="section"></div>
+
+        <h3 class="section-header" style="font-size: var(--size-xl);">While You Wait</h3>
+        <br>
+        <div class="error-links">
+            <a href="/projects" class="error-link-card">
+                <strong>Case Studies</strong>
+                <span>See real project results</span>
+            </a>
+            <a href="/blog" class="error-link-card">
+                <strong>Blog</strong>
+                <span>Read my latest insights</span>
+            </a>
+            <a href="/calculator" class="error-link-card">
+                <strong>Project Estimator</strong>
+                <span>Get a ballpark estimate</span>
+            </a>
+            <a href="/checklist" class="error-link-card">
+                <strong>Free Checklist</strong>
+                <span>Power BI Performance PDF</span>
+            </a>
+        </div>
+    </div>
+</div>
+<div class="section"></div>
+{% endblock %}

@@ -5,7 +5,7 @@
 {% block content %}
 <div>
     <div class="container">
-        <div class="modular-container-wrapper">
+        <div class="modular-container-wrapper hero-gradient-teal">
             <div class="modular-container" style="height: 400px">
                 <br>
                 <h1 class="hero-title">How I Work</h1>
@@ -22,7 +22,7 @@
                 <br>
                 <br>
                 <a aria-label="Get in contact" href="/contact"
-                   class="button"><span>Get in Contact!</span></a>
+                   class="button"><span>{{ t.hero.cta_primary }}</span></a>
             </div>
         </div>
     </div>
@@ -45,6 +45,10 @@
                     <li>Discuss high-level goals and constraints</li>
                     <li>Answer any questions about my approach</li>
                 </ul>
+                <p style="margin-top: var(--space-4); font-size: var(--size-sm);">
+                    <em>Want to get a sense of pricing first?
+                    <a href="/calculator" style="color: var(--primary-color); font-weight: 600;">Try the Project Estimator</a> — takes under a minute.</em>
+                </p>
             </div>
         </div>
 

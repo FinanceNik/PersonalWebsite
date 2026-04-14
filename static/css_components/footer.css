@@ -1,7 +1,7 @@
 /* Footer — matching Nikinik style */
 .footer-wrapper {
     background-color: var(--footer-color);
-    border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+    border-radius: 0;
 }
 
 .footer {

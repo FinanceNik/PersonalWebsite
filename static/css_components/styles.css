@@ -285,39 +285,63 @@ strong {
 
 .toggle-switch {
   position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
 }
 
 .toggle {
   appearance: none;
-  width: 40px;
-  height: 20px;
+  width: 42px;
+  height: 22px;
   background-color: var(--toggle-off-color, #b3b3b3);
-  border-radius: 10px;
+  border-radius: 11px;
   position: relative;
   outline: none;
   cursor: pointer;
   transition: background-color 0.3s;
+  flex-shrink: 0;
 }
 
 .toggle:checked {
-  background-color: var(--accent-color); /* Background color of the switch when on */
+  background-color: var(--accent-color);
+}
+
+/* The label acts as the toggle knob — positioned inside the toggle via a wrapper */
+.toggle-knob-wrap {
+  position: relative;
+  display: inline-block;
+  width: 42px;
+  height: 22px;
+  flex-shrink: 0;
+}
+
+.toggle-knob-wrap .toggle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
 }
 
 .toggle + label {
   content: '';
   position: absolute;
-  transform: translateY(-50%);
   width: 16px;
   height: 16px;
-  background-color: #fff; /* Color of the toggle handle */
+  background-color: #fff;
   border-radius: 50%;
-  transition: transform 0.3s ease;
-  top: 10px;
-  left: 32px;
+  transition: left var(--duration-normal) var(--ease-spring);
+  top: 3px;
+  left: 3px;
+  pointer-events: none;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  z-index: 1;
 }
 
 .toggle:checked + label {
-  left: calc(100% - 48px);
+  left: 23px;
 }
 
 .github-button {
@@ -532,7 +556,7 @@ hr {
 }
 
 .hero-title strong {
-    background: var(--gradient-primary);
+    background: var(--gradient-hero-text);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -637,8 +661,8 @@ hr {
 .modular-container-services-one {
     width: 95%;
     line-height: var(--leading-relaxed);
-    border: 1px solid var(--border-color-card);
-    margin: 1rem;
+    border: 1.5px solid var(--border-color-card);
+    margin: var(--space-4);
     border-radius: var(--radius-lg);
     background: var(--background-color-card);
     backdrop-filter: blur(8px);
@@ -657,10 +681,10 @@ hr {
 
 .modular-container-services-two {
     width: 95%;
-    line-height: 1.7;
-    border: 1px solid var(--border-color-card);
-    margin: 1rem;
-    border-radius: 10px;
+    line-height: var(--leading-relaxed);
+    border: 1.5px solid var(--border-color-card);
+    margin: var(--space-4);
+    border-radius: var(--radius-lg);
     background-color: var(--background-color-card);
 }
 
@@ -1146,10 +1170,10 @@ textarea {
         flex-direction: row;
     }
     .modular-container-services-one {
-        width: 40%;
+        width: 48%;
     }
-        .modular-container-services-two {
-        width: 60%;
+    .modular-container-services-two {
+        width: 48%;
     }
 }
 
@@ -1243,27 +1267,30 @@ textarea {
 
 .hero-profile-img {
     width: 100%;
-    max-width: 500px;
-    float: right;
-    border-radius: var(--radius-xl);
-    transition: box-shadow var(--duration-slow), filter var(--duration-slow);
+    max-width: 400px;
+    border-radius: 50%;
+    border: 3px solid var(--profile-border-color);
+    box-shadow: var(--profile-glow);
+    transition: box-shadow var(--duration-slow), filter var(--duration-slow), border-color var(--duration-slow);
 }
 
 .hero-profile-img:hover {
-    box-shadow: 0 0 40px rgba(99, 179, 237, 0.25);
+    box-shadow: var(--profile-glow-hover);
+    border-color: var(--primary-color);
     filter: brightness(1.05);
 }
 
 @media (min-width: 768px) {
     .hero-main {
-        width: 80%;
+        width: 55%;
         min-height: auto;
     }
     .hero-image {
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 40%;
+        width: 45%;
+        padding: var(--space-8);
     }
 }
 
@@ -1429,9 +1456,10 @@ textarea {
 .process-step-content {
     background: var(--background-color-card);
     border: 1px solid var(--border-color-card);
-    border-radius: 10px;
+    border-radius: var(--radius-lg);
     padding: 1.5rem 2rem;
     flex: 1;
+    text-align: left;
 }
 
 .process-step-content h2 {
@@ -1439,6 +1467,7 @@ textarea {
     font-family: var(--font-family-header);
     margin-bottom: 0.75rem;
     font-size: var(--size-2xl);
+    text-align: left;
 }
 
 .process-step-content p {
@@ -1447,6 +1476,7 @@ textarea {
     line-height: 1.7;
     margin-bottom: 1rem;
     font-size: var(--size-base);
+    text-align: left;
 }
 
 .process-details {
@@ -1555,6 +1585,7 @@ textarea {
 .calc-progress-dot {
     width: 12px;
     height: 12px;
+    border: 1.5px solid var(--secondary-text-color);
     border-radius: 50%;
     background: var(--border-color-card);
     transition: background 0.3s;
@@ -1562,6 +1593,7 @@ textarea {
 
 .calc-progress-dot.filled {
     background: var(--primary-color);
+    border-color: var(--primary-color);
 }
 
 .calc-progress-dot.current {
@@ -1822,6 +1854,17 @@ textarea {
     pointer-events: none;
 }
 
+/* Hero mobile buttons full-width */
+@media (max-width: 640px) {
+    .hero-main .button,
+    .hero-main .button-secondary {
+        display: block;
+        width: 100%;
+        text-align: center;
+        margin-bottom: var(--space-3);
+    }
+}
+
 /* Hero mobile image */
 @media (max-width: 767px) {
     .hero-image-mobile {
@@ -1849,6 +1892,98 @@ textarea {
     .modular-container-services-two {
         width: 100% !important;
     }
+}
+
+/* Contact page layout */
+.contact-page-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: var(--space-12);
+    text-align: left;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.contact-info-panel {
+    padding: var(--space-8) 0;
+}
+
+.contact-detail {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    margin-bottom: var(--space-4);
+    font-family: var(--font-family-body);
+    color: var(--secondary-text-color);
+    font-size: var(--size-base);
+}
+
+.contact-detail strong {
+    color: var(--primary-text-color);
+    font-size: var(--size-sm);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wider);
+}
+
+.contact-form-panel {
+    background: var(--background-color-card);
+    border: 1px solid var(--border-color-card);
+    border-radius: var(--radius-lg);
+    padding: var(--space-8);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-4);
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+@media (max-width: 768px) {
+    .contact-page-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-6);
+    }
+    .contact-info-panel {
+        text-align: center;
+        padding: 0;
+    }
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Case study accent stripes */
+.case-card {
+    border-left: 4px solid transparent;
+    padding-left: calc(var(--space-5) + 4px);
+}
+
+.case-card--blue { border-left-color: #2b6cb0; }
+.case-card--purple { border-left-color: #805ad5; }
+.case-card--teal { border-left-color: #38b2ac; }
+
+/* Page-specific hero gradients */
+.hero-gradient-blue {
+    background: radial-gradient(ellipse at 20% 50%, rgba(43, 108, 176, 0.08) 0%, transparent 60%);
+}
+
+.hero-gradient-purple {
+    background: radial-gradient(ellipse at 80% 30%, rgba(128, 90, 213, 0.06) 0%, transparent 60%);
+}
+
+.hero-gradient-gold {
+    background: radial-gradient(ellipse at 30% 70%, rgba(214, 158, 46, 0.06) 0%, transparent 60%);
+}
+
+.hero-gradient-teal {
+    background: radial-gradient(ellipse at 70% 50%, rgba(56, 178, 172, 0.06) 0%, transparent 60%);
 }
 
 /* Section spacing lg */
@@ -2085,6 +2220,40 @@ textarea {
 
 .tag-badge:hover {
     background: rgba(43, 108, 176, 0.15);
+}
+
+.tag-more-wrap {
+    position: relative;
+    display: inline-block;
+}
+
+.tag-more-btn {
+    cursor: pointer;
+}
+
+.tag-more-dropdown {
+    display: none;
+    position: absolute;
+    top: calc(100% + var(--space-2));
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--background-color-card);
+    border: 1px solid var(--border-color-card);
+    border-radius: var(--radius-lg);
+    padding: var(--space-3);
+    z-index: 10;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    min-width: 200px;
+    box-shadow: var(--shadow-lg);
+}
+
+.tag-more-wrap.open .tag-more-dropdown {
+    display: flex;
+}
+
+.tag-more-dropdown .tag-pill {
+    white-space: nowrap;
 }
 
 /* Testimonial carousel */

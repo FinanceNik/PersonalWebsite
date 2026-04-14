@@ -140,6 +140,11 @@ def service_worker():
     return send_from_directory(app.static_folder, 'sw.js', mimetype='application/javascript')
 
 
+@app.route('/manifest.json')
+def manifest():
+    return send_from_directory(app.static_folder, 'manifest.json', mimetype='application/manifest+json')
+
+
 @app.route('/search')
 def search():
     query = request.args.get('q', '').strip().lower()
@@ -242,11 +247,17 @@ def submit_contact_form():
 
     try:
         database_helper.insert_contact_request(firstname, lastname, country, email, message)
-        flash('Your message has been received. Thank you for contacting me!', 'success')
     except Exception:
         flash('Something went wrong. Please try again later.', 'error')
+        return redirect(url_for('contact'))
 
-    return redirect(url_for('contact'))
+    return redirect(url_for('thank_you', name=firstname))
+
+
+@app.route('/thank-you')
+def thank_you():
+    name = request.args.get('name', '')
+    return render_template('thank_you.html', name=name)
 
 
 # --- Analytics ---

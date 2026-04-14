@@ -1,0 +1,17 @@
+{
+    "name": "Niklas Clasen Consulting",
+    "short_name": "NC Consulting",
+    "description": "Technology Consultant specializing in Microsoft Fabric, Power BI, and data platform strategy.",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#0a1628",
+    "theme_color": "#0a1628",
+    "icons": [
+        {
+            "src": "/static/image_assets/logo.png",
+            "sizes": "2000x853",
+            "type": "image/png",
+            "purpose": "any"
+        }
+    ]
+}

@@ -5,7 +5,7 @@
 {% block content %}
 <div>
     <div class="container">
-        <div class="modular-container-wrapper">
+        <div class="modular-container-wrapper hero-gradient-blue">
             <div class="modular-container" style="height: 400px">
                 <br>
                 <h1 class="hero-title">{{ t.sections.blog_title }}</h1>
@@ -27,13 +27,23 @@
 <div class="section"></div>
 
 <div class="container">
-    <!-- Tag filter pills -->
+    <!-- Tag filter pills (max 5 visible, rest in dropdown) -->
     {% if all_tags %}
     <div class="tag-filters">
         <a href="/blog" class="tag-pill {{ 'tag-pill--active' if not active_tag }}">All</a>
-        {% for tag in all_tags %}
+        {% for tag in all_tags[:4] %}
         <a href="/blog?tag={{ tag }}" class="tag-pill {{ 'tag-pill--active' if active_tag == tag }}">{{ tag }}</a>
         {% endfor %}
+        {% if all_tags|length > 4 %}
+        <div class="tag-more-wrap">
+            <button class="tag-pill tag-more-btn" onclick="this.parentElement.classList.toggle('open')">More +</button>
+            <div class="tag-more-dropdown">
+                {% for tag in all_tags[4:] %}
+                <a href="/blog?tag={{ tag }}" class="tag-pill {{ 'tag-pill--active' if active_tag == tag }}">{{ tag }}</a>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
     </div>
     <br>
     {% endif %}
