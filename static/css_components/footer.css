@@ -25,15 +25,18 @@
     font-family: var(--font-family-body);
 }
 
+/* Footer text colors meet WCAG AA (4.5:1) on the #18181b footer background.
+   Computed: 0.70 white ≈ 9.7:1, 0.55 white over the rgba(0,0,0,0.3) copyright
+   bar ≈ 5.8:1 — both clearly above the 4.5:1 threshold for normal text. */
 .footer-inner p {
     font-size: var(--size-sm);
-    color: rgba(255, 255, 255, 0.5);
+    color: rgba(255, 255, 255, 0.7);
     line-height: 1.7;
     font-family: var(--font-family-body);
 }
 
 .footer-inner a {
-    color: rgba(255, 255, 255, 0.5);
+    color: rgba(255, 255, 255, 0.7);
     text-decoration: none;
     transition: color 0.2s ease;
 }
@@ -44,7 +47,7 @@
 
 .copyright-footer {
     background-color: rgba(0, 0, 0, 0.3);
-    color: rgba(255, 255, 255, 0.3);
+    color: rgba(255, 255, 255, 0.55);
     text-align: center;
     padding: 1rem;
     font-size: var(--size-xs);
