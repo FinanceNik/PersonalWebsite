@@ -1,0 +1,261 @@
+/* Base styles: resets, body, focus, animations, reveal variants, reduced-motion, view transitions. */
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=Lato&family=Roboto:wght@300&display=swap');
+@import "sizes.css";
+
+* {
+    margin: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-family-body);
+  background-color: var(--background-color);
+  color: var(--primary-text-color);
+  overflow-x: hidden;
+}
+
+/* Global focus styles */
+:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+    box-shadow: var(--focus-ring);
+}
+
+/* Page entrance animation */
+@keyframes pageFadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Scroll reveal variants — only hide when JS can flip them back on */
+.js .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity var(--duration-reveal) var(--ease-out),
+                transform var(--duration-reveal) var(--ease-out);
+}
+
+.js .reveal.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.js .reveal-fade {
+    opacity: 0;
+    transition: opacity var(--duration-reveal) var(--ease-out);
+}
+
+.js .reveal-fade.revealed {
+    opacity: 1;
+}
+
+.js .reveal-left {
+    opacity: 0;
+    transform: translateX(-30px);
+    transition: opacity var(--duration-reveal) var(--ease-out),
+                transform var(--duration-reveal) var(--ease-out);
+}
+
+.js .reveal-left.revealed {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.js .reveal-scale {
+    opacity: 0;
+    transform: scale(0.95);
+    transition: opacity var(--duration-reveal) var(--ease-out),
+                transform var(--duration-reveal) var(--ease-out);
+}
+
+.js .reveal-scale.revealed {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Staggered reveal children */
+.reveal-stagger > *:nth-child(1) { transition-delay: 0s; }
+
+.reveal-stagger > *:nth-child(2) { transition-delay: 0.06s; }
+
+.reveal-stagger > *:nth-child(3) { transition-delay: 0.12s; }
+
+.reveal-stagger > *:nth-child(4) { transition-delay: 0.18s; }
+
+.reveal-stagger > *:nth-child(5) { transition-delay: 0.24s; }
+
+.reveal-stagger > *:nth-child(6) { transition-delay: 0.30s; }
+
+.reveal-stagger > *:nth-child(7) { transition-delay: 0.36s; }
+
+.reveal-stagger > *:nth-child(8) { transition-delay: 0.42s; }
+
+.reveal-stagger > *:nth-child(9) { transition-delay: 0.48s; }
+
+.reveal-stagger > *:nth-child(10) { transition-delay: 0.54s; }
+
+img,
+picture,
+video,
+svg {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    user-select: none;
+}
+
+#matrixCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+}
+
+#matrixCanvasHeader {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}
+
+button {
+    display: inline-block;
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: inherit;
+}
+
+a {
+    color: var(--secondary-color);
+}
+
+strong {
+    color: var(--primary-color);
+}
+
+/* Section dividers */
+hr {
+    border: none;
+    height: 2px;
+    background: linear-gradient(to right, transparent, var(--border-color-card), transparent);
+    margin: 0;
+}
+
+select {
+    background-color: var(--background-color);
+    font-family: var(--font-family-body);
+    color: var(--primary-text-color);
+}
+
+input[type=text], input[type=email], select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border-color-card);
+    border-radius: var(--radius-sm);
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical;
+    font-family: var(--font-family-body);
+    font-size: 16px;
+    background-color: var(--background-color);
+    color: var(--primary-text-color);
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input[type=text]:focus, input[type=email]:focus, select:focus, textarea:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(43, 108, 176, 0.15);
+    outline: none;
+}
+
+input[type=submit] {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-family: var(--font-family-header);
+  font-size: 16px;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+input[type=submit]:hover {
+    background-color: var(--accent-color);
+    transform: translateY(-1px);
+}
+
+label {
+    color: var(--primary-text-color);
+    font-family: var(--font-family-header);
+    font-size: 18px;
+    font-weight: 600;
+}
+
+form {
+    width: 100%;
+    text-align: left;
+    font-family: var(--font-family-body);
+    font-size: 16px;
+}
+
+textarea {
+    font-family: var(--font-family-header);
+    font-size: 18px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+*, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+.reveal, .reveal-fade, .reveal-left, .reveal-scale {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+}
+
+/* Placeholder text — visible in both themes */
+::placeholder {
+    color: var(--secondary-text-color);
+    opacity: 0.6;
+}
+
+::-webkit-input-placeholder { color: var(--secondary-text-color); opacity: 0.6; }
+
+::-moz-placeholder { color: var(--secondary-text-color); opacity: 0.6; }
+
+/* View Transitions API */
+@view-transition {
+    navigation: auto;
+}
+
+::view-transition-old(root) {
+    animation: fade-out 0.15s ease-in;
+}
+
+::view-transition-new(root) {
+    animation: fade-in 0.2s ease-out;
+}
+
+@keyframes fade-out {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+@keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}

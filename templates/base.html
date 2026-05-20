@@ -74,7 +74,10 @@
     </script>
     {% block structured_data %}{% endblock %}
     <link rel="stylesheet" href="{{ url_for('static', filename='css_components/colors.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css_components/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css_components/base.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css_components/layout.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css_components/components.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css_components/pages.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css_components/navigation-bar.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css_components/footer.css') }}">
     {% block extra_head %}{% endblock %}

@@ -1,7 +1,10 @@
-var CACHE_NAME = 'ncc-v2';
+var CACHE_NAME = 'ncc-v3';
 var STATIC_ASSETS = [
     '/static/css_components/colors.css',
-    '/static/css_components/styles.css',
+    '/static/css_components/base.css',
+    '/static/css_components/layout.css',
+    '/static/css_components/components.css',
+    '/static/css_components/pages.css',
     '/static/css_components/navigation-bar.css',
     '/static/css_components/footer.css',
     '/static/css_components/sizes.css',
