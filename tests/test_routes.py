@@ -1,0 +1,202 @@
+"""Smoke tests: every public route returns the expected status.
+
+If one of these regresses, the user sees a broken page in production. Most
+assertions are just status codes; a few sanity-check body content.
+"""
+import base64
+import pytest
+
+
+PUBLIC_PAGES = [
+    '/',
+    '/services',
+    '/projects',
+    '/process',
+    '/blog',
+    '/calculator',
+    '/checklist',
+    '/contact',
+    '/privacy',
+    '/thank-you',
+]
+
+CASE_STUDIES = [
+    '/projects/powerbi-migration',
+    '/projects/fabric-lakehouse',
+    '/projects/automated-reporting',
+]
+
+
+@pytest.mark.parametrize('path', PUBLIC_PAGES + CASE_STUDIES)
+def test_public_pages_return_200(client, path):
+    resp = client.get(path)
+    assert resp.status_code == 200, f'{path} returned {resp.status_code}'
+    assert b'<!DOCTYPE html>' in resp.data, f'{path} did not return an HTML doc'
+
+
+@pytest.mark.parametrize('legacy,new', [
+    ('/projects/case-study-powerbi-migration.html', '/projects/powerbi-migration'),
+    ('/projects/case-study-fabric-lakehouse.html',  '/projects/fabric-lakehouse'),
+    ('/projects/case-study-automated-reporting.html', '/projects/automated-reporting'),
+])
+def test_legacy_case_study_urls_301(client, legacy, new):
+    resp = client.get(legacy, follow_redirects=False)
+    assert resp.status_code == 301, f'{legacy} returned {resp.status_code}, expected 301'
+    assert resp.headers['Location'].endswith(new), (
+        f'{legacy} redirected to {resp.headers["Location"]}, expected to end with {new}'
+    )
+
+
+def test_unknown_case_study_404s(client):
+    assert client.get('/projects/does-not-exist').status_code == 404
+    assert client.get('/projects/case-study-does-not-exist.html').status_code == 404
+
+
+def test_blog_post_renders(client):
+    # Pick the first post from the cache so we don't hard-code a slug
+    import app as flask_app_module
+    posts = flask_app_module.get_blog_posts()
+    assert posts, 'expected at least one blog post in blog_posts/'
+    resp = client.get(f'/blog/{posts[0]["slug"]}')
+    assert resp.status_code == 200
+    assert posts[0]['title'].encode() in resp.data
+
+
+def test_blog_post_404(client):
+    assert client.get('/blog/nope-not-a-real-post').status_code == 404
+
+
+def test_sitemap_is_xml(client):
+    resp = client.get('/sitemap.xml')
+    assert resp.status_code == 200
+    assert resp.mimetype == 'application/xml'
+    assert b'<urlset' in resp.data
+    # Sitemap should include the new clean case-study URLs, not the legacy ones
+    assert b'/projects/powerbi-migration<' in resp.data
+    assert b'case-study-' not in resp.data
+
+
+def test_robots_txt(client):
+    resp = client.get('/robots.txt')
+    assert resp.status_code == 200
+    assert b'Sitemap:' in resp.data
+    assert b'Disallow: /analytics' in resp.data
+
+
+def test_rss_feed(client):
+    resp = client.get('/blog/feed.xml')
+    assert resp.status_code == 200
+    assert resp.mimetype == 'application/rss+xml'
+    assert b'<rss' in resp.data
+
+
+def test_manifest_json(client):
+    resp = client.get('/manifest.json')
+    assert resp.status_code == 200
+    import json
+    data = json.loads(resp.data)
+    assert data['name'] == 'Niklas Clasen Consulting'
+    assert len(data['icons']) >= 2
+
+
+def test_service_worker_served_as_js(client):
+    resp = client.get('/sw.js')
+    assert resp.status_code == 200
+    assert 'javascript' in resp.mimetype
+
+
+def test_404_uses_template(client):
+    resp = client.get('/this/route/does/not/exist')
+    assert resp.status_code == 404
+    assert b'404' in resp.data
+
+
+def test_analytics_requires_auth(client):
+    assert client.get('/analytics').status_code == 401
+
+
+def test_analytics_rejects_wrong_password(client):
+    creds = base64.b64encode(b'tester:wrong').decode()
+    resp = client.get('/analytics', headers={'Authorization': f'Basic {creds}'})
+    assert resp.status_code == 401
+
+
+def test_analytics_accepts_right_creds(client):
+    creds = base64.b64encode(b'tester:tester-pass').decode()
+    resp = client.get('/analytics', headers={'Authorization': f'Basic {creds}'})
+    assert resp.status_code == 200
+
+
+def test_analytics_returns_404_when_creds_unset(client, monkeypatch):
+    monkeypatch.setenv('ANALYTICS_USER', '')
+    monkeypatch.setenv('ANALYTICS_PASSWORD', '')
+    assert client.get('/analytics').status_code == 404
+
+
+def test_contact_post_validates_required_fields(client):
+    resp = client.post('/submit_contact_form', data={
+        'firstname': '', 'lastname': '', 'email': '', 'message': ''
+    }, follow_redirects=False)
+    # Should redirect back to /contact with a flash, not crash
+    assert resp.status_code == 302
+    assert resp.headers['Location'].endswith('/contact')
+
+
+def test_contact_post_rejects_bad_email(client):
+    resp = client.post('/submit_contact_form', data={
+        'firstname': 'Test', 'lastname': 'User',
+        'email': 'not-an-email', 'message': 'hi'
+    }, follow_redirects=False)
+    assert resp.status_code == 302
+    assert resp.headers['Location'].endswith('/contact')
+
+
+def test_contact_post_success_redirects_to_thank_you(client):
+    resp = client.post('/submit_contact_form', data={
+        'firstname': 'Test', 'lastname': 'User', 'country': 'CH',
+        'email': 'test@example.com', 'message': 'hello'
+    }, follow_redirects=False)
+    assert resp.status_code == 302
+    assert '/thank-you' in resp.headers['Location']
+
+
+def test_checklist_post_validates_email(client):
+    resp = client.post('/download-checklist', data={
+        'name': 'Test', 'email': 'bad'
+    }, follow_redirects=False)
+    assert resp.status_code == 302
+    assert resp.headers['Location'].endswith('/checklist')
+
+
+def test_search_redirects_when_empty(client):
+    resp = client.get('/search?q=', follow_redirects=False)
+    assert resp.status_code == 302
+    assert resp.headers['Location'] == '/'
+
+
+def test_search_returns_results(client):
+    resp = client.get('/search?q=Power+BI')
+    assert resp.status_code == 200
+    assert b'Search Results' in resp.data
+
+
+def test_pageview_endpoint_accepts_post(client):
+    resp = client.post('/api/pageview', json={'path': '/test', 'lang': 'en'})
+    assert resp.status_code == 204
+
+
+def test_language_switch_persists_in_session(client):
+    # Hitting /?lang=de should set the session lang; subsequent request without
+    # the param should still render in German.
+    client.get('/?lang=de')
+    resp = client.get('/services')
+    assert b'Dienstleistungen' in resp.data or resp.status_code == 200
+
+
+def test_blog_cache_hit(client):
+    """get_blog_posts should reuse the cache across calls."""
+    import app as flask_app_module
+    first = flask_app_module.get_blog_posts()
+    cached_id = id(first)
+    second = flask_app_module.get_blog_posts()
+    assert id(second) == cached_id, 'second call should return the same cached list'

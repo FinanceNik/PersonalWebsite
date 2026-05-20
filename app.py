@@ -3,7 +3,7 @@ import os
 import re
 import json
 import markdown
-from datetime import datetime
+from datetime import datetime, timezone
 from functools import wraps
 from flask import Flask, render_template, request, flash, redirect, url_for, send_from_directory, g, session, Response, make_response
 from flask_wtf.csrf import CSRFProtect
@@ -64,44 +64,60 @@ def inject_translations():
 # Initialize database on startup
 database_helper.create_database()
 
-# Build project files list at module level with correct path
+# Case-study slugs (filename without .html), used by /projects/<slug> route + sitemap.
 _projects_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'templates', 'projects')
-project_files = [f for f in os.listdir(_projects_dir) if f.endswith('.html')] if os.path.isdir(_projects_dir) else []
+project_slugs = (
+    [f[:-5] for f in os.listdir(_projects_dir) if f.endswith('.html')]
+    if os.path.isdir(_projects_dir) else []
+)
 
 
 # --- Blog helpers ---
 
+_BLOG_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'blog_posts')
+_blog_cache = {'mtimes': None, 'posts': []}
+
+
+def _parse_blog_post(filepath, filename):
+    with open(filepath, 'r', encoding='utf-8') as f:
+        content = f.read()
+    frontmatter_match = re.match(r'^---\s*\n(.*?)\n---\s*\n', content, re.DOTALL)
+    if not frontmatter_match:
+        return None
+    meta_text = frontmatter_match.group(1)
+    body = content[frontmatter_match.end():]
+    meta = {}
+    for line in meta_text.strip().split('\n'):
+        key, _, value = line.partition(':')
+        meta[key.strip()] = value.strip()
+    tags_raw = meta.get('tags', '')
+    tags = [t.strip() for t in tags_raw.split(',') if t.strip()] if tags_raw else []
+    return {
+        'slug': filename.replace('.md', ''),
+        'title': meta.get('title', 'Untitled'),
+        'date': meta.get('date', ''),
+        'summary': meta.get('summary', ''),
+        'tags': tags,
+        'content_html': markdown.markdown(body, extensions=['fenced_code', 'tables'])
+    }
+
+
 def get_blog_posts():
+    """Return cached posts, re-parsing only when a markdown file's mtime changes."""
+    if not os.path.exists(_BLOG_DIR):
+        return []
+    files = [f for f in os.listdir(_BLOG_DIR) if f.endswith('.md')]
+    mtimes = {f: os.path.getmtime(os.path.join(_BLOG_DIR, f)) for f in files}
+    if mtimes == _blog_cache['mtimes']:
+        return _blog_cache['posts']
     posts = []
-    blog_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'blog_posts')
-    if not os.path.exists(blog_dir):
-        return posts
-    for filename in os.listdir(blog_dir):
-        if not filename.endswith('.md'):
-            continue
-        filepath = os.path.join(blog_dir, filename)
-        with open(filepath, 'r', encoding='utf-8') as f:
-            content = f.read()
-        frontmatter_match = re.match(r'^---\s*\n(.*?)\n---\s*\n', content, re.DOTALL)
-        if not frontmatter_match:
-            continue
-        meta_text = frontmatter_match.group(1)
-        body = content[frontmatter_match.end():]
-        meta = {}
-        for line in meta_text.strip().split('\n'):
-            key, _, value = line.partition(':')
-            meta[key.strip()] = value.strip()
-        tags_raw = meta.get('tags', '')
-        tags = [t.strip() for t in tags_raw.split(',') if t.strip()] if tags_raw else []
-        posts.append({
-            'slug': filename.replace('.md', ''),
-            'title': meta.get('title', 'Untitled'),
-            'date': meta.get('date', ''),
-            'summary': meta.get('summary', ''),
-            'tags': tags,
-            'content_html': markdown.markdown(body, extensions=['fenced_code', 'tables'])
-        })
+    for filename in files:
+        post = _parse_blog_post(os.path.join(_BLOG_DIR, filename), filename)
+        if post is not None:
+            posts.append(post)
     posts.sort(key=lambda p: p['date'], reverse=True)
+    _blog_cache['mtimes'] = mtimes
+    _blog_cache['posts'] = posts
     return posts
 
 
@@ -210,10 +226,18 @@ def download_checklist():
     )
 
 
-@app.route('/projects/<filename>')
-def project(filename):
-    if filename in project_files:
-        return render_template(f'projects/{filename}')
+@app.route('/projects/<slug>')
+def project(slug):
+    if slug in project_slugs:
+        return render_template(f'projects/{slug}.html')
+    return render_template('404.html'), 404
+
+
+# Legacy URLs (with case-study- prefix and .html suffix) → 301 to clean slug.
+@app.route('/projects/case-study-<slug>.html')
+def project_legacy(slug):
+    if slug in project_slugs:
+        return redirect(url_for('project', slug=slug), code=301)
     return render_template('404.html'), 404
 
 
@@ -332,8 +356,8 @@ def sitemap():
         {'url': '/privacy', 'priority': '0.3', 'changefreq': 'yearly'},
     ]
     # Add case study pages
-    for f in project_files:
-        pages.append({'url': f'/projects/{f}', 'priority': '0.7', 'changefreq': 'monthly'})
+    for slug in project_slugs:
+        pages.append({'url': f'/projects/{slug}', 'priority': '0.7', 'changefreq': 'monthly'})
     # Add blog posts
     for post in get_blog_posts():
         pages.append({'url': f'/blog/{post["slug"]}', 'priority': '0.7', 'changefreq': 'monthly'})
@@ -373,7 +397,7 @@ Disallow: /analytics
 @app.route('/blog/feed.xml')
 def blog_feed():
     posts = get_blog_posts()
-    now = datetime.utcnow().strftime('%a, %d %b %Y %H:%M:%S +0000')
+    now = datetime.now(timezone.utc).strftime('%a, %d %b %Y %H:%M:%S +0000')
 
     xml = '<?xml version="1.0" encoding="UTF-8"?>\n'
     xml += '<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">\n'
