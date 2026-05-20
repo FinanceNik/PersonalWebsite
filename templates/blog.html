@@ -6,18 +6,13 @@
 <div>
     <div class="container">
         <div class="modular-container-wrapper hero-gradient-blue">
-            <div class="modular-container" style="height: 400px">
-                <br>
+            <div class="modular-container">
                 <h1 class="hero-title">{{ t.sections.blog_title }}</h1>
-                <br>
-                <br>
-                <h3 class="hero-subtitle">{{ t.sections.blog_subtitle }}</h3>
-                <br>
-                <br>
-                <h5 class="hero-text">
+                <p class="hero-subtitle">{{ t.sections.blog_subtitle }}</p>
+                <p class="hero-text">
                     Practical articles and thought pieces on building modern data platforms,
                     creating impactful reports, and making data work for your business.
-                </h5>
+                </p>
                 <div class="blob"></div>
             </div>
         </div>
@@ -45,7 +40,6 @@
         </div>
         {% endif %}
     </div>
-    <br>
     {% endif %}
 
     {% if posts %}
@@ -61,7 +55,6 @@
             </div>
             {% endif %}
             <p class="blog-summary">{{ post.summary }}</p>
-            <br>
             <a href="/blog/{{ post.slug }}" class="button"><span>Read More</span></a>
         </div>
         {% endfor %}

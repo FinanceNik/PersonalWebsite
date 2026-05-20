@@ -4,8 +4,7 @@
 {% block content %}
 <div class="section"></div>
 <div class="container">
-    <h1 class="hero-subtitle">Site Analytics (Last {{ days }} days)</h1>
-    <br>
+    <h1 class="hero-title" style="font-size: clamp(1.5rem, 4vw, 2rem);">Site Analytics (Last {{ days }} days)</h1>
     <div style="display: flex; gap: var(--space-3); justify-content: center; margin-bottom: var(--space-6);">
         <a href="/analytics?days=7" class="button{% if days == 7 %}-secondary{% endif %}" style="font-size: var(--size-sm); padding: 6px 16px;"><span>7 days</span></a>
         <a href="/analytics?days=30" class="button{% if days == 30 %}-secondary{% endif %}" style="font-size: var(--size-sm); padding: 6px 16px;"><span>30 days</span></a>

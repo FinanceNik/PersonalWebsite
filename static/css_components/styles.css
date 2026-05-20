@@ -161,6 +161,12 @@ svg {
     justify-content: center;
 }
 
+.pre-footer-text {
+    font-family: var(--font-family-header);
+    font-weight: 700;
+    margin: 0;
+}
+
 @media (min-width: 768px) {
     .pre-footer {
         padding: 2rem 1rem 2rem 30%;
@@ -264,11 +270,16 @@ strong {
     text-align: left;
     font-size: var(--size-lg);
     color: var(--secondary-text-color);
+    margin: var(--space-4) 0;
 }
 
 .service-card-header {
     text-align: left;
     color: var(--primary-text-color);
+    font-size: var(--size-2xl);
+    font-family: var(--font-family-header);
+    font-weight: 700;
+    margin: var(--space-2) 0 var(--space-4);
 }
 
 .service-card-type {
@@ -276,6 +287,11 @@ strong {
     text-align: left;
     color: var(--primary-color);
     font-weight: bold;
+    margin: 0;
+}
+
+.service-list {
+    margin-bottom: var(--space-4);
 }
 
 .color-mode {
@@ -553,6 +569,7 @@ hr {
     font-family: var(--font-family-header);
     font-weight: 800;
     letter-spacing: var(--tracking-tight);
+    margin-top: var(--space-6);
 }
 
 .hero-title strong {
@@ -569,11 +586,24 @@ hr {
     font-family: var(--font-family-header);
     font-weight: 500;
     max-width: 600px;
+    margin-top: var(--space-5);
 }
 .hero-text {
     color: var(--secondary-text-color);
     line-height: var(--leading-relaxed);
     font-size: clamp(0.875rem, 1.5vw, 1.1rem);
+    margin-top: var(--space-5);
+    margin-bottom: var(--space-6);
+}
+
+/* Action links inside heroes/cards keep visual gap without &nbsp; */
+.hero-main .button,
+.hero-main .button-secondary,
+.modular-container > .button,
+.modular-container > .button-secondary,
+.lead-banner .button,
+.lead-banner .button-secondary {
+    margin-right: var(--space-2);
 }
 
 /* Staggered hero entrance */
@@ -746,6 +776,32 @@ hr {
     box-shadow: var(--shadow-card-hover);
     border-color: rgba(43, 108, 176, 0.15);
 }
+
+/* Card titles look the same whether they're <h2> or <h3> — tag is chosen by hierarchy */
+.card > h2,
+.card > h3 {
+    font-size: var(--size-xl);
+    line-height: var(--leading-snug);
+    color: var(--primary-text-color);
+    font-family: var(--font-family-header);
+}
+
+/* Vertical rhythm inside cards without relying on &lt;br&gt; */
+.card > p + p {
+    margin-top: var(--space-2);
+}
+
+.card > .button,
+.card > p + .button,
+.card > p + a.button {
+    margin-top: var(--space-4);
+}
+
+/* Section header spacing without &lt;br&gt; below it */
+.section-header + hr {
+    margin-top: var(--space-3);
+}
+
 .card-hr {
     width: 25%;
     border-top: 6px solid var(--primary-color);
@@ -1355,6 +1411,7 @@ textarea {
     color: var(--secondary-text-color);
     font-family: var(--font-family-body);
     line-height: 1.7;
+    margin-bottom: var(--space-4);
 }
 
 .blog-content {
@@ -2164,6 +2221,7 @@ textarea {
     flex-wrap: wrap;
     gap: var(--space-2);
     justify-content: center;
+    margin-bottom: var(--space-6);
 }
 
 .tag-pill {
