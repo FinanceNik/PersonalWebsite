@@ -9,13 +9,24 @@
     <meta property="og:title" content="{% block og_title %}Niklas Clasen - Technology Consultant{% endblock %}">
     <meta property="og:description" content="{% block og_description %}Expert Microsoft Fabric & Power BI consulting. Data platform strategy, dashboard development, and training.{% endblock %}">
     <meta property="og:type" content="website">
-    <meta name="twitter:card" content="summary">
+    <meta property="og:url" content="{{ SITE_URL }}{{ request.path }}">
+    <meta property="og:image" content="{% block og_image %}{{ SITE_URL }}{{ url_for('static', filename='image_assets/og-image.png') }}{% endblock %}">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Niklas Clasen - Technology Consultant specializing in Microsoft Fabric & Power BI">
+    <meta property="og:site_name" content="Niklas Clasen Consulting">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ self.og_title() }}">
+    <meta name="twitter:description" content="{{ self.og_description() }}">
+    <meta name="twitter:image" content="{{ self.og_image() }}">
     <meta name="theme-color" content="#0a1628">
     <title>{% block title %}Niklas Clasen - Technology Consultant | Fabric & Power BI{% endblock %}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="dns-prefetch" href="https://fonts.googleapis.com">
-    <link rel="icon" href="{{ url_for('static', filename='image_assets/logo.png') }}" type="image/png">
+    <link rel="icon" href="{{ url_for('static', filename='image_assets/icon-192.png') }}" type="image/png" sizes="192x192">
+    <link rel="icon" href="{{ url_for('static', filename='image_assets/icon-512.png') }}" type="image/png" sizes="512x512">
+    <link rel="apple-touch-icon" href="{{ url_for('static', filename='image_assets/apple-touch-icon.png') }}">
     <link rel="manifest" href="/manifest.json">
     <!-- Canonical + hreflang -->
     <link rel="canonical" href="{{ SITE_URL }}{{ request.path }}">

@@ -1,4 +1,4 @@
-var CACHE_NAME = 'ncc-v1';
+var CACHE_NAME = 'ncc-v2';
 var STATIC_ASSETS = [
     '/static/css_components/colors.css',
     '/static/css_components/styles.css',
@@ -7,6 +7,7 @@ var STATIC_ASSETS = [
     '/static/css_components/sizes.css',
     '/static/js_components/ui-enhancements.js',
     '/static/js_components/theme-toggler.js',
+    '/static/image_assets/icon-192.png',
     '/static/image_assets/logo.png',
     '/static/image_assets/profile-without-bg.webp',
     '/static/image_assets/contrast.png',
