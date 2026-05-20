@@ -25,16 +25,21 @@
     height: auto;
     margin-right: auto;
     transition: opacity var(--duration-normal), filter var(--duration-normal);
-    filter: brightness(1.2);
+}
+
+/* Logo source is dark navy on transparent — works on a light background as-is,
+   needs to flip to white on the dark theme. brightness(0)+invert(1) turns any
+   visible (non-transparent) pixel into white while leaving alpha intact. */
+[data-theme='light-mode'] .header__logo {
+    filter: brightness(1.05);
+}
+
+[data-theme='dark-mode'] .header__logo {
+    filter: brightness(0) invert(1);
 }
 
 .header a:hover .header__logo {
     opacity: 0.85;
-    filter: brightness(1.4);
-}
-
-.header a:hover .header__logo {
-    opacity: 0.8;
 }
 
 .header__menu {
