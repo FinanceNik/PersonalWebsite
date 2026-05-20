@@ -117,15 +117,18 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // --- Animated stats counter ---
+    // Templates render the final value as text so no-JS visitors see real numbers;
+    // when JS is available we reset to 0 and animate up.
     var statNumbers = document.querySelectorAll('.stat-number');
     if (statNumbers.length) {
+        statNumbers.forEach(function (el) { el.textContent = '0'; });
+
         var statsObserver = new IntersectionObserver(function (entries) {
             entries.forEach(function (entry) {
                 if (entry.isIntersecting) {
                     var el = entry.target;
                     var target = parseInt(el.getAttribute('data-target'), 10);
                     var duration = 1500;
-                    var start = 0;
                     var startTime = null;
                     function animate(ts) {
                         if (!startTime) startTime = ts;

@@ -29,52 +29,52 @@ body {
     to { opacity: 1; transform: translateY(0); }
 }
 
-body {
+.js body {
     animation: pageFadeIn 0.4s ease-out;
 }
 
-/* Scroll reveal variants */
-.reveal {
+/* Scroll reveal variants — only hide when JS can flip them back on */
+.js .reveal {
     opacity: 0;
     transform: translateY(20px);
     transition: opacity var(--duration-reveal) var(--ease-out),
                 transform var(--duration-reveal) var(--ease-out);
 }
 
-.reveal.revealed {
+.js .reveal.revealed {
     opacity: 1;
     transform: translateY(0);
 }
 
-.reveal-fade {
+.js .reveal-fade {
     opacity: 0;
     transition: opacity var(--duration-reveal) var(--ease-out);
 }
 
-.reveal-fade.revealed {
+.js .reveal-fade.revealed {
     opacity: 1;
 }
 
-.reveal-left {
+.js .reveal-left {
     opacity: 0;
     transform: translateX(-30px);
     transition: opacity var(--duration-reveal) var(--ease-out),
                 transform var(--duration-reveal) var(--ease-out);
 }
 
-.reveal-left.revealed {
+.js .reveal-left.revealed {
     opacity: 1;
     transform: translateX(0);
 }
 
-.reveal-scale {
+.js .reveal-scale {
     opacity: 0;
     transform: scale(0.95);
     transition: opacity var(--duration-reveal) var(--ease-out),
                 transform var(--duration-reveal) var(--ease-out);
 }
 
-.reveal-scale.revealed {
+.js .reveal-scale.revealed {
     opacity: 1;
     transform: scale(1);
 }
@@ -612,20 +612,20 @@ hr {
     to { opacity: 1; transform: translateY(0); }
 }
 
-.hero-title {
+.js .hero-title {
     animation: hero-up var(--duration-reveal) var(--ease-out) 0.1s both;
 }
 
-.hero-subtitle {
+.js .hero-subtitle {
     animation: hero-up var(--duration-reveal) var(--ease-out) 0.25s both;
 }
 
-.hero-text {
+.js .hero-text {
     animation: hero-up var(--duration-reveal) var(--ease-out) 0.4s both;
 }
 
-.hero-main .button,
-.hero-main .button-secondary {
+.js .hero-main .button,
+.js .hero-main .button-secondary {
     animation: hero-up var(--duration-reveal) var(--ease-out) 0.55s both;
 }
 
@@ -1578,6 +1578,25 @@ textarea {
 .calc-container {
     max-width: 700px;
     margin: 0 auto;
+}
+
+/* Hide JS-only widgets when scripts can't run.
+   Scope to `html:not(.js)` so the selector matches the documentElement
+   class flag, not any ancestor that simply lacks .js. */
+html:not(.js) .calc-container,
+html:not(.js) .carousel-nav,
+html:not(.js) .carousel-dots {
+    display: none;
+}
+
+.calc-noscript {
+    display: none;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+html:not(.js) .calc-noscript {
+    display: block;
 }
 
 .calc-step {
