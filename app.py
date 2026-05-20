@@ -1,8 +1,10 @@
+import hmac
 import os
 import re
 import json
 import markdown
 from datetime import datetime
+from functools import wraps
 from flask import Flask, render_template, request, flash, redirect, url_for, send_from_directory, g, session, Response, make_response
 from flask_wtf.csrf import CSRFProtect
 from dotenv import load_dotenv
@@ -10,8 +12,18 @@ import database_helper
 
 load_dotenv()
 
+DEBUG_MODE = os.getenv('FLASK_DEBUG', 'False').lower() == 'true'
+SECRET_KEY = os.getenv('SECRET_KEY', '')
+PLACEHOLDER_SECRET = 'change-me-in-production'
+
+if not DEBUG_MODE and (not SECRET_KEY or SECRET_KEY == PLACEHOLDER_SECRET):
+    raise RuntimeError(
+        'SECRET_KEY must be set to a strong unique value when FLASK_DEBUG is not True. '
+        "Generate one with: python -c 'import secrets; print(secrets.token_hex(32))'"
+    )
+
 app = Flask(__name__, template_folder='templates', static_folder='static')
-app.secret_key = os.getenv('SECRET_KEY', 'change-me-in-production')
+app.secret_key = SECRET_KEY or PLACEHOLDER_SECRET
 
 csrf = CSRFProtect(app)
 
@@ -277,7 +289,27 @@ def track_pageview():
     return '', 204
 
 
+def _require_analytics_auth(view):
+    @wraps(view)
+    def wrapper(*args, **kwargs):
+        expected_user = os.getenv('ANALYTICS_USER', '')
+        expected_pw = os.getenv('ANALYTICS_PASSWORD', '')
+        if not expected_user or not expected_pw:
+            return render_template('404.html'), 404
+        auth = request.authorization
+        if (auth and auth.username and auth.password
+                and hmac.compare_digest(auth.username, expected_user)
+                and hmac.compare_digest(auth.password, expected_pw)):
+            return view(*args, **kwargs)
+        return Response(
+            'Authentication required.', 401,
+            {'WWW-Authenticate': 'Basic realm="Analytics"'}
+        )
+    return wrapper
+
+
 @app.route('/analytics')
+@_require_analytics_auth
 def analytics_dashboard():
     days = request.args.get('days', 30, type=int)
     stats = database_helper.get_analytics_summary(days)
@@ -333,6 +365,7 @@ Sitemap: {SITE_URL}/sitemap.xml
 Disallow: /download-checklist
 Disallow: /submit_contact_form
 Disallow: /search
+Disallow: /analytics
 """
     return Response(txt, mimetype='text/plain')
 
@@ -383,6 +416,5 @@ def internal_error(e):
 
 
 if __name__ == '__main__':
-    debug = os.getenv('FLASK_DEBUG', 'False').lower() == 'true'
     port = int(os.getenv('PORT', 5000))
-    app.run(debug=debug, port=port)
+    app.run(debug=DEBUG_MODE, port=port)

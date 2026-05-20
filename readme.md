@@ -28,10 +28,18 @@ Personal website and blog for a technology consultant specializing in Microsoft 
 
 4. Create a `.env` file in the project root:
    ```
-   FLASK_DEBUG=True
-   SECRET_KEY=your-secret-key-here
+   FLASK_DEBUG=False
+   SECRET_KEY=<run: python -c "import secrets; print(secrets.token_hex(32))">
    DATABASE_PATH=staging.db
+   SITE_URL=https://yourdomain.example
+   ANALYTICS_USER=admin
+   ANALYTICS_PASSWORD=<a strong password>
    ```
+
+   Notes:
+   - `FLASK_DEBUG=True` enables Werkzeug's interactive debugger, which is an RCE vector. Only use it on your local machine.
+   - When `FLASK_DEBUG` is not `True`, the app refuses to start unless `SECRET_KEY` is set to a non-placeholder value.
+   - `ANALYTICS_USER` / `ANALYTICS_PASSWORD` gate the `/analytics` dashboard via HTTP Basic Auth. If either is unset, the route returns 404.
 
 ## Usage
 
