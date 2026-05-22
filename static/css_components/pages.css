@@ -289,12 +289,10 @@
     margin: 0 auto;
 }
 
-/* Hide JS-only widgets when scripts can't run.
+/* Hide the calculator widget when scripts can't run.
    Scope to `html:not(.js)` so the selector matches the documentElement
    class flag, not any ancestor that simply lacks .js. */
-html:not(.js) .calc-container,
-html:not(.js) .carousel-nav,
-html:not(.js) .carousel-dots {
+html:not(.js) .calc-container {
     display: none;
 }
 
@@ -530,6 +528,27 @@ html:not(.js) .calc-noscript {
 .case-card--purple { border-left-color: #805ad5; }
 
 .case-card--teal { border-left-color: #38b2ac; }
+
+/* "This is a sample scenario, not a specific past client" callout used at the top of each case-study detail page. */
+.scenario-notice {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: var(--space-4) var(--space-5);
+    border: 1px dashed var(--border-color-card);
+    border-radius: var(--radius-md);
+    background: rgba(214, 158, 46, 0.06);
+    color: var(--secondary-text-color);
+    font-family: var(--font-family-body);
+    font-size: var(--size-sm);
+    line-height: var(--leading-relaxed);
+    text-align: left;
+}
+
+.scenario-notice strong {
+    color: var(--accent-color);
+    font-weight: 700;
+    margin-right: var(--space-2);
+}
 
 /* 404 error page */
 .error-page {
