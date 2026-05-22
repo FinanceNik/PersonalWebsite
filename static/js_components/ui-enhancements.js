@@ -98,19 +98,21 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // --- Hero typing animation ---
-    var heroTitle = document.querySelector('.hero-title strong');
-    if (heroTitle && heroTitle.textContent === 'NIK') {
-        var text = heroTitle.textContent;
-        heroTitle.textContent = '';
-        heroTitle.style.borderRight = '2px solid var(--accent-color)';
+    // Opt-in via [data-typed] on the element. Decoupled from the actual text
+    // so renaming "NIK" to anything else doesn't silently disable the effect.
+    var typedEl = document.querySelector('.hero-title [data-typed]');
+    if (typedEl && typedEl.textContent.trim().length > 0) {
+        var text = typedEl.textContent;
+        typedEl.textContent = '';
+        typedEl.style.borderRight = '2px solid var(--accent-color)';
         var i = 0;
         var typeInterval = setInterval(function () {
-            heroTitle.textContent += text.charAt(i);
+            typedEl.textContent += text.charAt(i);
             i++;
             if (i >= text.length) {
                 clearInterval(typeInterval);
                 setTimeout(function () {
-                    heroTitle.style.borderRight = 'none';
+                    typedEl.style.borderRight = 'none';
                 }, 1000);
             }
         }, 150);

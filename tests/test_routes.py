@@ -111,6 +111,39 @@ def test_404_uses_template(client):
     assert b'404' in resp.data
 
 
+def _render_error_template(app, name):
+    """Render an error template with the same context the before_request hook
+    would normally populate. Used to verify 404.html / 500.html directly."""
+    import app as flask_app_module
+    from flask import render_template, g
+    with app.test_request_context():
+        g.lang = 'en'
+        g.t = flask_app_module.load_translations('en')
+        return render_template(name)
+
+
+def test_500_template_distinct_from_404(app):
+    """500.html should exist as its own template (not aliased to 404)."""
+    html = _render_error_template(app, '500.html')
+    assert '500' in html
+    assert 'Something Went Wrong' in html
+    # Make sure we didn't accidentally fall back to the 404 copy
+    assert 'Page Not Found' not in html
+
+
+def test_500_handler_returns_500_status(app):
+    """The internal_error handler should render 500.html with a 500 status."""
+    import app as flask_app_module
+    from flask import g
+    with app.test_request_context():
+        g.lang = 'en'
+        g.t = flask_app_module.load_translations('en')
+        body, status = flask_app_module.internal_error(RuntimeError('synthetic'))
+    assert status == 500
+    assert 'Something Went Wrong' in body
+    assert '500' in body
+
+
 def test_analytics_requires_auth(client):
     assert client.get('/analytics').status_code == 401
 

@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Something Went Wrong - Niklas Clasen Consulting{% endblock %}
+
+{% block content %}
+<div class="section"></div>
+<div class="container">
+    <div class="error-page">
+        <h1 class="error-code">500</h1>
+        <p class="hero-subtitle">Something Went Wrong</p>
+        <p class="hero-text" style="max-width: 500px; margin: 1rem auto;">
+            An unexpected error occurred on our side. I'll look into it &mdash;
+            in the meantime, try one of the pages below or get in touch directly.
+        </p>
+
+        <div class="section"></div>
+
+        <h2 class="section-header" style="font-size: var(--size-xl);">Useful Pages</h2>
+        <div class="error-links">
+            <a href="/" class="error-link-card">
+                <strong>{{ t.nav.home }}</strong>
+                <span>{{ t.hero.greeting }}</span>
+            </a>
+            <a href="/services" class="error-link-card">
+                <strong>{{ t.nav.services }}</strong>
+                <span>Power BI, Fabric & more</span>
+            </a>
+            <a href="/contact" class="error-link-card">
+                <strong>{{ t.nav.contact }}</strong>
+                <span>{{ t.hero.cta_primary }}</span>
+            </a>
+            <a href="/blog" class="error-link-card">
+                <strong>{{ t.nav.blog }}</strong>
+                <span>{{ t.sections.blog_subtitle }}</span>
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}
