@@ -1,0 +1,18 @@
+[tool.ruff]
+line-length = 110
+target-version = "py310"
+extend-exclude = [".venv", "__pycache__", "blog_posts"]
+
+[tool.ruff.lint]
+# E/W = pycodestyle, F = pyflakes, I = isort, B = bugbear, UP = pyupgrade
+select = ["E", "F", "W", "I", "B", "UP"]
+# E501 (line too long) is handled by line-length above
+# B008 (function calls in argument defaults) — Flask uses this pattern a lot
+ignore = ["E501", "B008"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["E402"]  # tests/conftest.py sets env vars before importing app
+
+[tool.ruff.format]
+quote-style = "single"
+indent-style = "space"

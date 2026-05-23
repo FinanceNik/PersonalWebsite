@@ -4,8 +4,8 @@ If one of these regresses, the user sees a broken page in production. Most
 assertions are just status codes; a few sanity-check body content.
 """
 import base64
-import pytest
 
+import pytest
 
 PUBLIC_PAGES = [
     '/',
@@ -127,8 +127,9 @@ def test_404_uses_template(client):
 def _render_error_template(app, name):
     """Render an error template with the same context the before_request hook
     would normally populate. Used to verify 404.html / 500.html directly."""
+    from flask import g, render_template
+
     import app as flask_app_module
-    from flask import render_template, g
     with app.test_request_context():
         g.lang = 'en'
         g.t = flask_app_module.load_translations('en')
@@ -146,8 +147,9 @@ def test_500_template_distinct_from_404(app):
 
 def test_500_handler_returns_500_status(app):
     """The internal_error handler should render 500.html with a 500 status."""
-    import app as flask_app_module
     from flask import g
+
+    import app as flask_app_module
     with app.test_request_context():
         g.lang = 'en'
         g.t = flask_app_module.load_translations('en')
@@ -401,7 +403,9 @@ def test_notifications_module_does_not_raise_on_smtp_failure(monkeypatch):
 
 def test_pageviews_index_exists(client):
     """idx_pageviews_ts is required for analytics queries not to full-scan."""
-    import sqlite3, database_helper
+    import sqlite3
+
+    import database_helper
     with sqlite3.connect(database_helper.DB_PATH) as conn:
         names = {row[1] for row in conn.execute(
             "SELECT * FROM sqlite_master WHERE type='index' AND tbl_name='pageviews'"
@@ -412,7 +416,9 @@ def test_pageviews_index_exists(client):
 
 def test_query_uses_index(client):
     """EXPLAIN QUERY PLAN should mention the index, not 'SCAN'."""
-    import sqlite3, database_helper
+    import sqlite3
+
+    import database_helper
     # Insert a pageview so the table isn't empty (and the planner has stats)
     database_helper.insert_pageview('/x', '', 'en', 'ua')
     with sqlite3.connect(database_helper.DB_PATH) as conn:
@@ -427,7 +433,10 @@ def test_query_uses_index(client):
 
 def test_inserted_timestamps_are_utc(client):
     """New rows should be in UTC, not server-local."""
-    import sqlite3, database_helper, datetime
+    import datetime
+    import sqlite3
+
+    import database_helper
     database_helper.insert_pageview('/utc-check', '', 'en', 'ua')
     with sqlite3.connect(database_helper.DB_PATH) as conn:
         ts = conn.execute(
@@ -444,7 +453,10 @@ def test_inserted_timestamps_are_utc(client):
 
 def test_prune_old_pageviews(client):
     """prune_old_pageviews should drop rows older than `days`."""
-    import sqlite3, database_helper, datetime
+    import datetime
+    import sqlite3
+
+    import database_helper
     # Insert one fresh row (kept) and one fake-old row (pruned)
     database_helper.insert_pageview('/kept', '', 'en', 'ua')
     old_ts = (datetime.datetime.now(datetime.timezone.utc)
@@ -480,8 +492,9 @@ def test_analytics_summary_uses_naive_utc_format(client):
 def test_blog_cache_concurrent_reads_do_not_crash():
     """Hammer get_blog_posts() from several threads; no exceptions, all return
     the same cached object once warm."""
-    import app as flask_app_module
     import threading
+
+    import app as flask_app_module
     flask_app_module._blog_cache['mtimes'] = None  # cold start
     results = []
     errors = []
@@ -491,8 +504,10 @@ def test_blog_cache_concurrent_reads_do_not_crash():
         except Exception as e:
             errors.append(e)
     threads = [threading.Thread(target=worker) for _ in range(20)]
-    for t in threads: t.start()
-    for t in threads: t.join()
+    for t in threads:
+        t.start()
+    for t in threads:
+        t.join()
     assert not errors, f'unexpected exceptions: {errors}'
     # After warming, all threads should see the same list object
     assert len(set(results)) == 1, f'expected one cached id, got {set(results)}'
@@ -501,8 +516,9 @@ def test_blog_cache_concurrent_reads_do_not_crash():
 def test_translations_cache_concurrent_reads():
     """Same for load_translations — multiple threads asking for the same lang
     should converge on one cached dict without races."""
-    import app as flask_app_module
     import threading
+
+    import app as flask_app_module
     flask_app_module._translations_cache.clear()
     results = []
     errors = []
@@ -512,8 +528,10 @@ def test_translations_cache_concurrent_reads():
         except Exception as e:
             errors.append(e)
     threads = [threading.Thread(target=worker, args=('en',)) for _ in range(20)]
-    for t in threads: t.start()
-    for t in threads: t.join()
+    for t in threads:
+        t.start()
+    for t in threads:
+        t.join()
     assert not errors
     assert len(set(results)) == 1
 
@@ -553,8 +571,9 @@ def test_de_404_uses_translated_strings(client):
 
 def test_de_500_template_has_translated_copy(app):
     """500 template should resolve t.error_500.title to the German string."""
-    import app as flask_app_module
     from flask import g
+
+    import app as flask_app_module
     with app.test_request_context():
         g.lang = 'de'
         g.t = flask_app_module.load_translations('de')
@@ -625,3 +644,55 @@ def test_no_at_import_for_fonts_in_css(client):
     resp = client.get('/static/css_components/base.css')
     assert resp.status_code == 200
     assert b'fonts.googleapis.com' not in resp.data
+
+
+# --- Edge cases the audit flagged --------------------------------------------
+
+def test_invalid_lang_param_falls_back_to_default(client):
+    """`?lang=xx` (or anything not in SUPPORTED_LANGS) should silently fall
+    back to English rather than 500 or render with `None`."""
+    resp = client.get('/?lang=fr')
+    assert resp.status_code == 200
+    # English copy still present:
+    assert b'My Expertise' in resp.data
+    # German hasn't accidentally been applied:
+    assert b'Meine Expertise' not in resp.data
+
+
+def test_blog_post_missing_date_does_not_crash_sitemap(client, tmp_path, monkeypatch):
+    """A blog post without a `date:` frontmatter field should not crash the
+    sitemap (the sitemap emits whatever's in post['date'], so empty string
+    is fine; but the `max()` for latest_post_date in the sitemap route uses
+    `default=` so even an empty post list is safe)."""
+    import app as flask_app_module
+    blog_dir = tmp_path / 'blog'
+    blog_dir.mkdir()
+    (blog_dir / 'no-date.md').write_text(
+        '---\ntitle: Dateless\nsummary: No date in frontmatter\n---\n\nBody.\n',
+        encoding='utf-8',
+    )
+    monkeypatch.setattr(flask_app_module, '_BLOG_DIR', str(blog_dir))
+    flask_app_module._blog_cache['mtimes'] = None
+
+    resp = client.get('/sitemap.xml')
+    assert resp.status_code == 200
+    assert b'<urlset' in resp.data
+    # The dateless post should still show up
+    assert b'/blog/no-date' in resp.data
+
+
+def test_blog_post_missing_date_renders(client, tmp_path, monkeypatch):
+    """The blog post route shouldn't crash on a post with no frontmatter date."""
+    import app as flask_app_module
+    blog_dir = tmp_path / 'blog'
+    blog_dir.mkdir()
+    (blog_dir / 'no-date.md').write_text(
+        '---\ntitle: Dateless\nsummary: Just checking\n---\n\nBody.\n',
+        encoding='utf-8',
+    )
+    monkeypatch.setattr(flask_app_module, '_BLOG_DIR', str(blog_dir))
+    flask_app_module._blog_cache['mtimes'] = None
+
+    resp = client.get('/blog/no-date')
+    assert resp.status_code == 200
+    assert b'Dateless' in resp.data

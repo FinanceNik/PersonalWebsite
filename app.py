@@ -1,14 +1,29 @@
 import hmac
+import json
 import os
 import re
-import json
 import threading
-import markdown
 from datetime import datetime, timezone
 from functools import wraps
-from flask import Flask, render_template, request, flash, redirect, url_for, send_from_directory, g, session, Response
-from flask_wtf.csrf import CSRFProtect
+
+import markdown
 from dotenv import load_dotenv
+from flask import (
+    Flask,
+    Response,
+    flash,
+    g,
+    redirect,
+    render_template,
+    request,
+    send_from_directory,
+    session,
+    url_for,
+)
+from flask_limiter import Limiter
+from flask_limiter.util import get_remote_address
+from flask_wtf.csrf import CSRFProtect
+
 import database_helper
 import notifications
 
@@ -46,8 +61,6 @@ csrf = CSRFProtect(app)
 
 # Rate limiting. In-memory storage is fine for a single Flask process; for
 # multi-worker deployments, point RATELIMIT_STORAGE_URI at redis.
-from flask_limiter import Limiter
-from flask_limiter.util import get_remote_address
 limiter = Limiter(
     key_func=get_remote_address,
     app=app,
@@ -76,7 +89,7 @@ def load_translations(lang):
             return cached
         path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'translations', f'{lang}.json')
         if os.path.exists(path):
-            with open(path, 'r', encoding='utf-8') as f:
+            with open(path, encoding='utf-8') as f:
                 _translations_cache[lang] = json.load(f)
         else:
             _translations_cache[lang] = {}
@@ -150,7 +163,7 @@ _blog_cache_lock = threading.Lock()
 
 
 def _parse_blog_post(filepath, filename):
-    with open(filepath, 'r', encoding='utf-8') as f:
+    with open(filepath, encoding='utf-8') as f:
         content = f.read()
     frontmatter_match = re.match(r'^---\s*\n(.*?)\n---\s*\n', content, re.DOTALL)
     if not frontmatter_match:
@@ -424,7 +437,8 @@ def track_pageview():
         if not isinstance(path, str) or not _VALID_PATH.match(path):
             return '', 204
         # Cap referrer + lang length; lang must be one of the supported codes
-        if not isinstance(referrer, str): referrer = ''
+        if not isinstance(referrer, str):
+            referrer = ''
         referrer = referrer[:500]
         if lang not in SUPPORTED_LANGS:
             lang = DEFAULT_LANG

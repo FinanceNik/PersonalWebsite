@@ -25,6 +25,7 @@ if _ROOT not in sys.path:
     sys.path.insert(0, _ROOT)
 
 import pytest
+
 import app as flask_app_module
 
 
