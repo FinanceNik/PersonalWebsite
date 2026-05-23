@@ -76,6 +76,19 @@ def test_sitemap_is_xml(client):
     assert b'case-study-' not in resp.data
 
 
+def test_sitemap_has_lastmod(client):
+    """Google heavily down-weights sitemaps without <lastmod>."""
+    resp = client.get('/sitemap.xml')
+    body = resp.data.decode()
+    assert '<lastmod>' in body, 'sitemap missing <lastmod>'
+    # Spot-check: every <loc> should be followed (within ~200 chars) by a <lastmod>
+    import re
+    matches = re.findall(r'<loc>.*?</loc>\s*<lastmod>(\d{4}-\d{2}-\d{2})</lastmod>', body)
+    assert len(matches) >= 9, (
+        f'expected at least 9 URLs with lastmod, got {len(matches)}'
+    )
+
+
 def test_robots_txt(client):
     resp = client.get('/robots.txt')
     assert resp.status_code == 200
@@ -549,3 +562,66 @@ def test_de_500_template_has_translated_copy(app):
         html = render_template('500.html')
     assert 'Etwas ist schief gelaufen' in html
     assert 'Something Went Wrong' not in html
+
+
+# --- SEO + perf: fonts, OG image, theme flash --------------------------------
+
+def test_fonts_loaded_non_blocking(client):
+    """Google Fonts should load via preload + media-print swap, not via a
+    render-blocking @import in CSS or a plain stylesheet link."""
+    html = client.get('/').data.decode()
+    # Render-blocking entry points we explicitly removed:
+    assert "@import url('https://fonts.googleapis.com" not in html, \
+        'Google Fonts still loaded via @import in CSS'
+    # The non-blocking pattern we want:
+    assert 'rel="preload" as="style"' in html
+    assert 'media="print"' in html
+    assert "this.media='all'" in html
+    # And a <noscript> fallback so users with JS off still get the fonts:
+    assert '<noscript>' in html
+
+
+def test_blog_post_og_image_uses_cover_when_set(client, tmp_path, monkeypatch):
+    """If a blog post has a `cover:` frontmatter field, og:image should
+    point at that asset. Otherwise the site-wide og-image.png is used."""
+    import app as flask_app_module
+    # Drop a temp post with a cover field
+    blog_dir = tmp_path / 'blog'
+    blog_dir.mkdir()
+    (blog_dir / 'cover-test.md').write_text(
+        '---\n'
+        'title: Cover Test\n'
+        'date: 2026-05-23\n'
+        'summary: Verify per-post OG image\n'
+        'cover: image_assets/icon-512.png\n'
+        '---\n\n'
+        'Body.\n',
+        encoding='utf-8',
+    )
+    monkeypatch.setattr(flask_app_module, '_BLOG_DIR', str(blog_dir))
+    flask_app_module._blog_cache['mtimes'] = None  # invalidate
+
+    resp = client.get('/blog/cover-test')
+    assert resp.status_code == 200
+    body = resp.data.decode()
+    assert 'image_assets/icon-512.png' in body, 'cover frontmatter ignored'
+    # Falls back: pick a post without cover
+    flask_app_module._blog_cache['mtimes'] = None  # reset
+
+
+def test_theme_bootstrap_reads_localstorage_inline(client):
+    """The same <head> script that adds .js must also read the persisted theme
+    so light-mode users don't see a single-frame dark flash."""
+    html = client.get('/').data.decode()
+    # Find the inline script in <head>
+    head = html.split('</head>')[0]
+    assert "localStorage.getItem('theme')" in head, \
+        'theme bootstrap missing from <head>'
+    assert "setAttribute('data-theme'" in head
+
+
+def test_no_at_import_for_fonts_in_css(client):
+    """The Google Fonts @import must not be present in base.css."""
+    resp = client.get('/static/css_components/base.css')
+    assert resp.status_code == 200
+    assert b'fonts.googleapis.com' not in resp.data

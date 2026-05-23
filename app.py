@@ -169,6 +169,9 @@ def _parse_blog_post(filepath, filename):
         'date': meta.get('date', ''),
         'summary': meta.get('summary', ''),
         'tags': tags,
+        # Optional `cover:` frontmatter — path relative to /static/.
+        # If set, blog_post.html uses it as og:image for nicer social shares.
+        'cover': meta.get('cover', ''),
         'content_html': markdown.markdown(body, extensions=['fenced_code', 'tables'])
     }
 
@@ -463,23 +466,41 @@ def analytics_dashboard():
 
 @app.route('/sitemap.xml')
 def sitemap():
+    # Per-page <lastmod>. For static templates, take the file mtime.
+    # For blog posts, prefer the post's frontmatter `date`; fall back to the
+    # file mtime. For the home / index pages, use the most recent thing on the
+    # site so Google sees activity when any content is updated.
+    here = os.path.dirname(os.path.abspath(__file__))
+
+    def template_mtime(rel_path):
+        try:
+            return datetime.fromtimestamp(
+                os.path.getmtime(os.path.join(here, 'templates', rel_path)),
+                tz=timezone.utc,
+            ).date().isoformat()
+        except OSError:
+            return datetime.now(timezone.utc).date().isoformat()
+
+    posts = get_blog_posts()
+    # Most recent timestamp on the site (used for the home page lastmod)
+    latest_post_date = max((p['date'] for p in posts), default=template_mtime('index.html'))
+
     pages = [
-        {'url': '/', 'priority': '1.0', 'changefreq': 'weekly'},
-        {'url': '/services', 'priority': '0.9', 'changefreq': 'monthly'},
-        {'url': '/projects', 'priority': '0.8', 'changefreq': 'monthly'},
-        {'url': '/blog', 'priority': '0.8', 'changefreq': 'weekly'},
-        {'url': '/process', 'priority': '0.7', 'changefreq': 'monthly'},
-        {'url': '/calculator', 'priority': '0.6', 'changefreq': 'monthly'},
-        {'url': '/checklist', 'priority': '0.6', 'changefreq': 'monthly'},
-        {'url': '/contact', 'priority': '0.7', 'changefreq': 'monthly'},
-        {'url': '/privacy', 'priority': '0.3', 'changefreq': 'yearly'},
+        {'url': '/',           'priority': '1.0', 'changefreq': 'weekly',  'lastmod': latest_post_date},
+        {'url': '/services',   'priority': '0.9', 'changefreq': 'monthly', 'lastmod': template_mtime('services.html')},
+        {'url': '/projects',   'priority': '0.8', 'changefreq': 'monthly', 'lastmod': template_mtime('projects.html')},
+        {'url': '/blog',       'priority': '0.8', 'changefreq': 'weekly',  'lastmod': latest_post_date},
+        {'url': '/process',    'priority': '0.7', 'changefreq': 'monthly', 'lastmod': template_mtime('process.html')},
+        {'url': '/calculator', 'priority': '0.6', 'changefreq': 'monthly', 'lastmod': template_mtime('calculator.html')},
+        {'url': '/checklist',  'priority': '0.6', 'changefreq': 'monthly', 'lastmod': template_mtime('checklist.html')},
+        {'url': '/contact',    'priority': '0.7', 'changefreq': 'monthly', 'lastmod': template_mtime('contact.html')},
+        {'url': '/privacy',    'priority': '0.3', 'changefreq': 'yearly',  'lastmod': template_mtime('privacy.html')},
     ]
-    # Add case study pages
+    case_study_lastmod = template_mtime('projects/_case_study.html')
     for slug in project_slugs:
-        pages.append({'url': f'/projects/{slug}', 'priority': '0.7', 'changefreq': 'monthly'})
-    # Add blog posts
-    for post in get_blog_posts():
-        pages.append({'url': f'/blog/{post["slug"]}', 'priority': '0.7', 'changefreq': 'monthly'})
+        pages.append({'url': f'/projects/{slug}', 'priority': '0.7', 'changefreq': 'monthly', 'lastmod': case_study_lastmod})
+    for post in posts:
+        pages.append({'url': f'/blog/{post["slug"]}', 'priority': '0.7', 'changefreq': 'monthly', 'lastmod': post['date']})
 
     xml = '<?xml version="1.0" encoding="UTF-8"?>\n'
     xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"\n'
@@ -488,6 +509,8 @@ def sitemap():
         full_url = SITE_URL + page['url']
         xml += '  <url>\n'
         xml += f'    <loc>{full_url}</loc>\n'
+        if page.get('lastmod'):
+            xml += f'    <lastmod>{page["lastmod"]}</lastmod>\n'
         xml += f'    <changefreq>{page["changefreq"]}</changefreq>\n'
         xml += f'    <priority>{page["priority"]}</priority>\n'
         # hreflang alternates for each language

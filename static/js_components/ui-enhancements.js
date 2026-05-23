@@ -97,25 +97,40 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
+    // --- prefers-reduced-motion gate ---
+    // Many users (vestibular conditions, low-spec devices, opt-in setting) ask
+    // their browser to suppress non-essential motion. Both the hero typing
+    // animation and the stats counter are decorative — show the final state
+    // immediately when reduced-motion is requested.
+    var REDUCED_MOTION = window.matchMedia &&
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
     // --- Hero typing animation ---
     // Opt-in via [data-typed] on the element. Decoupled from the actual text
     // so renaming "NIK" to anything else doesn't silently disable the effect.
     var typedEl = document.querySelector('.hero-title [data-typed]');
     if (typedEl && typedEl.textContent.trim().length > 0) {
-        var text = typedEl.textContent;
-        typedEl.textContent = '';
-        typedEl.style.borderRight = '2px solid var(--accent-color)';
-        var i = 0;
-        var typeInterval = setInterval(function () {
-            typedEl.textContent += text.charAt(i);
-            i++;
-            if (i >= text.length) {
-                clearInterval(typeInterval);
-                setTimeout(function () {
-                    typedEl.style.borderRight = 'none';
-                }, 1000);
-            }
-        }, 150);
+        if (REDUCED_MOTION) {
+            // Leave the final text in place; no setInterval, no caret.
+        } else {
+            var text = typedEl.textContent;
+            typedEl.textContent = '';
+            typedEl.style.borderRight = '2px solid var(--accent-color)';
+            // Screen readers shouldn't hear "N" then "NI" then "NIK".
+            typedEl.setAttribute('aria-label', text);
+            typedEl.setAttribute('aria-live', 'off');
+            var i = 0;
+            var typeInterval = setInterval(function () {
+                typedEl.textContent += text.charAt(i);
+                i++;
+                if (i >= text.length) {
+                    clearInterval(typeInterval);
+                    setTimeout(function () {
+                        typedEl.style.borderRight = 'none';
+                    }, 1000);
+                }
+            }, 150);
+        }
     }
 
     // --- Animated stats counter ---
@@ -123,33 +138,45 @@ document.addEventListener('DOMContentLoaded', function () {
     // when JS is available we reset to 0 and animate up.
     var statNumbers = document.querySelectorAll('.stat-number');
     if (statNumbers.length) {
-        statNumbers.forEach(function (el) { el.textContent = '0'; });
+        // Tell screen readers not to read every intermediate count.
+        statNumbers.forEach(function (el) {
+            el.setAttribute('aria-live', 'off');
+            var target = el.getAttribute('data-target') || el.textContent;
+            el.setAttribute('aria-label', target);
+        });
 
-        var statsObserver = new IntersectionObserver(function (entries) {
-            entries.forEach(function (entry) {
-                if (entry.isIntersecting) {
-                    var el = entry.target;
-                    var target = parseInt(el.getAttribute('data-target'), 10);
-                    var duration = 1500;
-                    var startTime = null;
-                    function animate(ts) {
-                        if (!startTime) startTime = ts;
-                        var progress = Math.min((ts - startTime) / duration, 1);
-                        var eased = 1 - Math.pow(1 - progress, 3); // easeOutCubic
-                        el.textContent = Math.floor(eased * target);
-                        if (progress < 1) {
-                            requestAnimationFrame(animate);
-                        } else {
-                            el.textContent = target;
+        if (REDUCED_MOTION) {
+            // Skip the count-up; the text content is already the final number
+            // (rendered by the template).
+        } else {
+            statNumbers.forEach(function (el) { el.textContent = '0'; });
+
+            var statsObserver = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        var el = entry.target;
+                        var target = parseInt(el.getAttribute('data-target'), 10);
+                        var duration = 1500;
+                        var startTime = null;
+                        function animate(ts) {
+                            if (!startTime) startTime = ts;
+                            var progress = Math.min((ts - startTime) / duration, 1);
+                            var eased = 1 - Math.pow(1 - progress, 3); // easeOutCubic
+                            el.textContent = Math.floor(eased * target);
+                            if (progress < 1) {
+                                requestAnimationFrame(animate);
+                            } else {
+                                el.textContent = target;
+                            }
                         }
+                        requestAnimationFrame(animate);
+                        statsObserver.unobserve(el);
                     }
-                    requestAnimationFrame(animate);
-                    statsObserver.unobserve(el);
-                }
-            });
-        }, { threshold: 0.5 });
+                });
+            }, { threshold: 0.5 });
 
-        statNumbers.forEach(function (el) { statsObserver.observe(el); });
+            statNumbers.forEach(function (el) { statsObserver.observe(el); });
+        }
     }
 
     // --- Reading progress bar (blog posts only) ---

@@ -1,7 +1,22 @@
 <!DOCTYPE html>
 <html lang="{{ lang }}" data-theme='dark-mode'>
 <head>
-    <script>document.documentElement.classList.add('js');</script>
+    {# Synchronous bootstrap: flag JS-availability AND apply the persisted theme
+       in one shot, before paint. Without this, light-mode users see a
+       single-frame dark flash because <html> defaults to data-theme='dark-mode'
+       and the theme toggler runs deferred. #}
+    <script>
+    (function () {
+        var el = document.documentElement;
+        el.classList.add('js');
+        try {
+            var saved = localStorage.getItem('theme');
+            if (saved === 'light-mode' || saved === 'dark-mode') {
+                el.setAttribute('data-theme', saved);
+            }
+        } catch (e) { /* localStorage blocked — keep the default theme */ }
+    })();
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Niklas Clasen">
@@ -23,7 +38,16 @@
     <title>{% block title %}Niklas Clasen - Technology Consultant | Fabric & Power BI{% endblock %}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    {# Non-blocking Google Fonts: preload the stylesheet, swap into media=all
+       once loaded; <noscript> fallback for the small slice of users without JS. #}
+    <link rel="preload" as="style"
+          href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=Lato&family=Roboto:wght@300&display=swap">
+    <link rel="stylesheet" media="print"
+          onload="this.media='all'; this.onload=null;"
+          href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=Lato&family=Roboto:wght@300&display=swap">
+    <noscript>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=Lato&family=Roboto:wght@300&display=swap">
+    </noscript>
     <link rel="icon" href="{{ url_for('static', filename='image_assets/icon-192.png') }}" type="image/png" sizes="192x192">
     <link rel="icon" href="{{ url_for('static', filename='image_assets/icon-512.png') }}" type="image/png" sizes="512x512">
     <link rel="apple-touch-icon" href="{{ url_for('static', filename='image_assets/apple-touch-icon.png') }}">

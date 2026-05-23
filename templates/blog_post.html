@@ -3,6 +3,7 @@
 {% block meta_description %}{{ post.summary }}{% endblock %}
 {% block og_title %}{{ post.title }}{% endblock %}
 {% block og_description %}{{ post.summary }}{% endblock %}
+{% if post.cover %}{% block og_image %}{{ SITE_URL }}{{ url_for('static', filename=post.cover) }}{% endblock %}{% endif %}
 
 {% block structured_data %}
 <script type="application/ld+json">

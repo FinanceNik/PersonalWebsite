@@ -1,6 +1,7 @@
-/* Base styles: resets, body, focus, animations, reveal variants, reduced-motion, view transitions. */
+/* Base styles: resets, body, focus, animations, reveal variants, reduced-motion, view transitions.
+   Google Fonts are loaded from base.html via preload + media-print swap so they
+   don't block first paint. Don't add @import url(...) here. */
 
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=Lato&family=Roboto:wght@300&display=swap');
 @import "sizes.css";
 
 * {
