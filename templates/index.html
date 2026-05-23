@@ -42,49 +42,37 @@
 <div class="container">
     <div class="card-container">
         <div class="card">
-            <h3>Power BI Dashboards</h3>
+            <h3>{{ t.expertise.powerbi_title }}</h3>
             <hr class="card-hr">
-            <p>Designing and developing interactive Power BI reports and dashboards that turn complex data
-                into clear, actionable insights. From data modeling to DAX measures, I build solutions
-                that empower decision-makers.</p>
+            <p>{{ t.expertise.powerbi_desc }}</p>
         </div>
         <div class="card">
-            <h3>Microsoft Fabric</h3>
+            <h3>{{ t.expertise.fabric_title }}</h3>
             <hr class="card-hr">
-            <p>End-to-end implementation of Microsoft Fabric, the unified analytics platform. I help organizations
-                leverage OneLake, Lakehouses, Warehouses, and Notebooks to build a modern, scalable data
-                foundation.</p>
+            <p>{{ t.expertise.fabric_desc }}</p>
         </div>
         <div class="card">
-            <h3>Data Platform Strategy</h3>
+            <h3>{{ t.expertise.strategy_title }}</h3>
             <hr class="card-hr">
-            <p>Developing comprehensive data strategies and architecture roadmaps tailored to your business.
-                From governance frameworks to technology selection, I align your data platform with
-                organizational goals.</p>
+            <p>{{ t.expertise.strategy_desc }}</p>
         </div>
     </div>
 
     <div class="card-container">
         <div class="card">
-            <h3>ETL & Data Pipelines</h3>
+            <h3>{{ t.expertise.etl_title }}</h3>
             <hr class="card-hr">
-            <p>Building robust data integration solutions using Dataflows, Azure Data Factory, and Power Query.
-                I design automated pipelines that ensure your data is clean, reliable, and always
-                up to date.</p>
+            <p>{{ t.expertise.etl_desc }}</p>
         </div>
         <div class="card">
-            <h3>Training & Workshops</h3>
+            <h3>{{ t.expertise.training_title }}</h3>
             <hr class="card-hr">
-            <p>Hands-on training programs for Power BI and Microsoft Fabric, tailored to your team's skill level.
-                From beginner fundamentals to advanced DAX and data modeling, I enable your team to
-                be self-sufficient.</p>
+            <p>{{ t.expertise.training_desc }}</p>
         </div>
         <div class="card">
-            <h3>Cloud & Infrastructure</h3>
+            <h3>{{ t.expertise.cloud_title }}</h3>
             <hr class="card-hr">
-            <p>Expertise in Azure cloud services for data workloads. I design and implement secure,
-                cost-effective cloud infrastructure that supports your analytics and reporting
-                requirements at scale.</p>
+            <p>{{ t.expertise.cloud_desc }}</p>
         </div>
     </div>
 </div>
@@ -93,15 +81,15 @@
     <div class="stats-bar">
         <div class="stat">
             <span class="stat-number" data-target="50">50</span><span class="stat-suffix">+</span>
-            <span class="stat-label">Reports Delivered</span>
+            <span class="stat-label">{{ t.stats.reports }}</span>
         </div>
         <div class="stat">
             <span class="stat-number" data-target="6">6</span><span class="stat-suffix">+</span>
-            <span class="stat-label">Years in BI &amp; Data Science</span>
+            <span class="stat-label">{{ t.stats.years }}</span>
         </div>
         <div class="stat">
             <span class="stat-number" data-target="98">98</span><span class="stat-suffix">%</span>
-            <span class="stat-label">Client Satisfaction</span>
+            <span class="stat-label">{{ t.stats.satisfaction }}</span>
         </div>
     </div>
 </div>
@@ -115,40 +103,34 @@
         <div class="card">
             <h3>Power BI</h3>
             <hr class="card-hr-dark">
-            <p>Expert-level report development, data modeling, DAX measures, and Power Query transformations.
-                Building enterprise-grade dashboards that drive business intelligence.</p>
+            <p>{{ t.tech.powerbi_desc }}</p>
         </div>
         <div class="card">
             <h3>Microsoft Fabric</h3>
             <hr class="card-hr-dark">
-            <p>Deep expertise in the Fabric ecosystem including Lakehouses, Warehouses, Data Pipelines,
-                Notebooks, and Semantic Models for unified analytics.</p>
+            <p>{{ t.tech.fabric_desc }}</p>
         </div>
         <div class="card">
-            <h3>Azure</h3>
+            <h3>{{ t.tech.azure_title }}</h3>
             <hr class="card-hr-dark">
-            <p>Proficient in Azure Data Factory, Azure Synapse Analytics, Azure SQL, and related
-                cloud services for building scalable data solutions.</p>
+            <p>{{ t.tech.azure_desc }}</p>
         </div>
     </div>
     <div class="card-container">
         <div class="card">
-            <h3>DAX / M Query</h3>
+            <h3>{{ t.tech.dax_title }}</h3>
             <hr class="card-hr-dark">
-            <p>Advanced DAX formulas for complex business calculations and KPIs. Expert in M (Power Query)
-                for data transformation and ETL processes.</p>
+            <p>{{ t.tech.dax_desc }}</p>
         </div>
         <div class="card">
-            <h3>Python</h3>
+            <h3>{{ t.tech.python_title }}</h3>
             <hr class="card-hr-dark">
-            <p>Data engineering and automation with Python. Building custom scripts, API integrations,
-                and data processing pipelines to extend platform capabilities.</p>
+            <p>{{ t.tech.python_desc }}</p>
         </div>
         <div class="card">
-            <h3>SQL</h3>
+            <h3>{{ t.tech.sql_title }}</h3>
             <hr class="card-hr-dark">
-            <p>Strong command of T-SQL for database development, stored procedures, query optimization,
-                and data warehouse design patterns.</p>
+            <p>{{ t.tech.sql_desc }}</p>
         </div>
     </div>
 </div>
@@ -160,22 +142,19 @@
 <div class="container">
     <div class="card-container">
         <div class="card">
-            <h3>Microsoft Certified: Power BI Data Analyst Associate</h3>
+            <h3>{{ t.certs.pbi_title }}</h3>
             <hr class="card-hr">
-            <p>Validated expertise in designing, building, and deploying Power BI data models,
-                reports, and dashboards for enterprise analytics.</p>
+            <p>{{ t.certs.pbi_desc }}</p>
         </div>
         <div class="card">
-            <h3>Microsoft Certified: Fabric Analytics Engineer Associate</h3>
+            <h3>{{ t.certs.fabric_title }}</h3>
             <hr class="card-hr">
-            <p>Certified in implementing and managing Microsoft Fabric analytics solutions,
-                including Lakehouses, data pipelines, and semantic models.</p>
+            <p>{{ t.certs.fabric_desc }}</p>
         </div>
         <div class="card">
-            <h3>Microsoft Certified: Azure Data Engineer Associate</h3>
+            <h3>{{ t.certs.azure_title }}</h3>
             <hr class="card-hr">
-            <p>Proven skills in designing and implementing data storage, processing, and security
-                solutions using Azure data services.</p>
+            <p>{{ t.certs.azure_desc }}</p>
         </div>
     </div>
 </div>
@@ -183,10 +162,10 @@
 
 <div class="container">
     <div class="lead-banner" style="border-color: var(--accent-color);">
-        <h2>Curious About Cost?</h2>
-        <p>Answer 5 quick questions and get a ballpark estimate for your project in under a minute. No commitment, no email required.</p>
-        <a href="/calculator" class="button"><span>Get Your Estimate</span></a>
-        <a href="/contact" class="button-secondary"><span>Or Talk to Me Directly</span></a>
+        <h2>{{ t.home_cta.calc_title }}</h2>
+        <p>{{ t.home_cta.calc_text }}</p>
+        <a href="/calculator" class="button"><span>{{ t.home_cta.calc_cta_primary }}</span></a>
+        <a href="/contact" class="button-secondary"><span>{{ t.home_cta.calc_cta_secondary }}</span></a>
     </div>
 </div>
 
@@ -194,10 +173,9 @@
 
 <div class="container">
     <div class="lead-banner">
-        <h2>Free: Power BI Performance Checklist</h2>
-        <p>15 actionable checks to make your reports faster and more reliable. Covers data modeling,
-            DAX optimization, report design, and deployment.</p>
-        <a href="/checklist" class="button"><span>Download Free Checklist</span></a>
+        <h2>{{ t.home_cta.checklist_title }}</h2>
+        <p>{{ t.home_cta.checklist_text }}</p>
+        <a href="/checklist" class="button"><span>{{ t.home_cta.checklist_cta }}</span></a>
     </div>
 </div>
 

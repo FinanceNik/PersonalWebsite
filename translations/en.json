@@ -25,26 +25,406 @@
         "blog_title": "Blog",
         "blog_subtitle": "Insights on Fabric, Power BI & Data Strategy"
     },
+    "stats": {
+        "reports": "Reports Delivered",
+        "years": "Years in BI & Data Science",
+        "satisfaction": "Client Satisfaction"
+    },
+    "expertise": {
+        "powerbi_title": "Power BI Dashboards",
+        "powerbi_desc": "Designing and developing interactive Power BI reports and dashboards that turn complex data into clear, actionable insights. From data modeling to DAX measures, I build solutions that empower decision-makers.",
+        "fabric_title": "Microsoft Fabric",
+        "fabric_desc": "End-to-end implementation of Microsoft Fabric, the unified analytics platform. I help organizations leverage OneLake, Lakehouses, Warehouses, and Notebooks to build a modern, scalable data foundation.",
+        "strategy_title": "Data Platform Strategy",
+        "strategy_desc": "Developing comprehensive data strategies and architecture roadmaps tailored to your business. From governance frameworks to technology selection, I align your data platform with organizational goals.",
+        "etl_title": "ETL & Data Pipelines",
+        "etl_desc": "Building robust data integration solutions using Dataflows, Azure Data Factory, and Power Query. I design automated pipelines that ensure your data is clean, reliable, and always up to date.",
+        "training_title": "Training & Workshops",
+        "training_desc": "Hands-on training programs for Power BI and Microsoft Fabric, tailored to your team's skill level. From beginner fundamentals to advanced DAX and data modeling, I enable your team to be self-sufficient.",
+        "cloud_title": "Cloud & Infrastructure",
+        "cloud_desc": "Expertise in Azure cloud services for data workloads. I design and implement secure, cost-effective cloud infrastructure that supports your analytics and reporting requirements at scale."
+    },
+    "tech": {
+        "powerbi_desc": "Expert-level report development, data modeling, DAX measures, and Power Query transformations. Building enterprise-grade dashboards that drive business intelligence.",
+        "fabric_desc": "Deep expertise in the Fabric ecosystem including Lakehouses, Warehouses, Data Pipelines, Notebooks, and Semantic Models for unified analytics.",
+        "azure_title": "Azure",
+        "azure_desc": "Proficient in Azure Data Factory, Azure Synapse Analytics, Azure SQL, and related cloud services for building scalable data solutions.",
+        "dax_title": "DAX / M Query",
+        "dax_desc": "Advanced DAX formulas for complex business calculations and KPIs. Expert in M (Power Query) for data transformation and ETL processes.",
+        "python_title": "Python",
+        "python_desc": "Data engineering and automation with Python. Building custom scripts, API integrations, and data processing pipelines to extend platform capabilities.",
+        "sql_title": "SQL",
+        "sql_desc": "Strong command of T-SQL for database development, stored procedures, query optimization, and data warehouse design patterns."
+    },
+    "certs": {
+        "pbi_title": "Microsoft Certified: Power BI Data Analyst Associate",
+        "pbi_desc": "Validated expertise in designing, building, and deploying Power BI data models, reports, and dashboards for enterprise analytics.",
+        "fabric_title": "Microsoft Certified: Fabric Analytics Engineer Associate",
+        "fabric_desc": "Certified in implementing and managing Microsoft Fabric analytics solutions, including Lakehouses, data pipelines, and semantic models.",
+        "azure_title": "Microsoft Certified: Azure Data Engineer Associate",
+        "azure_desc": "Proven skills in designing and implementing data storage, processing, and security solutions using Azure data services."
+    },
+    "home_cta": {
+        "calc_title": "Curious About Cost?",
+        "calc_text": "Answer 5 quick questions and get a ballpark estimate for your project in under a minute. No commitment, no email required.",
+        "calc_cta_primary": "Get Your Estimate",
+        "calc_cta_secondary": "Or Talk to Me Directly",
+        "checklist_title": "Free: Power BI Performance Checklist",
+        "checklist_text": "15 actionable checks to make your reports faster and more reliable. Covers data modeling, DAX optimization, report design, and deployment.",
+        "checklist_cta": "Download Free Checklist"
+    },
     "services_page": {
         "title": "Services",
         "subtitle": "Expert Microsoft Fabric & Power BI Consulting",
-        "text": "From strategy to implementation, I provide end-to-end consulting services that help your organization make the most of the Microsoft data platform."
+        "text": "From strategy to implementation, I provide end-to-end consulting services that help your organization make the most of the Microsoft data platform.",
+        "cta_estimate": "Estimate Your Project",
+        "secure_package": "Secure your package now!",
+        "individual_pricing": "Individual Pricing",
+        "starting_at": "Starting at",
+        "monthly": "/month",
+        "calc_banner_title": "Not sure what you need?",
+        "calc_banner_text": "Answer 5 quick questions and get a ballpark estimate for your project in under a minute.",
+        "calc_banner_cta": "Get a Ballpark Estimate",
+        "faq": [
+            {
+                "q": "How do I engage your consulting services?",
+                "a": "Simply fill out the contact form on my website or send me an email. I'll schedule a free initial consultation to understand your requirements, and then provide a tailored proposal with scope, timeline, and pricing."
+            },
+            {
+                "q": "What industries do you work with?",
+                "a": "I work across a wide range of industries including financial services, retail, manufacturing, healthcare, and logistics. The principles of good data architecture and reporting apply universally, and I adapt my approach to each industry's specific needs and regulations."
+            },
+            {
+                "q": "What tools and technologies do you specialize in?",
+                "a": "My core specializations are Microsoft Fabric and Power BI. I'm also experienced with Azure Data Factory, Azure Synapse Analytics, SQL Server, Python, and the broader Microsoft data stack. I choose the right tools based on your specific requirements."
+            },
+            {
+                "q": "Do you offer remote consulting?",
+                "a": "Yes, I work with clients both on-site and remotely. Most of my engagements are conducted remotely using screen sharing and collaboration tools, though I'm available for on-site workshops and meetings in the Luzern/Zurich area and can travel as needed."
+            },
+            {
+                "q": "What is a typical project timeline?",
+                "a": "Timelines vary based on project complexity. A focused Power BI dashboard project typically takes 2-4 weeks. A full Microsoft Fabric implementation can range from 1-3 months. I provide detailed timelines during our initial scoping conversation."
+            },
+            {
+                "q": "Do you provide training and knowledge transfer?",
+                "a": "Absolutely. Knowledge transfer is a key part of every engagement. I believe in empowering your team to maintain and extend the solutions I build. I also offer dedicated training workshops as a standalone service."
+            },
+            {
+                "q": "How do you ensure data security and compliance?",
+                "a": "Data security is a top priority. I implement row-level security, follow the principle of least privilege, and ensure all solutions comply with relevant regulations such as GDPR. I can provide a detailed data protection plan tailored to your project."
+            },
+            {
+                "q": "Can you work with our existing Power BI reports?",
+                "a": "Yes. I frequently help organizations optimize, refactor, or extend existing Power BI deployments. Whether you need performance improvements, a redesign, or migration to a new data model, I can work with what you already have."
+            },
+            {
+                "q": "What is your pricing model?",
+                "a": "I offer both fixed-price project engagements and time-based consulting rates. Fixed pricing works well for clearly scoped projects, while hourly or daily rates are better for advisory work and ongoing support. I provide transparent quotes after our initial consultation."
+            },
+            {
+                "q": "Do you offer ongoing support contracts?",
+                "a": "Yes. I offer monthly retainer packages starting at CHF 500/month that include monitoring, maintenance, bug fixes, and priority support. This ensures your data platform stays healthy and evolves with your business needs."
+            }
+        ],
+        "packages": {
+            "powerbi_dev": {
+                "type": "Power BI Report & Dashboard Development",
+                "price": "Starting at CHF 2,000",
+                "text": "Turn your raw data into interactive, insightful Power BI reports and dashboards. I design solutions that empower your team with real-time visibility into the metrics that matter most.",
+                "list": [
+                    "Custom report design and development",
+                    "Interactive dashboards with drill-through navigation",
+                    "Data model optimization and DAX measures",
+                    "Row-level security and access management",
+                    "Deployment, sharing, and workspace setup"
+                ]
+            },
+            "fabric_impl": {
+                "type": "Microsoft Fabric Implementation",
+                "price": "Individual Pricing",
+                "text": "Adopt Microsoft Fabric with a structured, proven approach. I guide your organization through the full implementation — from capacity planning to production deployment of Lakehouses and Warehouses.",
+                "list": [
+                    "Fabric capacity planning and workspace architecture",
+                    "OneLake and Lakehouse configuration",
+                    "Data pipeline and Dataflow development",
+                    "Notebook integration for advanced analytics",
+                    "Migration strategy from legacy platforms"
+                ]
+            },
+            "warehouse_design": {
+                "type": "Data Warehouse & Lakehouse Design",
+                "price": "Individual Pricing",
+                "text": "Build a solid data foundation with a well-architected warehouse or lakehouse. I design schemas, ETL processes, and governance frameworks that scale with your business.",
+                "list": [
+                    "Dimensional modeling and schema design",
+                    "ETL/ELT pipeline development",
+                    "Data quality and validation frameworks",
+                    "Performance tuning and query optimization",
+                    "Migration planning from legacy systems"
+                ]
+            },
+            "training": {
+                "type": "Power BI Training & Workshops",
+                "price": "Starting at CHF 1,500",
+                "text": "Enable your team to build and maintain their own reports with confidence. I deliver hands-on training programs tailored to your data, your tools, and your team's skill level.",
+                "list": [
+                    "Beginner to advanced training tracks",
+                    "Hands-on exercises with your real data",
+                    "DAX, Power Query, and data modeling deep dives",
+                    "Best practices and governance guidelines",
+                    "Post-training support and Q&A sessions"
+                ]
+            },
+            "support": {
+                "type": "Ongoing Support & Maintenance",
+                "price": "Starting at CHF 500/month",
+                "text": "Keep your data platform running smoothly with a dedicated support retainer. I provide proactive monitoring, regular maintenance, and priority issue resolution.",
+                "list": [
+                    "Report and pipeline monitoring",
+                    "Performance tuning and optimization",
+                    "Bug fixes and feature enhancements",
+                    "Quarterly review and recommendations",
+                    "Priority support with guaranteed response times"
+                ]
+            },
+            "custom": {
+                "type": "Custom Project Ideas",
+                "price": "Individual Pricing",
+                "text": "Have a unique challenge or idea? I love working on bespoke data projects. Let's discuss your vision and build a tailored solution together.",
+                "list": [
+                    "Consultation and project scoping",
+                    "Custom development and integration",
+                    "Proof of concept and prototyping",
+                    "Testing, validation, and deployment",
+                    "Post-launch support and knowledge transfer"
+                ]
+            }
+        }
+    },
+    "projects_page": {
+        "title": "Project Scenarios",
+        "subtitle": "How I structure typical data engagements",
+        "text": "The scenarios below are composite engagement shapes, drawn from the kinds of work I deliver day-to-day. They're not specific past clients — they show the structure, technology choices, and typical impact you can expect when we work together.",
+        "view_scenario": "View Scenario",
+        "typical_industry": "Typical industry:",
+        "technologies": "Technologies:",
+        "lead_banner_title": "Have I sparked your interest?",
+        "scenarios": {
+            "powerbi_migration": {
+                "title": "Enterprise Power BI Migration",
+                "subtitle": "Financial Services | Power BI & Azure",
+                "card_desc": "Consolidating dozens of Excel reports into a centralized Power BI platform. Unifying data from multiple source systems into a cloud warehouse, deploying interactive dashboards, and cutting the time the team spends on manual reporting.",
+                "industry": "Financial Services",
+                "tech": "Power BI, Azure Synapse, DAX"
+            },
+            "fabric_lakehouse": {
+                "title": "Microsoft Fabric Lakehouse",
+                "subtitle": "Retail Analytics | Microsoft Fabric",
+                "card_desc": "Standing up a Fabric Lakehouse architecture for a multi-site retailer. Centralizing data from POS, e-commerce, and CRM into OneLake; PySpark notebooks plus Direct Lake reports for near real-time analytics.",
+                "industry": "Retail",
+                "tech": "Microsoft Fabric, PySpark, Power BI"
+            },
+            "automated_reporting": {
+                "title": "Automated Reporting Pipeline",
+                "subtitle": "Manufacturing | Power BI & Azure Data Factory",
+                "card_desc": "Replacing manual Excel-based KPI tracking with real-time Power BI dashboards, end-to-end automation via Azure Data Factory, and proactive Power Automate alerts that surface quality issues as they appear — not days later.",
+                "industry": "Manufacturing",
+                "tech": "Azure Data Factory, Power BI, Power Automate"
+            }
+        }
+    },
+    "case_study": {
+        "tech_used": "Technologies Used",
+        "challenge": "The Challenge",
+        "approach": "The Approach",
+        "typical_impact": "Typical Impact",
+        "scenario_notice_lead": "Sample scenario.",
+        "scenario_notice_text": "A composite engagement shape based on the kind of work I deliver — not a specific past client. Talk to me to scope your own situation.",
+        "lead_banner_title": "Facing a Similar Challenge?",
+        "lead_banner_text": "Get a ballpark estimate for your project in under a minute.",
+        "lead_banner_cta_primary": "Estimate Your Project",
+        "lead_banner_cta_secondary": "Or Let's Talk",
+        "details": {
+            "powerbi-migration": {
+                "tech": [
+                    {
+                        "title": "Power BI",
+                        "desc": "Enterprise report development, semantic models, and workspace management that scales from a handful of users to organization-wide."
+                    },
+                    {
+                        "title": "Azure Synapse",
+                        "desc": "Cloud-based data warehouse to replace legacy on-premise SQL Server infrastructure."
+                    },
+                    {
+                        "title": "DAX / Power Query",
+                        "desc": "Advanced calculations for financial KPIs and automated data transformation pipelines."
+                    }
+                ],
+                "challenge": "A mid-sized financial services firm with a fragmented reporting landscape: dozens of Excel-based reports manually maintained by different departments, inconsistent numbers, duplicated effort, delayed decisions, and no single source of truth for key financial metrics.",
+                "approach": "Design and implement a centralized Power BI reporting platform backed by Azure Synapse Analytics. Consolidate the relevant source systems into a unified warehouse, build a semantic layer with standardized financial measures, and deploy a curated set of dashboards. Row-level security so each department only sees their relevant data; scheduled refreshes so the team stops preparing data by hand.",
+                "impact": [
+                    {
+                        "title": "Big Reduction in Manual Effort",
+                        "desc": "Most of the recurring \"pull data, paste into Excel, send PDF\" workflow goes away when the dashboard refreshes itself."
+                    },
+                    {
+                        "title": "Single Source of Truth",
+                        "desc": "One unified data model removes conflicting numbers across departments."
+                    },
+                    {
+                        "title": "Real-Time Insights",
+                        "desc": "Leadership dashboards refresh automatically, replacing monthly static PDF reports."
+                    }
+                ]
+            },
+            "fabric-lakehouse": {
+                "tech": [
+                    {
+                        "title": "Microsoft Fabric",
+                        "desc": "Unified analytics platform with OneLake, Lakehouse, and integrated data pipelines."
+                    },
+                    {
+                        "title": "PySpark / Notebooks",
+                        "desc": "Large-scale data processing and transformation for high-volume transactional data."
+                    },
+                    {
+                        "title": "Power BI",
+                        "desc": "Direct Lake mode reports connected to the Lakehouse for near real-time analytics."
+                    }
+                ],
+                "challenge": "A growing multi-site retailer drowning in data silos: point-of-sale, inventory, e-commerce, and CRM systems all operating independently. The analytics team spends most of its time extracting and reconciling data instead of generating insights. They need a unified platform that can handle their scale and grow with the business.",
+                "approach": "Implement a Microsoft Fabric Lakehouse that centralizes the relevant source systems into OneLake. PySpark notebooks handle the heavy ETL — ingestion, business rules, and curated analytical tables — following a medallion (bronze/silver/gold) architecture for data quality at each stage. Power BI on Direct Lake mode delivers near real-time dashboards for store managers and executives alike.",
+                "impact": [
+                    {
+                        "title": "Faster Time-to-Insight",
+                        "desc": "Days of data reconciliation become hours of analysis with automated pipelines and Direct Lake reporting."
+                    },
+                    {
+                        "title": "Unified Data",
+                        "desc": "Previously siloed systems consolidate into one governed, scalable Lakehouse."
+                    },
+                    {
+                        "title": "Self-Service Analytics",
+                        "desc": "Store managers gain direct access to their performance data without IT bottlenecks."
+                    }
+                ]
+            },
+            "automated-reporting": {
+                "tech": [
+                    {
+                        "title": "Azure Data Factory",
+                        "desc": "Orchestrating data movement from shop floor systems, ERP, and IoT sensors."
+                    },
+                    {
+                        "title": "Power BI",
+                        "desc": "Operational dashboards for production managers and executive KPI summaries."
+                    },
+                    {
+                        "title": "Power Automate",
+                        "desc": "Automated alerts and report distribution to stakeholders via email and Teams."
+                    }
+                ],
+                "challenge": "A manufacturer with multiple production lines, relying on manual data collection and Excel-based reporting for KPIs like OEE (Overall Equipment Effectiveness), scrap rates, and production throughput. Reports come out weekly via a dedicated analyst — often too late to act on emerging quality issues. Management needs real-time visibility into production performance.",
+                "approach": "Build an end-to-end automated reporting pipeline. Azure Data Factory ingests data from shop floor systems, ERP, and IoT sensors on a schedule, transforms it, and loads it into a SQL-based warehouse with star schemas optimized for analytical queries. Power BI delivers real-time production monitoring. Power Automate fires alerts when KPIs cross thresholds so issues are addressed as they appear.",
+                "impact": [
+                    {
+                        "title": "Hours Saved Each Week",
+                        "desc": "Weekly manual reporting effort goes away once the pipeline runs itself."
+                    },
+                    {
+                        "title": "Real-Time Monitoring",
+                        "desc": "Production managers gain live dashboards instead of weekly static Excel reports."
+                    },
+                    {
+                        "title": "Proactive Alerts",
+                        "desc": "Threshold alerts surface quality issues as they happen — not days later."
+                    }
+                ]
+            }
+        }
     },
     "process_page": {
         "title": "How I Work",
         "subtitle": "A Structured, Transparent Process",
         "text": "Every engagement follows a proven process designed to deliver results efficiently while keeping you informed and in control at every stage.",
+        "calc_hint_pre": "Want to get a sense of pricing first?",
+        "calc_hint_link": "Try the Project Estimator",
+        "calc_hint_post": "— takes under a minute.",
         "steps": {
-            "1": {"title": "Discovery Call", "desc": "We start with a free, no-obligation conversation. I want to understand your business, your data challenges, and what success looks like for you."},
-            "2": {"title": "Scoping & Proposal", "desc": "Based on our discovery call, I prepare a detailed proposal that outlines exactly what I'll deliver, how long it will take, and what it will cost."},
-            "3": {"title": "Kickoff", "desc": "Once you approve the proposal, we align on the practical details: system access, communication cadence, and key contacts."},
-            "4": {"title": "Delivery", "desc": "Iterative development with regular progress sharing. No disappearing for weeks — you'll see tangible results at each milestone."},
-            "5": {"title": "Handoff & Training", "desc": "Every engagement includes knowledge transfer so your team understands the solution and can maintain it independently."},
-            "6": {"title": "Ongoing Support", "desc": "After handoff, I'm still available — whether you need a monthly retainer, ad-hoc help, or quarterly reviews."}
+            "1": {
+                "title": "Discovery Call",
+                "desc": "We start with a free, no-obligation conversation. I want to understand your business, your data challenges, and what success looks like for you. This call typically lasts 30-45 minutes and helps us both decide if there's a good fit.",
+                "details": [
+                    "Understand your current data landscape",
+                    "Identify pain points and opportunities",
+                    "Discuss high-level goals and constraints",
+                    "Answer any questions about my approach"
+                ]
+            },
+            "2": {
+                "title": "Scoping & Proposal",
+                "desc": "Based on our discovery call, I prepare a detailed proposal that outlines exactly what I'll deliver, how long it will take, and what it will cost. No surprises, no hidden fees. You'll know exactly what you're getting before we start.",
+                "details": [
+                    "Detailed scope of work with deliverables",
+                    "Realistic timeline with milestones",
+                    "Transparent pricing (fixed or time-based)",
+                    "Technical approach and tool selection"
+                ]
+            },
+            "3": {
+                "title": "Kickoff",
+                "desc": "Once you approve the proposal, we align on the practical details. I'll need access to your systems and data, and we'll agree on how we communicate, how often we check in, and who the key contacts are on your side.",
+                "details": [
+                    "Set up system access and environments",
+                    "Agree on communication cadence (weekly calls, Slack, email)",
+                    "Identify stakeholders and decision-makers",
+                    "Confirm the project timeline"
+                ]
+            },
+            "4": {
+                "title": "Delivery",
+                "desc": "This is where the work happens. I build iteratively, sharing progress regularly so you can give feedback early and often. No disappearing for weeks — you'll see tangible results at each milestone and can steer the direction as needed.",
+                "details": [
+                    "Iterative development with regular demos",
+                    "Weekly progress updates and check-ins",
+                    "Early feedback loops to avoid rework",
+                    "Documentation created alongside the solution"
+                ]
+            },
+            "5": {
+                "title": "Handoff & Training",
+                "desc": "I don't just build and walk away. Every engagement includes knowledge transfer so your team understands the solution and can maintain it independently. You'll receive documentation, a walkthrough session, and hands-on training as needed.",
+                "details": [
+                    "Comprehensive documentation of the solution",
+                    "Live walkthrough and Q&A sessions",
+                    "Hands-on training for your team",
+                    "Deployment to production with validation"
+                ]
+            },
+            "6": {
+                "title": "Ongoing Support",
+                "desc": "After handoff, I'm still available. Whether you need a monthly retainer for continuous optimization, ad-hoc help when something breaks, or quarterly reviews to plan next steps — I'm here for the long term.",
+                "details": [
+                    "Optional monthly support retainer (from CHF 500/month)",
+                    "Performance monitoring and optimization",
+                    "Quarterly strategic reviews",
+                    "Priority support for urgent issues"
+                ]
+            }
         }
     },
     "contact_page": {
         "title": "Contact Form",
+        "page_title": "Let's Talk",
+        "lead_text": "Have a project in mind or want to explore how I can help? Fill out the form and I'll get back to you within 24 hours.",
+        "label_email": "Email",
+        "label_location": "Location",
+        "location_value": "Luzern, Switzerland",
+        "label_response_time": "Response time",
+        "response_time_value": "Usually within 24 hours",
+        "schedule_pre": "Prefer to schedule directly?",
+        "schedule_link": "See how I work",
         "firstname": "First Name",
         "lastname": "Last Name",
         "country": "Country",
@@ -55,7 +435,8 @@
         "placeholder_lastname": "Your last name..",
         "placeholder_country": "Your country..",
         "placeholder_email": "Your e-mail..",
-        "placeholder_message": "Write something.."
+        "placeholder_message": "Write something..",
+        "honeypot_label": "Website (leave blank)"
     },
     "footer": {
         "consulting_desc": "Technology Consultant specializing in Microsoft Fabric, Power BI, and data platform strategy.",
@@ -70,20 +451,217 @@
     },
     "calculator": {
         "title": "Project Estimator",
-        "intro": "Answer 5 quick questions to get a ballpark estimate for your project."
+        "intro_title": "Project Estimator",
+        "intro_text": "Answer 5 quick questions to get a ballpark estimate for your project. This is a rough guide — every project is unique, and I'll provide a detailed quote after our initial conversation.",
+        "intro": "Answer 5 quick questions to get a ballpark estimate for your project.",
+        "noscript_title": "JavaScript Required",
+        "noscript_text": "The interactive estimator needs JavaScript to walk through the questions. For a custom estimate, get in touch directly — I'll reply within 24 hours.",
+        "noscript_cta": "Contact Me Directly",
+        "back": "← Back",
+        "questions": {
+            "type": "What type of project are you looking for?",
+            "sources": "How many data sources are involved?",
+            "users": "How many people will use the solution?",
+            "timeline": "What's your timeline?",
+            "support": "Will you need ongoing support after delivery?"
+        },
+        "options": {
+            "type_powerbi": "Power BI Dashboard / Report",
+            "type_fabric": "Microsoft Fabric Implementation",
+            "type_warehouse": "Data Warehouse / Lakehouse Design",
+            "type_training": "Training & Workshops",
+            "type_other": "Other / Not Sure",
+            "sources_few": "1-2 sources",
+            "sources_some": "3-5 sources",
+            "sources_many": "6 or more sources",
+            "users_small": "Fewer than 10",
+            "users_medium": "10-50 users",
+            "users_large": "More than 50",
+            "timeline_flexible": "Flexible / No rush",
+            "timeline_soon": "Within 3 months",
+            "timeline_urgent": "Urgent (under 4 weeks)",
+            "support_yes": "Yes, monthly retainer",
+            "support_maybe": "Maybe, let's discuss",
+            "support_no": "No, one-time project"
+        },
+        "result_title": "Your Ballpark Estimate",
+        "result_note": "This is a rough estimate based on typical projects of this type and complexity. The final price depends on your specific requirements, which we'd discuss in a free discovery call.",
+        "result_cta": "Book a Free Discovery Call",
+        "result_reset": "Start Over"
     },
     "checklist": {
         "title": "Free Power BI Performance Checklist",
-        "cta": "Download Free PDF"
+        "cta": "Download Free PDF",
+        "intro": "15 actionable checks across data modeling, DAX measures, report design, and deployment to make your Power BI reports faster and more reliable.",
+        "whats_inside": "What's inside:",
+        "name_placeholder": "Your name",
+        "email_placeholder": "Your email",
+        "submit": "Download Free PDF",
+        "privacy_note": "No spam. Your email is only used to deliver the checklist.",
+        "bullets": [
+            "4 data model optimizations that reduce memory usage",
+            "4 DAX best practices for faster calculations",
+            "3 report design rules to cut load times",
+            "4 deployment and refresh checks for reliability"
+        ]
+    },
+    "blog": {
+        "intro": "Practical articles and thought pieces on building modern data platforms, creating impactful reports, and making data work for your business.",
+        "all": "All",
+        "more": "More +",
+        "read_more": "Read More",
+        "no_posts": "No blog posts yet. Check back soon!",
+        "no_posts_tag_pre": "No posts tagged",
+        "no_posts_tag_link": "View all posts",
+        "read_next": "Read Next",
+        "back_to_blog": "← Back to Blog",
+        "lead_title": "Ready to Implement This?",
+        "lead_text": "Get a ballpark estimate for your project in under a minute. No commitment required.",
+        "lead_cta": "Estimate Your Project"
+    },
+    "thank_you": {
+        "title": "Thank You",
+        "text": "Your message has been received. I'll get back to you within 24 hours.",
+        "while_you_wait": "While You Wait",
+        "card_case_studies_title": "Project Scenarios",
+        "card_case_studies_desc": "See typical engagement shapes",
+        "card_blog_title": "Blog",
+        "card_blog_desc": "Read my latest insights",
+        "card_calc_title": "Project Estimator",
+        "card_calc_desc": "Get a ballpark estimate",
+        "card_checklist_title": "Free Checklist",
+        "card_checklist_desc": "Power BI Performance PDF"
     },
     "search": {
         "placeholder": "Search the site...",
         "results_for": "Search Results for",
-        "no_results": "No results found."
+        "no_results": "No results found.",
+        "result_singular": "result",
+        "result_plural": "results",
+        "found": "found",
+        "no_results_long": "Try a different search term or browse the pages below.",
+        "page_titles": {
+            "home": "Home",
+            "home_desc": "Homepage with expertise, technologies, certifications",
+            "services": "Services",
+            "services_desc": "Power BI, Fabric, training, support packages",
+            "projects": "Project Scenarios",
+            "projects_desc": "Power BI migration, Fabric lakehouse, automated reporting",
+            "blog": "Blog",
+            "blog_desc": "Insights on Fabric, Power BI, and data strategy",
+            "process": "How I Work",
+            "process_desc": "My 6-step consulting process",
+            "calculator": "Pricing Calculator",
+            "calculator_desc": "Get a ballpark estimate for your project",
+            "checklist": "Free Checklist",
+            "checklist_desc": "Power BI Performance Checklist PDF download",
+            "contact": "Contact",
+            "contact_desc": "Get in touch for a free consultation"
+        }
     },
     "error": {
         "title": "Page Not Found",
         "text": "The page you're looking for doesn't exist or has been moved. Try searching or visit one of the pages below.",
-        "popular": "Popular Pages"
+        "popular": "Popular Pages",
+        "card_home_desc": "Back to the start",
+        "card_services_desc": "Power BI, Fabric & more",
+        "card_blog_desc": "Insights on Fabric & Power BI",
+        "card_contact_desc": "Book a free consultation",
+        "card_projects_desc": "View typical engagement shapes",
+        "card_process_desc": "A structured, transparent process"
+    },
+    "error_500": {
+        "title": "Something Went Wrong",
+        "text": "An unexpected error occurred on our side. I'll look into it — in the meantime, try one of the pages below or get in touch directly.",
+        "useful_pages": "Useful Pages"
+    },
+    "privacy": {
+        "title": "Privacy Policy",
+        "last_updated": "Last updated: April 2026",
+        "sections": [
+            {
+                "h": "1. Overview",
+                "p": "Niklas Clasen Consulting (\"we\", \"us\") is committed to protecting your privacy. This policy explains how we collect, use, and safeguard your personal data in accordance with the Swiss Federal Act on Data Protection (DSG) and the EU General Data Protection Regulation (GDPR)."
+            },
+            {
+                "h": "2. Data Controller",
+                "p_html": "Niklas Clasen<br>Kleinstrasse 9<br>6012 Luzern, Switzerland<br>Email: niklas.clasen@gmail.com"
+            },
+            {
+                "h": "3. Data We Collect",
+                "sub": [
+                    {
+                        "h": "3.1 Contact Form Submissions",
+                        "p": "When you submit the contact form, we collect your first name, last name, country, email address, and message. This data is stored in a local database and used solely to respond to your inquiry."
+                    },
+                    {
+                        "h": "3.2 Lead Magnet Downloads",
+                        "p": "When you download a free resource (e.g., the Power BI Performance Checklist), we collect your name and email address to deliver the resource and for potential follow-up communication."
+                    },
+                    {
+                        "h": "3.3 Cookies",
+                        "p": "We use the following types of cookies:",
+                        "list_html": [
+                            "<strong>Essential cookies:</strong> Required for the website to function (e.g., session management, CSRF protection, language preference, theme preference). These are stored in your browser's localStorage.",
+                            "<strong>Analytics cookies:</strong> With your consent, we may use privacy-friendly analytics to understand site usage. No personal data is shared with third parties."
+                        ],
+                        "p_after": "You can manage your cookie preferences at any time by clearing your browser's localStorage or using the cookie consent banner that appears on your first visit."
+                    }
+                ]
+            },
+            {
+                "h": "4. Legal Basis for Processing",
+                "p": "We process your data based on:",
+                "list_html": [
+                    "<strong>Consent:</strong> When you submit a form or accept analytics cookies.",
+                    "<strong>Legitimate interest:</strong> To operate and improve our website.",
+                    "<strong>Contract performance:</strong> To respond to inquiries about our services."
+                ]
+            },
+            {
+                "h": "5. Data Retention",
+                "p": "Contact form submissions and lead data are retained for up to 24 months or until you request deletion. Cookie consent preferences are stored for 365 days."
+            },
+            {
+                "h": "6. Your Rights",
+                "p": "Under the Swiss DSG and EU GDPR, you have the right to:",
+                "list": [
+                    "Access your personal data",
+                    "Rectify inaccurate data",
+                    "Request deletion of your data",
+                    "Withdraw consent at any time",
+                    "Request data portability",
+                    "Lodge a complaint with the Swiss FDPIC or your local data protection authority"
+                ],
+                "p_after": "To exercise any of these rights, contact us at niklas.clasen@gmail.com."
+            },
+            {
+                "h": "7. Data Security",
+                "p": "We implement appropriate technical and organizational measures to protect your data, including CSRF protection on forms, input validation, and secure database storage."
+            },
+            {
+                "h": "8. Third-Party Sharing",
+                "p": "We do not sell, rent, or share your personal data with third parties for marketing purposes. Data may be shared with service providers (e.g., hosting) only as necessary to operate the website, subject to appropriate data protection agreements."
+            },
+            {
+                "h": "9. International Transfers",
+                "p": "If your data is transferred outside of Switzerland or the EEA, we ensure appropriate safeguards are in place in accordance with applicable data protection laws."
+            },
+            {
+                "h": "10. Changes to This Policy",
+                "p": "We may update this policy periodically. The \"Last updated\" date at the top reflects the most recent revision. Continued use of the website after changes constitutes acceptance of the updated policy."
+            },
+            {
+                "h": "11. Contact",
+                "p_html": "For questions about this privacy policy or your personal data, contact:<br>Niklas Clasen<br>niklas.clasen@gmail.com<br>Kleinstrasse 9, 6012 Luzern, Switzerland"
+            }
+        ]
+    },
+    "cookies": {
+        "title": "Cookie Settings",
+        "text_pre": "This website uses essential cookies to function properly. We also use analytics cookies to understand how you interact with the site.",
+        "text_link": "Learn more in our Privacy Policy",
+        "reject": "Reject All",
+        "accept": "Accept All"
     }
 }

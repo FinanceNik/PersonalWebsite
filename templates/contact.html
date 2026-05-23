@@ -12,26 +12,23 @@
     <div class="contact-page-grid">
         <!-- Left: info panel -->
         <div class="contact-info-panel">
-            <h1 class="hero-title" style="text-align: left; font-size: clamp(1.8rem, 4vw, 2.5rem);">Let's Talk</h1>
-            <p class="hero-text" style="max-width: 400px;">
-                Have a project in mind or want to explore how I can help?
-                Fill out the form and I'll get back to you within 24 hours.
-            </p>
+            <h1 class="hero-title" style="text-align: left; font-size: clamp(1.8rem, 4vw, 2.5rem);">{{ t.contact_page.page_title }}</h1>
+            <p class="hero-text" style="max-width: 400px;">{{ t.contact_page.lead_text }}</p>
             <div class="contact-detail">
-                <strong>Email</strong>
+                <strong>{{ t.contact_page.label_email }}</strong>
                 <a href="mailto:niklas.clasen@gmail.com" style="color: var(--primary-color); text-decoration: none;">niklas.clasen@gmail.com</a>
             </div>
             <div class="contact-detail">
-                <strong>Location</strong>
-                <span>Luzern, Switzerland</span>
+                <strong>{{ t.contact_page.label_location }}</strong>
+                <span>{{ t.contact_page.location_value }}</span>
             </div>
             <div class="contact-detail">
-                <strong>Response time</strong>
-                <span>Usually within 24 hours</span>
+                <strong>{{ t.contact_page.label_response_time }}</strong>
+                <span>{{ t.contact_page.response_time_value }}</span>
             </div>
             <p style="color: var(--secondary-text-color); font-size: var(--size-sm); font-family: var(--font-family-body);">
-                Prefer to schedule directly?
-                <a href="/process" style="color: var(--primary-color);">See how I work</a>
+                {{ t.contact_page.schedule_pre }}
+                <a href="/process" style="color: var(--primary-color);">{{ t.contact_page.schedule_link }}</a>
             </p>
         </div>
 
@@ -48,7 +45,7 @@
                 <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                 {# Honeypot: hidden from real users (and assistive tech), filled by naive bots #}
                 <div aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden">
-                    <label for="website">Website (leave blank)</label>
+                    <label for="website">{{ t.contact_page.honeypot_label }}</label>
                     <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
                 </div>
 

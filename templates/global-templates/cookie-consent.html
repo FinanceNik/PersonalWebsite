@@ -1,13 +1,12 @@
-<div id="cookie-consent-banner" class="cookie-overlay" role="region" aria-label="Cookie consent" style="display:none;">
+<div id="cookie-consent-banner" class="cookie-overlay" role="region" aria-label="{{ t.cookies.title }}" style="display:none;">
     <div class="cookie-card">
-        <h3>Cookie Settings</h3>
-        <p>This website uses essential cookies to function properly. We also use analytics cookies
-            to understand how you interact with the site.
-            <a href="/privacy">Learn more in our Privacy Policy</a>.
+        <h3>{{ t.cookies.title }}</h3>
+        <p>{{ t.cookies.text_pre }}
+            <a href="/privacy">{{ t.cookies.text_link }}</a>.
         </p>
         <div class="cookie-buttons">
-            <button class="cookie-btn-reject" id="cookie-reject">Reject All</button>
-            <button class="button" id="cookie-accept"><span>Accept All</span></button>
+            <button class="cookie-btn-reject" id="cookie-reject">{{ t.cookies.reject }}</button>
+            <button class="button" id="cookie-accept"><span>{{ t.cookies.accept }}</span></button>
         </div>
     </div>
 </div>

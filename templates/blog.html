@@ -1,6 +1,6 @@
 {% extends "base.html" %}
-{% block title %}Blog - Niklas Clasen Consulting{% endblock %}
-{% block meta_description %}Insights and articles on Microsoft Fabric, Power BI best practices, and data platform strategy.{% endblock %}
+{% block title %}{{ t.sections.blog_title }} - Niklas Clasen Consulting{% endblock %}
+{% block meta_description %}{{ t.sections.blog_subtitle }}{% endblock %}
 
 {% block content %}
 <div>
@@ -9,10 +9,7 @@
             <div class="modular-container">
                 <h1 class="hero-title">{{ t.sections.blog_title }}</h1>
                 <p class="hero-subtitle">{{ t.sections.blog_subtitle }}</p>
-                <p class="hero-text">
-                    Practical articles and thought pieces on building modern data platforms,
-                    creating impactful reports, and making data work for your business.
-                </p>
+                <p class="hero-text">{{ t.blog.intro }}</p>
                 <div class="blob"></div>
             </div>
         </div>
@@ -25,13 +22,13 @@
     <!-- Tag filter pills (max 5 visible, rest in dropdown) -->
     {% if all_tags %}
     <div class="tag-filters">
-        <a href="/blog" class="tag-pill {{ 'tag-pill--active' if not active_tag }}">All</a>
+        <a href="/blog" class="tag-pill {{ 'tag-pill--active' if not active_tag }}">{{ t.blog.all }}</a>
         {% for tag in all_tags[:4] %}
         <a href="/blog?tag={{ tag }}" class="tag-pill {{ 'tag-pill--active' if active_tag == tag }}">{{ tag }}</a>
         {% endfor %}
         {% if all_tags|length > 4 %}
         <div class="tag-more-wrap">
-            <button class="tag-pill tag-more-btn" onclick="this.parentElement.classList.toggle('open')">More +</button>
+            <button class="tag-pill tag-more-btn" onclick="this.parentElement.classList.toggle('open')">{{ t.blog.more }}</button>
             <div class="tag-more-dropdown">
                 {% for tag in all_tags[4:] %}
                 <a href="/blog?tag={{ tag }}" class="tag-pill {{ 'tag-pill--active' if active_tag == tag }}">{{ tag }}</a>
@@ -55,15 +52,15 @@
             </div>
             {% endif %}
             <p class="blog-summary">{{ post.summary }}</p>
-            <a href="/blog/{{ post.slug }}" class="button"><span>Read More</span></a>
+            <a href="/blog/{{ post.slug }}" class="button"><span>{{ t.blog.read_more }}</span></a>
         </div>
         {% endfor %}
     {% else %}
         <p style="text-align: center; color: var(--secondary-text-color);">
             {% if active_tag %}
-                No posts tagged "{{ active_tag }}". <a href="/blog" style="color: var(--primary-color);">View all posts</a>
+                {{ t.blog.no_posts_tag_pre }} "{{ active_tag }}". <a href="/blog" style="color: var(--primary-color);">{{ t.blog.no_posts_tag_link }}</a>
             {% else %}
-                No blog posts yet. Check back soon!
+                {{ t.blog.no_posts }}
             {% endif %}
         </p>
     {% endif %}

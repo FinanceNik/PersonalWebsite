@@ -1,6 +1,6 @@
 {% extends "base.html" %}
-{% block title %}Services - Niklas Clasen Consulting{% endblock %}
-{% block meta_description %}Expert Microsoft Fabric and Power BI consulting services including dashboard development, Fabric implementation, data warehouse design, and training.{% endblock %}
+{% block title %}{{ t.services_page.title }} - Niklas Clasen Consulting{% endblock %}
+{% block meta_description %}{{ t.services_page.text }}{% endblock %}
 {% block extra_head %}
 <script src="{{ url_for('static', filename='js_components/click-reveal.js') }}" defer></script>
 {% endblock %}
@@ -10,259 +10,78 @@
     <div class="container">
         <div class="modular-container-wrapper hero-gradient-purple">
             <div class="modular-container">
-                <h1 class="hero-title">Services</h1>
-                <p class="hero-subtitle">Expert Microsoft Fabric & Power BI Consulting</p>
-                <p class="hero-text">
-                    From strategy to implementation, I provide end-to-end consulting services
-                    that help your organization make the most of the Microsoft data platform.
-                </p>
+                <h1 class="hero-title">{{ t.services_page.title }}</h1>
+                <p class="hero-subtitle">{{ t.services_page.subtitle }}</p>
+                <p class="hero-text">{{ t.services_page.text }}</p>
                 <div class="blob"></div>
-                <a aria-label="Get in contact" href="/contact"
+                <a aria-label="{{ t.hero.cta_primary }}" href="/contact"
                    class="button"><span>{{ t.hero.cta_primary }}</span></a>
-                <a aria-label="Estimate your project" href="/calculator"
-                   class="button-secondary"><span>Estimate Your Project</span></a>
+                <a aria-label="{{ t.services_page.cta_estimate }}" href="/calculator"
+                   class="button-secondary"><span>{{ t.services_page.cta_estimate }}</span></a>
             </div>
         </div>
     </div>
 </div>
 
 <div class="section"></div>
+{# Loop the six service cards. Alternates between -one and -two layout containers. #}
+{% set service_order = [
+    ('powerbi_dev',       'one'),
+    ('fabric_impl',       'two'),
+    ('warehouse_design',  'two'),
+    ('training',          'one'),
+    ('support',           'one'),
+    ('custom',            'two')
+] %}
+{% for row_start in range(0, service_order|length, 2) %}
 <div class="container">
     <div class="modular-container-wrapper">
         <div class="modular-container-buffer" style="width: 7%;"></div>
-
-        <div class="modular-container-services-one">
+        {% for key, layout in service_order[row_start:row_start+2] %}
+        {% set item = t.services_page.packages[key] %}
+        <div class="modular-container-services-{{ layout }}">
             <div style="margin: 10px;">
-                <h2 class="service-card-type">Power BI Report & Dashboard Development</h2>
-                <p class="service-card-header">Starting at CHF 2,000</p>
-                <p class="service-card-text">Turn your raw data into interactive, insightful Power BI reports
-                    and dashboards. I design solutions that empower your team with real-time
-                    visibility into the metrics that matter most.
-                </p>
+                <h2 class="service-card-type">{{ item.type }}</h2>
+                <p class="service-card-header">{{ item.price }}</p>
+                <p class="service-card-text">{{ item.text }}</p>
                 <ul class="service-list">
-                    <li class="service-list-item">Custom report design and development</li>
-                    <li class="service-list-item">Interactive dashboards with drill-through navigation</li>
-                    <li class="service-list-item">Data model optimization and DAX measures</li>
-                    <li class="service-list-item">Row-level security and access management</li>
-                    <li class="service-list-item">Deployment, sharing, and workspace setup</li>
+                    {% for li in item.list %}
+                    <li class="service-list-item">{{ li }}</li>
+                    {% endfor %}
                 </ul>
-                <a aria-label="Secure your package now!" href="/contact" class="secure-package-link">Secure your package
-                    now!</a>
+                <a aria-label="{{ t.services_page.secure_package }}" href="/contact" class="secure-package-link">{{ t.services_page.secure_package }}</a>
             </div>
         </div>
-
-        <div class="modular-container-services-two">
-            <div style="margin: 10px;">
-                <h2 class="service-card-type">Microsoft Fabric Implementation</h2>
-                <p class="service-card-header">Individual Pricing</p>
-                <p class="service-card-text">Adopt Microsoft Fabric with a structured, proven approach. I guide
-                    your organization through the full implementation -- from capacity planning
-                    to production deployment of Lakehouses and Warehouses.
-                </p>
-                <ul class="service-list">
-                    <li class="service-list-item">Fabric capacity planning and workspace architecture</li>
-                    <li class="service-list-item">OneLake and Lakehouse configuration</li>
-                    <li class="service-list-item">Data pipeline and Dataflow development</li>
-                    <li class="service-list-item">Notebook integration for advanced analytics</li>
-                    <li class="service-list-item">Migration strategy from legacy platforms</li>
-                </ul>
-                <a aria-label="Secure your package now!" href="/contact" class="secure-package-link">Secure your package
-                    now!</a>
-            </div>
-        </div>
+        {% endfor %}
         <div class="modular-container-buffer" style="width: 7%;"></div>
     </div>
 </div>
-
-<div class="container">
-    <div class="modular-container-wrapper">
-        <div class="modular-container-buffer" style="width: 7%;"></div>
-
-        <div class="modular-container-services-two">
-            <div style="margin: 10px;">
-                <h2 class="service-card-type">Data Warehouse & Lakehouse Design</h2>
-                <p class="service-card-header">Individual Pricing</p>
-                <p class="service-card-text">Build a solid data foundation with a well-architected warehouse
-                    or lakehouse. I design schemas, ETL processes, and governance frameworks
-                    that scale with your business.
-                </p>
-                <ul class="service-list">
-                    <li class="service-list-item">Dimensional modeling and schema design</li>
-                    <li class="service-list-item">ETL/ELT pipeline development</li>
-                    <li class="service-list-item">Data quality and validation frameworks</li>
-                    <li class="service-list-item">Performance tuning and query optimization</li>
-                    <li class="service-list-item">Migration planning from legacy systems</li>
-                </ul>
-                <a aria-label="Secure your package now!" href="/contact" class="secure-package-link">Secure your package
-                    now!</a>
-            </div>
-        </div>
-
-        <div class="modular-container-services-one">
-            <div style="margin: 10px;">
-                <h2 class="service-card-type">Power BI Training & Workshops</h2>
-                <p class="service-card-header">Starting at CHF 1,500</p>
-                <p class="service-card-text">Enable your team to build and maintain their own reports with
-                    confidence. I deliver hands-on training programs tailored to your data,
-                    your tools, and your team's skill level.
-                </p>
-                <ul class="service-list">
-                    <li class="service-list-item">Beginner to advanced training tracks</li>
-                    <li class="service-list-item">Hands-on exercises with your real data</li>
-                    <li class="service-list-item">DAX, Power Query, and data modeling deep dives</li>
-                    <li class="service-list-item">Best practices and governance guidelines</li>
-                    <li class="service-list-item">Post-training support and Q&A sessions</li>
-                </ul>
-                <a aria-label="Secure your package now!" href="/contact" class="secure-package-link">Secure your package
-                    now!</a>
-            </div>
-        </div>
-        <div class="modular-container-buffer" style="width: 7%;"></div>
-    </div>
-</div>
-
-<div class="container">
-    <div class="modular-container-wrapper">
-        <div class="modular-container-buffer" style="width: 7%;"></div>
-
-        <div class="modular-container-services-one">
-            <div style="margin: 10px;">
-                <h2 class="service-card-type">Ongoing Support & Maintenance</h2>
-                <p class="service-card-header">Starting at CHF 500/month</p>
-                <p class="service-card-text">Keep your data platform running smoothly with a dedicated
-                    support retainer. I provide proactive monitoring, regular maintenance,
-                    and priority issue resolution.
-                </p>
-                <ul class="service-list">
-                    <li class="service-list-item">Report and pipeline monitoring</li>
-                    <li class="service-list-item">Performance tuning and optimization</li>
-                    <li class="service-list-item">Bug fixes and feature enhancements</li>
-                    <li class="service-list-item">Quarterly review and recommendations</li>
-                    <li class="service-list-item">Priority support with guaranteed response times</li>
-                </ul>
-                <a aria-label="Secure your package now!" href="/contact" class="secure-package-link">Secure your package
-                    now!</a>
-            </div>
-        </div>
-
-        <div class="modular-container-services-two">
-            <div style="margin: 10px;">
-                <h2 class="service-card-type">Custom Project Ideas</h2>
-                <p class="service-card-header">Individual Pricing</p>
-                <p class="service-card-text">Have a unique challenge or idea? I love working on bespoke
-                    data projects. Let's discuss your vision and build a tailored
-                    solution together.
-                </p>
-                <ul class="service-list">
-                    <li class="service-list-item">Consultation and project scoping</li>
-                    <li class="service-list-item">Custom development and integration</li>
-                    <li class="service-list-item">Proof of concept and prototyping</li>
-                    <li class="service-list-item">Testing, validation, and deployment</li>
-                    <li class="service-list-item">Post-launch support and knowledge transfer</li>
-                </ul>
-                <a aria-label="Secure your package now!" href="/contact" class="secure-package-link">Secure your package
-                    now!</a>
-            </div>
-        </div>
-        <div class="modular-container-buffer" style="width: 7%;"></div>
-    </div>
-</div>
+{% endfor %}
 
 <div class="section"></div>
 <div class="container">
     <div class="lead-banner">
-        <h2>Not sure what you need?</h2>
-        <p>Answer 5 quick questions and get a ballpark estimate for your project in under a minute.</p>
-        <a href="/calculator" class="button"><span>Get a Ballpark Estimate</span></a>
+        <h2>{{ t.services_page.calc_banner_title }}</h2>
+        <p>{{ t.services_page.calc_banner_text }}</p>
+        <a href="/calculator" class="button"><span>{{ t.services_page.calc_banner_cta }}</span></a>
     </div>
 </div>
 
 <div class="section"></div>
 <div class="container">
     <div class="faq">
-        <h2 class="section-header">Frequently Asked Questions</h2>
+        <h2 class="section-header">{{ t.sections.faq }}</h2>
         <hr>
+        <br>
         <div class="accordion">
+            {% for item in t.services_page.faq %}
             <div class="question">
-                <h3>How do I engage your consulting services?</h3>
+                <h3>{{ item.q }}</h3>
                 <div class="answer">
-                    <p>Simply fill out the contact form on my website or send me an email. I'll schedule a free
-                        initial consultation to understand your requirements, and then provide a tailored proposal
-                        with scope, timeline, and pricing.</p>
+                    <p>{{ item.a }}</p>
                 </div>
             </div>
-            <div class="question">
-                <h3>What industries do you work with?</h3>
-                <div class="answer">
-                    <p>I work across a wide range of industries including financial services, retail, manufacturing,
-                        healthcare, and logistics. The principles of good data architecture and reporting apply
-                        universally, and I adapt my approach to each industry's specific needs and regulations.</p>
-                </div>
-            </div>
-            <div class="question">
-                <h3>What tools and technologies do you specialize in?</h3>
-                <div class="answer">
-                    <p>My core specializations are Microsoft Fabric and Power BI. I'm also experienced with
-                        Azure Data Factory, Azure Synapse Analytics, SQL Server, Python, and the broader
-                        Microsoft data stack. I choose the right tools based on your specific requirements.</p>
-                </div>
-            </div>
-            <div class="question">
-                <h3>Do you offer remote consulting?</h3>
-                <div class="answer">
-                    <p>Yes, I work with clients both on-site and remotely. Most of my engagements are conducted
-                        remotely using screen sharing and collaboration tools, though I'm available for on-site
-                        workshops and meetings in the Luzern/Zurich area and can travel as needed.</p>
-                </div>
-            </div>
-            <div class="question">
-                <h3>What is a typical project timeline?</h3>
-                <div class="answer">
-                    <p>Timelines vary based on project complexity. A focused Power BI dashboard project typically
-                        takes 2-4 weeks. A full Microsoft Fabric implementation can range from 1-3 months.
-                        I provide detailed timelines during our initial scoping conversation.</p>
-                </div>
-            </div>
-            <div class="question">
-                <h3>Do you provide training and knowledge transfer?</h3>
-                <div class="answer">
-                    <p>Absolutely. Knowledge transfer is a key part of every engagement. I believe in empowering
-                        your team to maintain and extend the solutions I build. I also offer dedicated training
-                        workshops as a standalone service.</p>
-                </div>
-            </div>
-            <div class="question">
-                <h3>How do you ensure data security and compliance?</h3>
-                <div class="answer">
-                    <p>Data security is a top priority. I implement row-level security, follow the principle of
-                        least privilege, and ensure all solutions comply with relevant regulations such as GDPR.
-                        I can provide a detailed data protection plan tailored to your project.</p>
-                </div>
-            </div>
-            <div class="question">
-                <h3>Can you work with our existing Power BI reports?</h3>
-                <div class="answer">
-                    <p>Yes. I frequently help organizations optimize, refactor, or extend existing Power BI
-                        deployments. Whether you need performance improvements, a redesign, or migration to
-                        a new data model, I can work with what you already have.</p>
-                </div>
-            </div>
-            <div class="question">
-                <h3>What is your pricing model?</h3>
-                <div class="answer">
-                    <p>I offer both fixed-price project engagements and time-based consulting rates. Fixed pricing
-                        works well for clearly scoped projects, while hourly or daily rates are better for advisory
-                        work and ongoing support. I provide transparent quotes after our initial consultation.</p>
-                </div>
-            </div>
-            <div class="question">
-                <h3>Do you offer ongoing support contracts?</h3>
-                <div class="answer">
-                    <p>Yes. I offer monthly retainer packages starting at CHF 500/month that include monitoring,
-                        maintenance, bug fixes, and priority support. This ensures your data platform stays
-                        healthy and evolves with your business needs.</p>
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </div>
 </div>

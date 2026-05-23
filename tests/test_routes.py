@@ -503,3 +503,49 @@ def test_translations_cache_concurrent_reads():
     for t in threads: t.join()
     assert not errors
     assert len(set(results)) == 1
+
+
+# --- i18n: German render coverage --------------------------------------------
+
+@pytest.mark.parametrize('path,german_phrase', [
+    ('/',          'Meine Expertise'),
+    ('/services',  'Dienstleistungen'),
+    ('/projects',  'Projektszenarien'),
+    ('/process',   'Mein Arbeitsprozess'),
+    ('/blog',      'Einblicke'),
+    ('/calculator','Projekt-Schätzer'),
+    ('/checklist', 'Performance Checkliste'),
+    ('/contact',   'Sprechen wir'),
+    ('/privacy',   'Datenschutzerklärung'),
+    ('/thank-you', 'Vielen Dank'),
+    ('/projects/powerbi-migration', 'Eingesetzte Technologien'),
+    ('/projects/fabric-lakehouse',  'Beispielszenario'),
+    ('/projects/automated-reporting','Typische Wirkung'),
+])
+def test_pages_render_in_german(client, path, german_phrase):
+    """When ?lang=de is set, the German strings should appear in the response."""
+    resp = client.get(f'{path}?lang=de')
+    assert resp.status_code == 200, f'{path}?lang=de returned {resp.status_code}'
+    body = resp.data.decode('utf-8')
+    assert german_phrase in body, (
+        f'expected "{german_phrase}" on {path}?lang=de; first 500 chars:\n{body[:500]}'
+    )
+
+
+def test_de_404_uses_translated_strings(client):
+    resp = client.get('/nope?lang=de')
+    assert resp.status_code == 404
+    assert 'Seite nicht gefunden' in resp.data.decode('utf-8')
+
+
+def test_de_500_template_has_translated_copy(app):
+    """500 template should resolve t.error_500.title to the German string."""
+    import app as flask_app_module
+    from flask import g
+    with app.test_request_context():
+        g.lang = 'de'
+        g.t = flask_app_module.load_translations('de')
+        from flask import render_template
+        html = render_template('500.html')
+    assert 'Etwas ist schief gelaufen' in html
+    assert 'Something Went Wrong' not in html

@@ -1,6 +1,6 @@
 {% extends "base.html" %}
-{% block title %}Pricing Calculator - Niklas Clasen Consulting{% endblock %}
-{% block meta_description %}Get a ballpark estimate for your Power BI, Microsoft Fabric, or data platform project in under a minute.{% endblock %}
+{% block title %}{{ t.calculator.title }} - Niklas Clasen Consulting{% endblock %}
+{% block meta_description %}{{ t.calculator.intro }}{% endblock %}
 {% block extra_head %}
 <script src="{{ url_for('static', filename='js_components/calculator.js') }}" defer></script>
 {% endblock %}
@@ -9,11 +9,10 @@
 <div class="section"></div>
 
 <div class="container">
-    <h1 class="hero-title" style="text-align: center;">Project Estimator</h1>
+    <h1 class="hero-title" style="text-align: center;">{{ t.calculator.intro_title }}</h1>
+    <br>
     <p class="hero-text" style="text-align: center; max-width: 600px; margin: 0 auto;">
-        Answer 5 quick questions to get a ballpark estimate for your project.
-        This is a rough guide -- every project is unique, and I'll provide a detailed
-        quote after our initial conversation.
+        {{ t.calculator.intro_text }}
     </p>
 </div>
 
@@ -21,83 +20,78 @@
 
 <div class="container">
     <div class="calc-noscript lead-banner">
-        <h2>JavaScript Required</h2>
-        <p>The interactive estimator needs JavaScript to walk through the questions.
-            For a custom estimate, get in touch directly &mdash; I'll reply within 24 hours.</p>
-        <a href="/contact" class="button"><span>Contact Me Directly</span></a>
+        <h2>{{ t.calculator.noscript_title }}</h2>
+        <p>{{ t.calculator.noscript_text }}</p>
+        <a href="/contact" class="button"><span>{{ t.calculator.noscript_cta }}</span></a>
     </div>
     <div class="calc-container" id="calculator">
         <div class="calc-progress" id="calc-progress"></div>
 
         <!-- Step 1: Project Type -->
         <div class="calc-step active" data-step="0">
-            <h2 class="calc-question">What type of project are you looking for?</h2>
+            <h2 class="calc-question">{{ t.calculator.questions.type }}</h2>
             <div class="calc-options">
-                <button class="calc-option" data-key="type" data-value="powerbi" data-base="3000">Power BI Dashboard / Report</button>
-                <button class="calc-option" data-key="type" data-value="fabric" data-base="8000">Microsoft Fabric Implementation</button>
-                <button class="calc-option" data-key="type" data-value="warehouse" data-base="6000">Data Warehouse / Lakehouse Design</button>
-                <button class="calc-option" data-key="type" data-value="training" data-base="1500">Training & Workshops</button>
-                <button class="calc-option" data-key="type" data-value="other" data-base="4000">Other / Not Sure</button>
+                <button class="calc-option" data-key="type" data-value="powerbi" data-base="3000">{{ t.calculator.options.type_powerbi }}</button>
+                <button class="calc-option" data-key="type" data-value="fabric" data-base="8000">{{ t.calculator.options.type_fabric }}</button>
+                <button class="calc-option" data-key="type" data-value="warehouse" data-base="6000">{{ t.calculator.options.type_warehouse }}</button>
+                <button class="calc-option" data-key="type" data-value="training" data-base="1500">{{ t.calculator.options.type_training }}</button>
+                <button class="calc-option" data-key="type" data-value="other" data-base="4000">{{ t.calculator.options.type_other }}</button>
             </div>
         </div>
 
         <!-- Step 2: Data Sources -->
         <div class="calc-step" data-step="1">
-            <h2 class="calc-question">How many data sources are involved?</h2>
+            <h2 class="calc-question">{{ t.calculator.questions.sources }}</h2>
             <div class="calc-options">
-                <button class="calc-option" data-key="sources" data-value="few" data-mult="1.0">1-2 sources</button>
-                <button class="calc-option" data-key="sources" data-value="some" data-mult="1.4">3-5 sources</button>
-                <button class="calc-option" data-key="sources" data-value="many" data-mult="1.8">6 or more sources</button>
+                <button class="calc-option" data-key="sources" data-value="few" data-mult="1.0">{{ t.calculator.options.sources_few }}</button>
+                <button class="calc-option" data-key="sources" data-value="some" data-mult="1.4">{{ t.calculator.options.sources_some }}</button>
+                <button class="calc-option" data-key="sources" data-value="many" data-mult="1.8">{{ t.calculator.options.sources_many }}</button>
             </div>
-            <button class="calc-back-btn" onclick="calcBack()">&larr; Back</button>
+            <button class="calc-back-btn" onclick="calcBack()">{{ t.calculator.back }}</button>
         </div>
 
         <!-- Step 3: Users -->
         <div class="calc-step" data-step="2">
-            <h2 class="calc-question">How many people will use the solution?</h2>
+            <h2 class="calc-question">{{ t.calculator.questions.users }}</h2>
             <div class="calc-options">
-                <button class="calc-option" data-key="users" data-value="small" data-mult="1.0">Fewer than 10</button>
-                <button class="calc-option" data-key="users" data-value="medium" data-mult="1.3">10-50 users</button>
-                <button class="calc-option" data-key="users" data-value="large" data-mult="1.6">More than 50</button>
+                <button class="calc-option" data-key="users" data-value="small" data-mult="1.0">{{ t.calculator.options.users_small }}</button>
+                <button class="calc-option" data-key="users" data-value="medium" data-mult="1.3">{{ t.calculator.options.users_medium }}</button>
+                <button class="calc-option" data-key="users" data-value="large" data-mult="1.6">{{ t.calculator.options.users_large }}</button>
             </div>
-            <button class="calc-back-btn" onclick="calcBack()">&larr; Back</button>
+            <button class="calc-back-btn" onclick="calcBack()">{{ t.calculator.back }}</button>
         </div>
 
         <!-- Step 4: Timeline -->
         <div class="calc-step" data-step="3">
-            <h2 class="calc-question">What's your timeline?</h2>
+            <h2 class="calc-question">{{ t.calculator.questions.timeline }}</h2>
             <div class="calc-options">
-                <button class="calc-option" data-key="timeline" data-value="flexible" data-mult="1.0">Flexible / No rush</button>
-                <button class="calc-option" data-key="timeline" data-value="soon" data-mult="1.15">Within 3 months</button>
-                <button class="calc-option" data-key="timeline" data-value="urgent" data-mult="1.3">Urgent (under 4 weeks)</button>
+                <button class="calc-option" data-key="timeline" data-value="flexible" data-mult="1.0">{{ t.calculator.options.timeline_flexible }}</button>
+                <button class="calc-option" data-key="timeline" data-value="soon" data-mult="1.15">{{ t.calculator.options.timeline_soon }}</button>
+                <button class="calc-option" data-key="timeline" data-value="urgent" data-mult="1.3">{{ t.calculator.options.timeline_urgent }}</button>
             </div>
-            <button class="calc-back-btn" onclick="calcBack()">&larr; Back</button>
+            <button class="calc-back-btn" onclick="calcBack()">{{ t.calculator.back }}</button>
         </div>
 
         <!-- Step 5: Ongoing Support -->
         <div class="calc-step" data-step="4">
-            <h2 class="calc-question">Will you need ongoing support after delivery?</h2>
+            <h2 class="calc-question">{{ t.calculator.questions.support }}</h2>
             <div class="calc-options">
-                <button class="calc-option" data-key="support" data-value="yes" data-mult="1.2">Yes, monthly retainer</button>
-                <button class="calc-option" data-key="support" data-value="maybe" data-mult="1.1">Maybe, let's discuss</button>
-                <button class="calc-option" data-key="support" data-value="no" data-mult="1.0">No, one-time project</button>
+                <button class="calc-option" data-key="support" data-value="yes" data-mult="1.2">{{ t.calculator.options.support_yes }}</button>
+                <button class="calc-option" data-key="support" data-value="maybe" data-mult="1.1">{{ t.calculator.options.support_maybe }}</button>
+                <button class="calc-option" data-key="support" data-value="no" data-mult="1.0">{{ t.calculator.options.support_no }}</button>
             </div>
-            <button class="calc-back-btn" onclick="calcBack()">&larr; Back</button>
+            <button class="calc-back-btn" onclick="calcBack()">{{ t.calculator.back }}</button>
         </div>
 
         <!-- Result -->
         <div class="calc-step" data-step="result" style="display:none;">
             <div class="calc-result" aria-live="polite">
-                <h2>Your Ballpark Estimate</h2>
+                <h2>{{ t.calculator.result_title }}</h2>
                 <div class="calc-result-range" id="calc-result-range"></div>
-                <p class="calc-result-note">
-                    This is a rough estimate based on typical projects of this type and complexity.
-                    The final price depends on your specific requirements, which we'd discuss in a
-                    free discovery call.
-                </p>
-                <a href="/contact" class="button"><span>Book a Free Discovery Call</span></a>
-                
-                <button class="calc-back-btn" onclick="calcReset()">Start Over</button>
+                <p class="calc-result-note">{{ t.calculator.result_note }}</p>
+                <a href="/contact" class="button"><span>{{ t.calculator.result_cta }}</span></a>
+                <br><br>
+                <button class="calc-back-btn" onclick="calcReset()">{{ t.calculator.result_reset }}</button>
             </div>
         </div>
     </div>

@@ -1,36 +1,33 @@
 {% extends "base.html" %}
-{% block title %}Something Went Wrong - Niklas Clasen Consulting{% endblock %}
+{% block title %}{{ t.error_500.title }} - Niklas Clasen Consulting{% endblock %}
 
 {% block content %}
 <div class="section"></div>
 <div class="container">
     <div class="error-page">
         <h1 class="error-code">500</h1>
-        <p class="hero-subtitle">Something Went Wrong</p>
-        <p class="hero-text" style="max-width: 500px; margin: 1rem auto;">
-            An unexpected error occurred on our side. I'll look into it &mdash;
-            in the meantime, try one of the pages below or get in touch directly.
-        </p>
+        <p class="hero-subtitle">{{ t.error_500.title }}</p>
+        <p class="hero-text" style="max-width: 500px; margin: 1rem auto;">{{ t.error_500.text }}</p>
 
         <div class="section"></div>
 
-        <h2 class="section-header" style="font-size: var(--size-xl);">Useful Pages</h2>
+        <h2 class="section-header" style="font-size: var(--size-xl);">{{ t.error_500.useful_pages }}</h2>
         <div class="error-links">
             <a href="/" class="error-link-card">
                 <strong>{{ t.nav.home }}</strong>
-                <span>{{ t.hero.greeting }}</span>
+                <span>{{ t.error.card_home_desc }}</span>
             </a>
             <a href="/services" class="error-link-card">
                 <strong>{{ t.nav.services }}</strong>
-                <span>Power BI, Fabric & more</span>
+                <span>{{ t.error.card_services_desc }}</span>
             </a>
             <a href="/contact" class="error-link-card">
                 <strong>{{ t.nav.contact }}</strong>
-                <span>{{ t.hero.cta_primary }}</span>
+                <span>{{ t.error.card_contact_desc }}</span>
             </a>
             <a href="/blog" class="error-link-card">
                 <strong>{{ t.nav.blog }}</strong>
-                <span>{{ t.sections.blog_subtitle }}</span>
+                <span>{{ t.error.card_blog_desc }}</span>
             </a>
         </div>
     </div>

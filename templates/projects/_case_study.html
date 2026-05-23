@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% set item = t.projects_page.scenarios[slug.replace('-', '_')] %}
+{% set details = t.case_study.details[slug] %}
+{% block title %}{{ item.title }} - Niklas Clasen Consulting{% endblock %}
+{% block meta_description %}{{ item.card_desc }}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="modular-container-wrapper">
+        <div class="modular-container" style="padding: 2rem 0;">
+            <h1 class="hero-title">{{ item.title }}</h1>
+            <p class="hero-subtitle">{{ item.subtitle }}</p>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="scenario-notice">
+        <strong>{{ t.case_study.scenario_notice_lead }}</strong> {{ t.case_study.scenario_notice_text }}
+    </div>
+</div>
+
+<div class="section"></div>
+
+<div class="container">
+    <h2 class="section-header">{{ t.case_study.tech_used }}</h2>
+    <hr>
+    <div class="card-container">
+        {% for card in details.tech %}
+        <div class="card">
+            <h3>{{ card.title }}</h3>
+            <hr class="card-hr">
+            <p>{{ card.desc }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="section"></div>
+
+<div class="container">
+    <h2 class="section-header">{{ t.case_study.challenge }}</h2>
+    <hr>
+    <div class="project-text">
+        <p>{{ details.challenge }}</p>
+    </div>
+</div>
+
+<div class="section"></div>
+
+<div class="container">
+    <h2 class="section-header">{{ t.case_study.approach }}</h2>
+    <hr>
+    <div class="project-text">
+        <p>{{ details.approach }}</p>
+    </div>
+</div>
+
+<div class="section"></div>
+
+<div class="container">
+    <h2 class="section-header">{{ t.case_study.typical_impact }}</h2>
+    <hr>
+    <div class="card-container">
+        {% for card in details.impact %}
+        <div class="card">
+            <h3>{{ card.title }}</h3>
+            <hr class="card-hr">
+            <p>{{ card.desc }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="section"></div>
+
+<div class="container">
+    <div class="lead-banner" style="border-color: var(--accent-color);">
+        <h2>{{ t.case_study.lead_banner_title }}</h2>
+        <p>{{ t.case_study.lead_banner_text }}</p>
+        <a href="/calculator" class="button"><span>{{ t.case_study.lead_banner_cta_primary }}</span></a>
+        <a href="/contact" class="button-secondary"><span>{{ t.case_study.lead_banner_cta_secondary }}</span></a>
+    </div>
+</div>
+
+<div class="section"></div>
+
+<div class="container">
+    {% include 'global-templates/pre-footer.html' %}
+</div>
+{% endblock %}

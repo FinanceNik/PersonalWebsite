@@ -1,22 +1,17 @@
 {% extends "base.html" %}
-{% block title %}Project Scenarios - Niklas Clasen Consulting{% endblock %}
-{% block meta_description %}Sample engagement scenarios for Power BI migrations, Microsoft Fabric implementations, and automated reporting pipelines.{% endblock %}
+{% block title %}{{ t.projects_page.title }} - Niklas Clasen Consulting{% endblock %}
+{% block meta_description %}{{ t.projects_page.text }}{% endblock %}
 
 {% block content %}
 <div>
     <div class="container">
         <div class="modular-container-wrapper hero-gradient-gold">
             <div class="modular-container">
-                <h1 class="hero-title">Project Scenarios</h1>
-                <p class="hero-subtitle">How I structure typical data engagements</p>
-                <p class="hero-text">
-                    The scenarios below are composite engagement shapes, drawn from the kinds
-                    of work I deliver day-to-day. They're not specific past clients &mdash; they
-                    show the structure, technology choices, and typical impact you can expect
-                    when we work together.
-                </p>
+                <h1 class="hero-title">{{ t.projects_page.title }}</h1>
+                <p class="hero-subtitle">{{ t.projects_page.subtitle }}</p>
+                <p class="hero-text">{{ t.projects_page.text }}</p>
                 <div class="blob"></div>
-                <a aria-label="Get in contact" href="/contact"
+                <a aria-label="{{ t.hero.cta_primary }}" href="/contact"
                    class="button"><span>{{ t.hero.cta_primary }}</span></a>
             </div>
         </div>
@@ -27,36 +22,22 @@
 
 <div class="container">
     <div class="card-container">
-        <div class="card case-card case-card--blue">
-            <h2 style="padding: 10px 0px 0px 0px">Enterprise Power BI Migration</h2>
+        {% set cards = [
+            ('powerbi-migration',  'powerbi_migration',  'case-card--blue'),
+            ('fabric-lakehouse',   'fabric_lakehouse',   'case-card--purple'),
+            ('automated-reporting','automated_reporting','case-card--teal')
+        ] %}
+        {% for slug, key, color in cards %}
+        {% set item = t.projects_page.scenarios[key] %}
+        <div class="card case-card {{ color }}">
+            <h2 style="padding: 10px 0px 0px 0px">{{ item.title }}</h2>
             <hr class="card-hr">
-            <p>Consolidating dozens of Excel reports into a centralized Power BI platform.
-                Unifying data from multiple source systems into a cloud warehouse, deploying
-                interactive dashboards, and cutting the time the team spends on manual reporting.</p>
-            <p><strong>Typical industry:</strong> Financial Services</p>
-            <p><strong>Technologies:</strong> Power BI, Azure Synapse, DAX</p>
-            <a href="/projects/powerbi-migration" class="button"><span>View Scenario</span></a>
+            <p>{{ item.card_desc }}</p>
+            <p><strong>{{ t.projects_page.typical_industry }}</strong> {{ item.industry }}</p>
+            <p><strong>{{ t.projects_page.technologies }}</strong> {{ item.tech }}</p>
+            <a href="/projects/{{ slug }}" class="button"><span>{{ t.projects_page.view_scenario }}</span></a>
         </div>
-        <div class="card case-card case-card--purple">
-            <h2 style="padding: 10px 0px 0px 0px">Microsoft Fabric Lakehouse</h2>
-            <hr class="card-hr">
-            <p>Standing up a Fabric Lakehouse architecture for a multi-site retailer.
-                Centralizing data from POS, e-commerce, and CRM into OneLake; PySpark
-                notebooks plus Direct Lake reports for near real-time analytics.</p>
-            <p><strong>Typical industry:</strong> Retail</p>
-            <p><strong>Technologies:</strong> Microsoft Fabric, PySpark, Power BI</p>
-            <a href="/projects/fabric-lakehouse" class="button"><span>View Scenario</span></a>
-        </div>
-        <div class="card case-card case-card--teal">
-            <h2 style="padding: 10px 0px 0px 0px">Automated Reporting Pipeline</h2>
-            <hr class="card-hr">
-            <p>Replacing manual Excel-based KPI tracking with real-time Power BI dashboards,
-                end-to-end automation via Azure Data Factory, and proactive Power Automate alerts
-                that surface quality issues as they appear &mdash; not days later.</p>
-            <p><strong>Typical industry:</strong> Manufacturing</p>
-            <p><strong>Technologies:</strong> Azure Data Factory, Power BI, Power Automate</p>
-            <a href="/projects/automated-reporting" class="button"><span>View Scenario</span></a>
-        </div>
+        {% endfor %}
     </div>
 </div>
 

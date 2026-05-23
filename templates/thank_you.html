@@ -1,34 +1,32 @@
 {% extends "base.html" %}
-{% block title %}Thank You - Niklas Clasen Consulting{% endblock %}
+{% block title %}{{ t.thank_you.title }} - Niklas Clasen Consulting{% endblock %}
 
 {% block content %}
 <div class="section"></div>
 <div class="container">
     <div style="text-align: center; max-width: 600px; margin: 0 auto;">
-        <h1 class="hero-title" style="font-size: clamp(2rem, 5vw, 3rem);">Thank You{% if name %}, {{ name }}{% endif %}!</h1>
-        <p class="hero-text" style="max-width: 500px; margin: 0 auto;">
-            Your message has been received. I'll get back to you within 24 hours.
-        </p>
+        <h1 class="hero-title" style="font-size: clamp(2rem, 5vw, 3rem);">{{ t.thank_you.title }}{% if name %}, {{ name }}{% endif %}!</h1>
+        <p class="hero-text" style="max-width: 500px; margin: 0 auto;">{{ t.thank_you.text }}</p>
 
         <div class="section"></div>
 
-        <h2 class="section-header" style="font-size: var(--size-xl);">While You Wait</h2>
+        <h2 class="section-header" style="font-size: var(--size-xl);">{{ t.thank_you.while_you_wait }}</h2>
         <div class="error-links">
             <a href="/projects" class="error-link-card">
-                <strong>Case Studies</strong>
-                <span>See real project results</span>
+                <strong>{{ t.thank_you.card_case_studies_title }}</strong>
+                <span>{{ t.thank_you.card_case_studies_desc }}</span>
             </a>
             <a href="/blog" class="error-link-card">
-                <strong>Blog</strong>
-                <span>Read my latest insights</span>
+                <strong>{{ t.thank_you.card_blog_title }}</strong>
+                <span>{{ t.thank_you.card_blog_desc }}</span>
             </a>
             <a href="/calculator" class="error-link-card">
-                <strong>Project Estimator</strong>
-                <span>Get a ballpark estimate</span>
+                <strong>{{ t.thank_you.card_calc_title }}</strong>
+                <span>{{ t.thank_you.card_calc_desc }}</span>
             </a>
             <a href="/checklist" class="error-link-card">
-                <strong>Free Checklist</strong>
-                <span>Power BI Performance PDF</span>
+                <strong>{{ t.thank_you.card_checklist_title }}</strong>
+                <span>{{ t.thank_you.card_checklist_desc }}</span>
             </a>
         </div>
     </div>

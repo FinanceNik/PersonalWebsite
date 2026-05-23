@@ -1,22 +1,24 @@
 {% extends "base.html" %}
-{% block title %}Search: {{ query }} - Niklas Clasen Consulting{% endblock %}
+{% block title %}{{ t.search.results_for }}: {{ query }} - Niklas Clasen Consulting{% endblock %}
 
 {% block content %}
 <div class="section"></div>
 <div class="container">
-    <h1 class="hero-title" style="font-size: clamp(1.5rem, 4vw, 2rem);">Search Results for "{{ query }}"</h1>
+    <h1 class="hero-title" style="font-size: clamp(1.5rem, 4vw, 2rem);">{{ t.search.results_for }} "{{ query }}"</h1>
 
     <form class="search-form" action="/search" method="get" style="margin: 1.5rem auto; max-width: 450px;">
         <div class="search-input-wrap">
-            <input type="text" name="q" value="{{ query }}" placeholder="Search the site..." aria-label="Search" class="search-input">
-            <button type="submit" class="search-btn" aria-label="Search">&#8594;</button>
+            <input type="text" name="q" value="{{ query }}" placeholder="{{ t.search.placeholder }}" aria-label="{{ t.search.placeholder }}" class="search-input">
+            <button type="submit" class="search-btn" aria-label="{{ t.search.placeholder }}">&#8594;</button>
         </div>
     </form>
 
     <div class="section"></div>
 
     {% if results %}
-        <p style="color: var(--secondary-text-color); margin-bottom: 1.5rem;">{{ results|length }} result{{ 's' if results|length != 1 }} found</p>
+        <p style="color: var(--secondary-text-color); margin-bottom: 1.5rem;">
+            {{ results|length }} {{ t.search.result_singular if results|length == 1 else t.search.result_plural }} {{ t.search.found }}
+        </p>
         <div class="error-links">
             {% for r in results %}
             <a href="{{ r.url }}" class="error-link-card">
@@ -27,12 +29,12 @@
         </div>
     {% else %}
         <p style="color: var(--secondary-text-color); text-align: center;">
-            No results found for "{{ query }}". Try a different search term or browse the pages below.
+            {{ t.search.no_results }} {{ t.search.no_results_long }}
         </p>
         <div class="error-links">
-            <a href="/services" class="error-link-card"><strong>Services</strong><span>Power BI, Fabric & more</span></a>
-            <a href="/blog" class="error-link-card"><strong>Blog</strong><span>Insights & articles</span></a>
-            <a href="/contact" class="error-link-card"><strong>Contact</strong><span>Get in touch</span></a>
+            <a href="/services" class="error-link-card"><strong>{{ t.nav.services }}</strong><span>{{ t.error.card_services_desc }}</span></a>
+            <a href="/blog" class="error-link-card"><strong>{{ t.nav.blog }}</strong><span>{{ t.error.card_blog_desc }}</span></a>
+            <a href="/contact" class="error-link-card"><strong>{{ t.nav.contact }}</strong><span>{{ t.error.card_contact_desc }}</span></a>
         </div>
     {% endif %}
 </div>

@@ -136,12 +136,10 @@ def inject_translations():
 # Initialize database on startup
 database_helper.create_database()
 
-# Case-study slugs (filename without .html), used by /projects/<slug> route + sitemap.
-_projects_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'templates', 'projects')
-project_slugs = (
-    [f[:-5] for f in os.listdir(_projects_dir) if f.endswith('.html')]
-    if os.path.isdir(_projects_dir) else []
-)
+# Case-study slugs — drive the /projects/<slug> route + sitemap. Kept as a
+# hardcoded list now that all scenarios render from a single shared template
+# (templates/projects/_case_study.html) driven by translations.
+project_slugs = ['powerbi-migration', 'fabric-lakehouse', 'automated-reporting']
 
 
 # --- Blog helpers ---
@@ -261,16 +259,18 @@ def search():
     if not query:
         return redirect(url_for('index'))
 
-    # Simple search across page titles and blog posts
+    # Titles/descriptions pulled from translations so search results are
+    # localized along with the rest of the site.
+    titles = g.t.get('search', {}).get('page_titles', {})
     pages = [
-        {'title': 'Home', 'url': '/', 'desc': 'Homepage with expertise, technologies, certifications'},
-        {'title': 'Services', 'url': '/services', 'desc': 'Power BI, Fabric, training, support packages'},
-        {'title': 'Case Studies', 'url': '/projects', 'desc': 'Power BI migration, Fabric lakehouse, automated reporting'},
-        {'title': 'Blog', 'url': '/blog', 'desc': 'Insights on Fabric, Power BI, and data strategy'},
-        {'title': 'How I Work', 'url': '/process', 'desc': 'My 6-step consulting process'},
-        {'title': 'Pricing Calculator', 'url': '/calculator', 'desc': 'Get a ballpark estimate for your project'},
-        {'title': 'Free Checklist', 'url': '/checklist', 'desc': 'Power BI Performance Checklist PDF download'},
-        {'title': 'Contact', 'url': '/contact', 'desc': 'Get in touch for a free consultation'},
+        {'title': titles.get('home',       'Home'),       'url': '/',           'desc': titles.get('home_desc',       '')},
+        {'title': titles.get('services',   'Services'),   'url': '/services',   'desc': titles.get('services_desc',   '')},
+        {'title': titles.get('projects',   'Projects'),   'url': '/projects',   'desc': titles.get('projects_desc',   '')},
+        {'title': titles.get('blog',       'Blog'),       'url': '/blog',       'desc': titles.get('blog_desc',       '')},
+        {'title': titles.get('process',    'Process'),    'url': '/process',    'desc': titles.get('process_desc',    '')},
+        {'title': titles.get('calculator', 'Calculator'), 'url': '/calculator', 'desc': titles.get('calculator_desc', '')},
+        {'title': titles.get('checklist',  'Checklist'),  'url': '/checklist',  'desc': titles.get('checklist_desc',  '')},
+        {'title': titles.get('contact',    'Contact'),    'url': '/contact',    'desc': titles.get('contact_desc',    '')},
     ]
 
     results = [p for p in pages if query in p['title'].lower() or query in p['desc'].lower()]
@@ -321,7 +321,9 @@ def download_checklist():
 @app.route('/projects/<slug>')
 def project(slug):
     if slug in project_slugs:
-        return render_template(f'projects/{slug}.html')
+        # All three case studies share one template; the slug indexes into
+        # t.case_study.details for the per-scenario tech / challenge / impact.
+        return render_template('projects/_case_study.html', slug=slug)
     return render_template('404.html'), 404
 
 

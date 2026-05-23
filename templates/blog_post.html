@@ -32,8 +32,8 @@
 
 <div class="container">
     <div class="breadcrumb">
-        <a href="/">Home</a> <span>/</span>
-        <a href="/blog">Blog</a> <span>/</span>
+        <a href="/">{{ t.nav.home }}</a> <span>/</span>
+        <a href="/blog">{{ t.nav.blog }}</a> <span>/</span>
         {{ post.title }}
     </div>
     <h1 class="hero-title" style="text-align: left;">{{ post.title }}</h1>
@@ -53,22 +53,22 @@
 
 <div class="container">
     <div class="lead-banner" style="border-color: var(--accent-color);">
-        <h2>Ready to Implement This?</h2>
-        <p>Get a ballpark estimate for your project in under a minute. No commitment required.</p>
-        <a href="/calculator" class="button"><span>Estimate Your Project</span></a>
+        <h2>{{ t.blog.lead_title }}</h2>
+        <p>{{ t.blog.lead_text }}</p>
+        <a href="/calculator" class="button"><span>{{ t.blog.lead_cta }}</span></a>
     </div>
 </div>
 
 <div class="section"></div>
 
 <div class="container">
-    <a href="/blog" class="blog-back-link">&larr; Back to Blog</a>
+    <a href="/blog" class="blog-back-link">{{ t.blog.back_to_blog }}</a>
 </div>
 
 {% if related %}
 <div class="section"></div>
 <div class="container">
-    <h2 class="section-header">Read Next</h2>
+    <h2 class="section-header">{{ t.blog.read_next }}</h2>
     <hr>
     <div class="card-container">
         {% for p in related %}
@@ -77,7 +77,7 @@
             <hr class="card-hr">
             <p class="blog-date">{{ p.date }}</p>
             <p>{{ p.summary }}</p>
-            <a href="/blog/{{ p.slug }}" class="button"><span>Read More</span></a>
+            <a href="/blog/{{ p.slug }}" class="button"><span>{{ t.blog.read_more }}</span></a>
         </div>
         {% endfor %}
     </div>
