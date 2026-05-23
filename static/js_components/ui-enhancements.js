@@ -195,4 +195,63 @@ document.addEventListener('DOMContentLoaded', function () {
             progressBar.style.width = progress + '%';
         }, { passive: true });
     }
+
+    // --- Copy-link button on blog posts ---
+    document.querySelectorAll('.blog-share-copy').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            var url = btn.getAttribute('data-share-url') || window.location.href;
+            var original = btn.textContent;
+            var copied = btn.getAttribute('data-share-copied') || 'Copied!';
+            function showCopied() {
+                btn.textContent = copied;
+                btn.classList.add('blog-share-copy--ok');
+                setTimeout(function () {
+                    btn.textContent = original;
+                    btn.classList.remove('blog-share-copy--ok');
+                }, 1800);
+            }
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(url).then(showCopied).catch(function () {
+                    // Fallback: select via a temp input
+                    var ta = document.createElement('input');
+                    ta.value = url;
+                    document.body.appendChild(ta);
+                    ta.select();
+                    try { document.execCommand('copy'); showCopied(); }
+                    catch (e) { /* shrug */ }
+                    document.body.removeChild(ta);
+                });
+            } else {
+                var ta2 = document.createElement('input');
+                ta2.value = url;
+                document.body.appendChild(ta2);
+                ta2.select();
+                try { document.execCommand('copy'); showCopied(); }
+                catch (e) { /* shrug */ }
+                document.body.removeChild(ta2);
+            }
+        });
+    });
+
+    // --- TOC active-link highlighting (scroll-spy) ---
+    var tocLinks = document.querySelectorAll('.blog-toc a[href^="#"]');
+    if (tocLinks.length) {
+        var headingIds = Array.prototype.map.call(tocLinks, function (a) {
+            return a.getAttribute('href').slice(1);
+        });
+        var headings = headingIds.map(function (id) { return document.getElementById(id); }).filter(Boolean);
+        if (headings.length) {
+            var spy = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (!entry.isIntersecting) return;
+                    var id = entry.target.id;
+                    tocLinks.forEach(function (a) {
+                        a.classList.toggle('blog-toc-link--active',
+                                           a.getAttribute('href') === '#' + id);
+                    });
+                });
+            }, { rootMargin: '0px 0px -65% 0px', threshold: 0 });
+            headings.forEach(function (h) { spy.observe(h); });
+        }
+    }
 });

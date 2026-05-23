@@ -517,7 +517,14 @@
         "back_to_blog": "← Zurück zum Blog",
         "lead_title": "Bereit für die Umsetzung?",
         "lead_text": "Holen Sie sich in unter einer Minute eine grobe Schätzung für Ihr Projekt. Keine Verpflichtung.",
-        "lead_cta": "Projekt schätzen"
+        "lead_cta": "Projekt schätzen",
+        "min_read": "Min. Lesezeit",
+        "toc_heading": "Auf dieser Seite",
+        "share_heading": "Teilen",
+        "share_linkedin": "Auf LinkedIn teilen",
+        "share_x": "Auf X teilen",
+        "share_copy": "Link kopieren",
+        "share_copied": "Kopiert!"
     },
     "thank_you": {
         "title": "Vielen Dank",

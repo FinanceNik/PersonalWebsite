@@ -517,7 +517,14 @@
         "back_to_blog": "← Back to Blog",
         "lead_title": "Ready to Implement This?",
         "lead_text": "Get a ballpark estimate for your project in under a minute. No commitment required.",
-        "lead_cta": "Estimate Your Project"
+        "lead_cta": "Estimate Your Project",
+        "min_read": "min read",
+        "toc_heading": "On this page",
+        "share_heading": "Share",
+        "share_linkedin": "Share on LinkedIn",
+        "share_x": "Share on X",
+        "share_copy": "Copy link",
+        "share_copied": "Copied!"
     },
     "thank_you": {
         "title": "Thank You",

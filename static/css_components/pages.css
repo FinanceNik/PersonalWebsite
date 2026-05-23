@@ -817,3 +817,175 @@ html:not(.js) .calc-noscript {
 .analytics-empty {
     color: var(--secondary-text-color);
 }
+
+/* === Blog post — TOC sidebar, reading time, share buttons === */
+
+.blog-post-meta {
+    display: flex;
+    gap: var(--space-3);
+    align-items: center;
+    color: var(--tertiary-color);
+    font-size: var(--size-sm);
+    font-family: var(--font-family-body);
+    margin-bottom: 0.5rem;
+}
+
+.blog-post-meta .blog-date {
+    margin-bottom: 0;
+}
+
+.blog-meta-sep {
+    opacity: 0.5;
+}
+
+.blog-read-time::before {
+    content: '⏱ ';
+    margin-right: 0.1em;
+    opacity: 0.7;
+}
+
+/* Two-column layout: content + sticky TOC sidebar. Stacks on mobile. */
+.blog-layout {
+    display: block;
+}
+
+/* TOC */
+.blog-toc {
+    display: none;
+}
+
+.blog-toc-title {
+    font-family: var(--font-family-header);
+    font-weight: 700;
+    font-size: var(--size-sm);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    color: var(--primary-text-color);
+    margin-bottom: var(--space-3);
+}
+
+.blog-toc ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.blog-toc li {
+    margin: 0;
+    padding: 0;
+}
+
+.blog-toc-l2 { padding-left: 0; }
+.blog-toc-l3 { padding-left: var(--space-4); }
+.blog-toc-l4 { padding-left: var(--space-6); }
+
+.blog-toc a {
+    display: block;
+    color: var(--secondary-text-color);
+    text-decoration: none;
+    font-family: var(--font-family-body);
+    font-size: var(--size-sm);
+    line-height: 1.5;
+    padding: 0.35rem 0 0.35rem 0.75rem;
+    border-left: 2px solid transparent;
+    transition: color var(--duration-fast), border-color var(--duration-fast);
+}
+
+.blog-toc a:hover {
+    color: var(--primary-color);
+}
+
+.blog-toc-link--active {
+    color: var(--primary-color) !important;
+    border-left-color: var(--primary-color) !important;
+}
+
+/* Desktop: TOC becomes a sticky sidebar to the right of content */
+@media (min-width: 1024px) {
+    .blog-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 240px;
+        gap: var(--space-12);
+        max-width: 1100px;
+        margin: 0 auto;
+        align-items: start;
+    }
+
+    .blog-toc {
+        display: block;
+        position: sticky;
+        top: 100px;
+        max-height: calc(100vh - 140px);
+        overflow-y: auto;
+        padding: var(--space-4) var(--space-4) var(--space-4) 0;
+    }
+
+    /* When the TOC is visible, content uses the left column directly
+       (override .blog-content's max-width). */
+    .blog-content--has-toc {
+        margin: 0;
+        max-width: none;
+    }
+}
+
+/* Mobile / tablet: TOC sits above the article (DOM order has it after, so
+   use flex + order: -1 to flip). Styled as a callout box. */
+@media (max-width: 1023px) {
+    .blog-layout {
+        display: flex;
+        flex-direction: column;
+    }
+    .blog-toc {
+        order: -1;
+        display: block;
+        margin: 0 auto var(--space-6);
+        max-width: 800px;
+        padding: var(--space-4) var(--space-5);
+        background: var(--background-color-card);
+        border: 1px solid var(--border-color-card);
+        border-radius: var(--radius-md);
+    }
+}
+
+/* Share row at the end of the article */
+.blog-share {
+    display: flex;
+    gap: var(--space-2);
+    flex-wrap: wrap;
+    align-items: center;
+    margin-top: var(--space-8);
+    padding-top: var(--space-6);
+    border-top: 1px solid var(--border-color-card);
+    font-family: var(--font-family-body);
+}
+
+.blog-share-label {
+    color: var(--secondary-text-color);
+    font-size: var(--size-sm);
+    margin-right: var(--space-2);
+}
+
+.blog-share-btn {
+    display: inline-block;
+    padding: 0.45rem 0.9rem;
+    border: 1.5px solid var(--border-color-card);
+    border-radius: var(--radius-md);
+    background: var(--background-color-card);
+    color: var(--primary-text-color);
+    font-family: var(--font-family-header);
+    font-size: var(--size-sm);
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: border-color var(--duration-fast), color var(--duration-fast), background var(--duration-fast);
+}
+
+.blog-share-btn:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+.blog-share-copy--ok {
+    border-color: var(--success-color);
+    color: var(--success-color);
+}

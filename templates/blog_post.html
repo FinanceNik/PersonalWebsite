@@ -13,6 +13,7 @@
     "headline": "{{ post.title }}",
     "description": "{{ post.summary }}",
     "datePublished": "{{ post.date }}",
+    "wordCount": {{ post.word_count }},
     "author": {
         "@type": "Person",
         "name": "Niklas Clasen",
@@ -29,6 +30,7 @@
 {% endblock %}
 
 {% block content %}
+{% set post_url = SITE_URL + '/blog/' + post.slug %}
 <div class="section"></div>
 
 <div class="container">
@@ -38,16 +40,50 @@
         {{ post.title }}
     </div>
     <h1 class="hero-title" style="text-align: left;">{{ post.title }}</h1>
-    <p class="blog-date">{{ post.date }}</p>
+    <div class="blog-post-meta">
+        <span class="blog-date">{{ post.date }}</span>
+        <span class="blog-meta-sep">·</span>
+        <span class="blog-read-time">{{ post.reading_minutes }} {{ t.blog.min_read }}</span>
+    </div>
     <hr>
 </div>
 
 <div class="section"></div>
 
-<div class="container">
-    <div class="blog-content">
+<div class="blog-layout container">
+    <article class="blog-content {{ 'blog-content--has-toc' if post.toc else '' }}">
         {{ post.content_html | safe }}
-    </div>
+
+        <div class="blog-share" role="group" aria-label="{{ t.blog.share_heading }}">
+            <span class="blog-share-label">{{ t.blog.share_heading }}:</span>
+            <a class="blog-share-btn"
+               href="https://www.linkedin.com/sharing/share-offsite/?url={{ post_url | urlencode }}"
+               target="_blank" rel="noopener" aria-label="{{ t.blog.share_linkedin }}">
+                LinkedIn
+            </a>
+            <a class="blog-share-btn"
+               href="https://twitter.com/intent/tweet?text={{ post.title | urlencode }}&url={{ post_url | urlencode }}"
+               target="_blank" rel="noopener" aria-label="{{ t.blog.share_x }}">
+                X
+            </a>
+            <button type="button" class="blog-share-btn blog-share-copy"
+                    data-share-url="{{ post_url }}"
+                    data-share-copied="{{ t.blog.share_copied }}"
+                    aria-label="{{ t.blog.share_copy }}">
+                {{ t.blog.share_copy }}
+            </button>
+        </div>
+    </article>
+    {% if post.toc %}
+    <aside class="blog-toc" aria-label="{{ t.blog.toc_heading }}">
+        <p class="blog-toc-title">{{ t.blog.toc_heading }}</p>
+        <ul>
+            {% for h in post.toc %}
+            <li class="blog-toc-l{{ h.level }}"><a href="#{{ h.id }}">{{ h.name }}</a></li>
+            {% endfor %}
+        </ul>
+    </aside>
+    {% endif %}
 </div>
 
 <div class="section"></div>

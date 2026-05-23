@@ -162,6 +162,23 @@ _blog_cache = {'mtimes': None, 'posts': []}
 _blog_cache_lock = threading.Lock()
 
 
+_WORDS_PER_MINUTE = 200  # standard reading-time heuristic
+_TOC_MIN_HEADINGS = 3    # don't bother rendering a TOC for short posts
+
+
+def _flatten_toc(toc_tokens):
+    """Walk the markdown `toc` extension's nested toc_tokens into a flat list
+    of {level, name, id} dicts suitable for rendering a single-column TOC."""
+    out = []
+    def walk(node, depth):
+        out.append({'level': node.get('level', depth), 'name': node.get('name', ''), 'id': node.get('id', '')})
+        for child in node.get('children', []) or []:
+            walk(child, depth + 1)
+    for top in toc_tokens or []:
+        walk(top, 2)
+    return out
+
+
 def _parse_blog_post(filepath, filename):
     with open(filepath, encoding='utf-8') as f:
         content = f.read()
@@ -176,6 +193,19 @@ def _parse_blog_post(filepath, filename):
         meta[key.strip()] = value.strip()
     tags_raw = meta.get('tags', '')
     tags = [t.strip() for t in tags_raw.split(',') if t.strip()] if tags_raw else []
+
+    # Render once with the toc extension so headings get id attributes and we
+    # can build a sidebar TOC from md.toc_tokens.
+    md = markdown.Markdown(extensions=['fenced_code', 'tables', 'toc'],
+                           extension_configs={'toc': {'permalink': False}})
+    content_html = md.convert(body)
+    toc = _flatten_toc(getattr(md, 'toc_tokens', []))
+
+    # Reading time: count whitespace-separated tokens in the raw body
+    # (markdown source). Strip frontmatter already done. Round up.
+    word_count = len(re.findall(r'\S+', body))
+    reading_minutes = max(1, round(word_count / _WORDS_PER_MINUTE))
+
     return {
         'slug': filename.replace('.md', ''),
         'title': meta.get('title', 'Untitled'),
@@ -185,7 +215,10 @@ def _parse_blog_post(filepath, filename):
         # Optional `cover:` frontmatter — path relative to /static/.
         # If set, blog_post.html uses it as og:image for nicer social shares.
         'cover': meta.get('cover', ''),
-        'content_html': markdown.markdown(body, extensions=['fenced_code', 'tables'])
+        'content_html': content_html,
+        'toc': toc if len(toc) >= _TOC_MIN_HEADINGS else [],
+        'reading_minutes': reading_minutes,
+        'word_count': word_count,
     }
 
 
@@ -363,13 +396,32 @@ def blog():
     return render_template('blog.html', posts=filtered, all_tags=all_tags, active_tag=active_tag)
 
 
+def _related_posts(posts, current, limit=3):
+    """Pick the most relevant siblings to `current` from `posts`.
+
+    Score = number of overlapping tags. Tiebreak: more-recent post first
+    (date desc). If no posts share any tag (e.g., a single-post site), fall
+    back to the most recent siblings.
+    """
+    current_tags = set(current.get('tags', []))
+    siblings = [p for p in posts if p['slug'] != current['slug']]
+
+    def score(p):
+        overlap = len(current_tags & set(p.get('tags', [])))
+        # Higher overlap wins; within a tie, more-recent date wins
+        return (overlap, p.get('date', ''))
+
+    siblings.sort(key=score, reverse=True)
+    return siblings[:limit]
+
+
 @app.route('/blog/<slug>')
 def blog_post(slug):
     posts = get_blog_posts()
     post = next((p for p in posts if p['slug'] == slug), None)
     if post is None:
         return render_template('404.html'), 404
-    related = [p for p in posts if p['slug'] != slug][:3]
+    related = _related_posts(posts, post)
     return render_template('blog_post.html', post=post, related=related)
 
 

@@ -696,3 +696,77 @@ def test_blog_post_missing_date_renders(client, tmp_path, monkeypatch):
     resp = client.get('/blog/no-date')
     assert resp.status_code == 200
     assert b'Dateless' in resp.data
+
+
+# --- Blog reading experience (reading time, TOC, share, related) -------------
+
+def test_blog_post_reports_reading_time(client):
+    """Every blog post should show its reading time."""
+    import app as flask_app_module
+    posts = flask_app_module.get_blog_posts()
+    assert posts
+    for p in posts:
+        assert p['reading_minutes'] >= 1, f'{p["slug"]} reading_minutes={p["reading_minutes"]}'
+        assert p['word_count'] > 0
+    # And the rendered template surfaces it
+    resp = client.get(f'/blog/{posts[0]["slug"]}')
+    assert resp.status_code == 200
+    assert b'min read' in resp.data
+
+
+def test_blog_post_has_toc_when_long_enough(client):
+    """Posts with 3+ headings get a TOC; short posts don't."""
+    import app as flask_app_module
+    posts = flask_app_module.get_blog_posts()
+    assert posts
+    # Each fixture post has multiple h2s — they should get a TOC
+    long_post = next(p for p in posts if len(p['toc']) >= 3)
+    resp = client.get(f'/blog/{long_post["slug"]}')
+    body = resp.data.decode()
+    assert 'blog-toc' in body
+    assert 'On this page' in body
+    # Every TOC entry should link to an anchor that exists in the rendered HTML
+    for entry in long_post['toc']:
+        assert f'id="{entry["id"]}"' in long_post['content_html'], (
+            f'heading {entry["name"]!r} missing id attribute'
+        )
+
+
+def test_blog_post_share_buttons_present(client):
+    import app as flask_app_module
+    posts = flask_app_module.get_blog_posts()
+    resp = client.get(f'/blog/{posts[0]["slug"]}')
+    body = resp.data.decode()
+    assert 'linkedin.com/sharing/share-offsite' in body
+    assert 'twitter.com/intent/tweet' in body
+    assert 'blog-share-copy' in body
+
+
+def test_related_posts_prefer_tag_overlap():
+    """_related_posts should rank by tag overlap before date."""
+    import app as flask_app_module
+    posts = [
+        {'slug': 'a', 'date': '2026-01-01', 'tags': ['Power BI', 'DAX']},
+        {'slug': 'b', 'date': '2026-02-01', 'tags': ['Fabric']},
+        {'slug': 'c', 'date': '2026-03-01', 'tags': ['Power BI']},  # 1 tag overlap, newest
+        {'slug': 'd', 'date': '2026-04-01', 'tags': []},            # 0 overlap, newest
+    ]
+    related = flask_app_module._related_posts(posts, posts[0], limit=3)
+    # 'c' shares Power BI; should rank above 'd' (no overlap) and 'b' (no overlap)
+    assert related[0]['slug'] == 'c'
+    # Among the no-overlap posts, the more recent date wins
+    assert [p['slug'] for p in related[1:]] == ['d', 'b']
+
+
+def test_related_posts_falls_back_when_no_overlap():
+    import app as flask_app_module
+    current = {'slug': 'x', 'date': '2026-01-01', 'tags': ['unique-tag']}
+    posts = [
+        current,
+        {'slug': 'a', 'date': '2026-02-01', 'tags': ['other']},
+        {'slug': 'b', 'date': '2026-03-01', 'tags': ['another']},
+    ]
+    related = flask_app_module._related_posts(posts, current, limit=3)
+    assert {p['slug'] for p in related} == {'a', 'b'}
+    # Most recent first within the tie
+    assert related[0]['slug'] == 'b'
