@@ -5,10 +5,17 @@ import json
 import markdown
 from datetime import datetime, timezone
 from functools import wraps
-from flask import Flask, render_template, request, flash, redirect, url_for, send_from_directory, g, session, Response, make_response
+from flask import Flask, render_template, request, flash, redirect, url_for, send_from_directory, g, session, Response
 from flask_wtf.csrf import CSRFProtect
 from dotenv import load_dotenv
 import database_helper
+import notifications
+
+# --- Form input bounds (server-side; the client also has maxlength) ---
+MAX_NAME_LEN = 100
+MAX_EMAIL_LEN = 200
+MAX_COUNTRY_LEN = 100
+MAX_MESSAGE_LEN = 2000
 
 load_dotenv()
 
@@ -25,7 +32,27 @@ if not DEBUG_MODE and (not SECRET_KEY or SECRET_KEY == PLACEHOLDER_SECRET):
 app = Flask(__name__, template_folder='templates', static_folder='static')
 app.secret_key = SECRET_KEY or PLACEHOLDER_SECRET
 
+# Session cookie hardening. SECURE only in production (HTTPS); requiring it
+# in dev would lose the cookie over plain http://localhost.
+app.config.update(
+    SESSION_COOKIE_HTTPONLY=True,
+    SESSION_COOKIE_SAMESITE='Lax',
+    SESSION_COOKIE_SECURE=not DEBUG_MODE,
+    PERMANENT_SESSION_LIFETIME=60 * 60 * 24 * 30,  # 30 days — lang preference survives browser restart
+)
+
 csrf = CSRFProtect(app)
+
+# Rate limiting. In-memory storage is fine for a single Flask process; for
+# multi-worker deployments, point RATELIMIT_STORAGE_URI at redis.
+from flask_limiter import Limiter
+from flask_limiter.util import get_remote_address
+limiter = Limiter(
+    key_func=get_remote_address,
+    app=app,
+    default_limits=[],  # nothing by default — opt-in per route
+    storage_uri=os.getenv('RATELIMIT_STORAGE_URI', 'memory://'),
+)
 
 # --- Translation system ---
 SUPPORTED_LANGS = ['en', 'de']
@@ -50,8 +77,42 @@ def set_language():
     lang = request.args.get('lang')
     if lang in SUPPORTED_LANGS:
         session['lang'] = lang
+        session.permanent = True
     g.lang = session.get('lang', DEFAULT_LANG)
     g.t = load_translations(g.lang)
+
+
+# Defense-in-depth security headers. CSP allows 'unsafe-inline' for the
+# inline <script> bootstrap, JSON-LD, and cookie-consent script; full
+# nonce/hash CSP would be stricter but the inline scripts here are stable
+# and the XSS surface is small (no user-generated content rendered).
+_CSP = (
+    "default-src 'self'; "
+    "script-src 'self' 'unsafe-inline'; "
+    "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; "
+    "font-src 'self' https://fonts.gstatic.com; "
+    "img-src 'self' data:; "
+    "connect-src 'self'; "
+    "frame-ancestors 'none'; "
+    "base-uri 'self'; "
+    "form-action 'self' mailto:; "
+    "object-src 'none'"
+)
+
+
+@app.after_request
+def add_security_headers(resp):
+    resp.headers.setdefault('Content-Security-Policy', _CSP)
+    resp.headers.setdefault('X-Content-Type-Options', 'nosniff')
+    resp.headers.setdefault('X-Frame-Options', 'DENY')
+    resp.headers.setdefault('Referrer-Policy', 'strict-origin-when-cross-origin')
+    resp.headers.setdefault('Permissions-Policy',
+                            'camera=(), microphone=(), geolocation=(), interest-cohort=()')
+    if not DEBUG_MODE:
+        # HSTS only in prod (HTTPS). 1 year, includeSubDomains; no preload yet.
+        resp.headers.setdefault('Strict-Transport-Security',
+                                'max-age=31536000; includeSubDomains')
+    return resp
 
 
 SITE_URL = os.getenv('SITE_URL', 'https://niklasclasen.com')
@@ -202,9 +263,14 @@ def search():
 
 
 @app.route('/download-checklist', methods=['POST'])
+@limiter.limit('5 per hour')
 def download_checklist():
-    name = request.form.get('name', '').strip()
-    email = request.form.get('email', '').strip()
+    # Honeypot: silently 404 bots that fill the hidden field.
+    if request.form.get('website', '').strip():
+        return render_template('404.html'), 404
+
+    name = request.form.get('name', '').strip()[:MAX_NAME_LEN]
+    email = request.form.get('email', '').strip()[:MAX_EMAIL_LEN]
 
     if not name or not email:
         flash('Please enter your name and email.', 'error')
@@ -216,6 +282,11 @@ def download_checklist():
 
     try:
         database_helper.insert_lead(name, email, 'checklist')
+    except Exception:
+        pass
+
+    try:
+        notifications.send_lead_notification(name, email, source='checklist')
     except Exception:
         pass
 
@@ -264,12 +335,18 @@ def blog_post(slug):
 
 
 @app.route('/submit_contact_form', methods=['POST'])
+@limiter.limit('5 per hour')
 def submit_contact_form():
-    firstname = request.form.get('firstname', '').strip()
-    lastname = request.form.get('lastname', '').strip()
-    country = request.form.get('country', '').strip()
-    email = request.form.get('email', '').strip()
-    message = request.form.get('message', '').strip()
+    # Honeypot — a hidden field named "website" that real users don't see.
+    # Bots that auto-fill every input populate it; silently drop them.
+    if request.form.get('website', '').strip():
+        return redirect(url_for('thank_you', name=request.form.get('firstname', '').strip()))
+
+    firstname = request.form.get('firstname', '').strip()[:MAX_NAME_LEN]
+    lastname = request.form.get('lastname', '').strip()[:MAX_NAME_LEN]
+    country = request.form.get('country', '').strip()[:MAX_COUNTRY_LEN]
+    email = request.form.get('email', '').strip()[:MAX_EMAIL_LEN]
+    message = request.form.get('message', '').strip()[:MAX_MESSAGE_LEN]
 
     # Validate required fields
     if not all([firstname, lastname, email, message]):
@@ -287,6 +364,13 @@ def submit_contact_form():
         flash('Something went wrong. Please try again later.', 'error')
         return redirect(url_for('contact'))
 
+    # Notify the operator (SMTP if configured, stderr fallback otherwise).
+    # Never let a notification failure break the user-facing flow.
+    try:
+        notifications.send_contact_notification(firstname, lastname, country, email, message)
+    except Exception:
+        pass
+
     return redirect(url_for('thank_you', name=firstname))
 
 
@@ -298,14 +382,26 @@ def thank_you():
 
 # --- Analytics ---
 
+_VALID_PATH = re.compile(r'^/[A-Za-z0-9/_.\-]{0,200}$')
+
+
 @app.route('/api/pageview', methods=['POST'])
 @csrf.exempt
+@limiter.limit('60 per minute')
 def track_pageview():
     try:
         data = request.get_json(silent=True) or {}
         path = data.get('path', request.path)
         referrer = data.get('referrer', '')
         lang = data.get('lang', g.lang)
+        # Validate path so spammers can't pollute /analytics with arbitrary strings
+        if not isinstance(path, str) or not _VALID_PATH.match(path):
+            return '', 204
+        # Cap referrer + lang length; lang must be one of the supported codes
+        if not isinstance(referrer, str): referrer = ''
+        referrer = referrer[:500]
+        if lang not in SUPPORTED_LANGS:
+            lang = DEFAULT_LANG
         ua = request.headers.get('User-Agent', '')[:300]
         database_helper.insert_pageview(path, referrer, lang, ua)
     except Exception:

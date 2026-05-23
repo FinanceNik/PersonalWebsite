@@ -33,6 +33,9 @@ def app():
     flask_app_module.app.config['TESTING'] = True
     # WTF CSRF off in tests so we can POST forms without fetching a token.
     flask_app_module.app.config['WTF_CSRF_ENABLED'] = False
+    # Rate limiting off by default so repeated form POSTs don't trip the 5/hour
+    # bucket. Tests that exercise the limiter re-enable it locally.
+    flask_app_module.limiter.enabled = False
     return flask_app_module.app
 
 

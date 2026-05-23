@@ -233,3 +233,152 @@ def test_blog_cache_hit(client):
     cached_id = id(first)
     second = flask_app_module.get_blog_posts()
     assert id(second) == cached_id, 'second call should return the same cached list'
+
+
+# --- Security headers --------------------------------------------------------
+
+@pytest.mark.parametrize('header,expected_substr', [
+    ('Content-Security-Policy', "default-src 'self'"),
+    ('X-Content-Type-Options', 'nosniff'),
+    ('X-Frame-Options', 'DENY'),
+    ('Referrer-Policy', 'strict-origin'),
+    ('Permissions-Policy', 'geolocation=()'),
+])
+def test_security_headers_present(client, header, expected_substr):
+    resp = client.get('/')
+    assert header in resp.headers, f'missing {header}'
+    assert expected_substr in resp.headers[header], (
+        f'{header} = {resp.headers[header]!r}, expected to contain {expected_substr!r}'
+    )
+
+
+def test_csp_blocks_framing(client):
+    resp = client.get('/')
+    assert "frame-ancestors 'none'" in resp.headers.get('Content-Security-Policy', '')
+
+
+def test_session_cookie_flags_in_prod_only(app):
+    """SECURE only flips on when FLASK_DEBUG != True."""
+    assert app.config['SESSION_COOKIE_HTTPONLY'] is True
+    assert app.config['SESSION_COOKIE_SAMESITE'] == 'Lax'
+    # In the test harness FLASK_DEBUG is True, so SECURE should be False
+    assert app.config['SESSION_COOKIE_SECURE'] is False
+
+
+# --- Honeypot + input bounds -------------------------------------------------
+
+def test_contact_honeypot_silently_drops_bot(client):
+    """If the hidden `website` field is populated, treat as a bot.
+    Should redirect like success (no flash error) but NOT persist the submission."""
+    import app as flask_app_module
+    before = _row_count(flask_app_module, 'contactRequests')
+    resp = client.post('/submit_contact_form', data={
+        'firstname': 'Bot', 'lastname': 'Spam', 'email': 'bot@spam.example',
+        'message': 'hi', 'website': 'http://spam.example',
+    }, follow_redirects=False)
+    assert resp.status_code == 302
+    after = _row_count(flask_app_module, 'contactRequests')
+    assert after == before, 'honeypot trip should NOT insert into contactRequests'
+
+
+def test_checklist_honeypot_returns_404(client):
+    resp = client.post('/download-checklist', data={
+        'name': 'Bot', 'email': 'bot@spam.example', 'website': 'spam',
+    })
+    assert resp.status_code == 404
+
+
+def test_contact_long_message_truncated_not_rejected(client):
+    """Server-side max-length: massive input is truncated, not crashed."""
+    huge = 'a' * 100_000
+    resp = client.post('/submit_contact_form', data={
+        'firstname': 'Test', 'lastname': 'User',
+        'email': 'test@example.com', 'message': huge,
+    }, follow_redirects=False)
+    assert resp.status_code == 302
+    assert '/thank-you' in resp.headers['Location']
+
+
+# --- /api/pageview validation ------------------------------------------------
+
+def test_pageview_rejects_bogus_path(client):
+    """Spammer can't fill the analytics dashboard with arbitrary strings."""
+    import app as flask_app_module
+    before = _row_count(flask_app_module, 'pageviews')
+    resp = client.post('/api/pageview', json={
+        'path': 'https://evil.example/<script>alert(1)</script>',
+        'referrer': 'x' * 1000,
+        'lang': 'xx',
+    })
+    assert resp.status_code == 204
+    after = _row_count(flask_app_module, 'pageviews')
+    assert after == before, 'invalid path should not insert a row'
+
+
+def test_pageview_accepts_valid_path(client):
+    import app as flask_app_module
+    before = _row_count(flask_app_module, 'pageviews')
+    resp = client.post('/api/pageview', json={'path': '/services', 'lang': 'en'})
+    assert resp.status_code == 204
+    assert _row_count(flask_app_module, 'pageviews') == before + 1
+
+
+# --- Rate limiting -----------------------------------------------------------
+
+def test_contact_form_rate_limit(app, client):
+    """5 per hour on /submit_contact_form. 6th should 429."""
+    app_module_limiter = _enable_limiter(app)
+    try:
+        data = {'firstname': 'T', 'lastname': 'U', 'email': 't@example.com', 'message': 'hi'}
+        for _ in range(5):
+            r = client.post('/submit_contact_form', data=data)
+            assert r.status_code in (302, 200), f'unexpected {r.status_code} within limit'
+        r = client.post('/submit_contact_form', data=data)
+        assert r.status_code == 429, f'6th submit should be rate-limited, got {r.status_code}'
+    finally:
+        app_module_limiter.enabled = False
+        app_module_limiter.reset()
+
+
+# --- Helpers -----------------------------------------------------------------
+
+def _row_count(flask_app_module, table):
+    import sqlite3
+    db_path = flask_app_module.database_helper.DB_PATH
+    with sqlite3.connect(db_path) as conn:
+        return conn.execute(f'SELECT COUNT(*) FROM {table}').fetchone()[0]
+
+
+def _enable_limiter(app):
+    import app as flask_app_module
+    flask_app_module.limiter.enabled = True
+    flask_app_module.limiter.reset()
+    return flask_app_module.limiter
+
+
+# --- Notifications -----------------------------------------------------------
+
+def test_contact_notification_logs_when_smtp_not_configured(client, monkeypatch, capsys):
+    """With SMTP env vars unset, the notification falls back to stderr."""
+    for var in ('SMTP_HOST', 'SMTP_USER', 'SMTP_PASSWORD', 'NOTIFY_EMAIL'):
+        monkeypatch.delenv(var, raising=False)
+    resp = client.post('/submit_contact_form', data={
+        'firstname': 'Niklas', 'lastname': 'Tester',
+        'email': 'lead@example.com', 'message': 'Real lead.',
+    }, follow_redirects=False)
+    assert resp.status_code == 302
+    captured = capsys.readouterr()
+    assert 'LEAD NOTIFICATION' in captured.err
+    assert 'lead@example.com' in captured.err
+    assert 'Real lead.' in captured.err
+
+
+def test_notifications_module_does_not_raise_on_smtp_failure(monkeypatch):
+    """Even with bogus SMTP config, the notify call must not raise."""
+    import notifications
+    monkeypatch.setenv('SMTP_HOST', 'nonexistent.invalid')
+    monkeypatch.setenv('SMTP_USER', 'u')
+    monkeypatch.setenv('SMTP_PASSWORD', 'p')
+    monkeypatch.setenv('NOTIFY_EMAIL', 'n@example.com')
+    # Should not raise — failure logs and continues.
+    notifications.send_contact_notification('A', 'B', 'CH', 'a@b.com', 'msg')

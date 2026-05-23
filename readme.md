@@ -34,12 +34,26 @@ Personal website and blog for a technology consultant specializing in Microsoft 
    SITE_URL=https://yourdomain.example
    ANALYTICS_USER=admin
    ANALYTICS_PASSWORD=<a strong password>
+
+   # Lead notifications — leave blank to log to stderr instead.
+   SMTP_HOST=smtp.gmail.com
+   SMTP_PORT=587
+   SMTP_USER=you@example.com
+   SMTP_PASSWORD=<app password>
+   SMTP_FROM=you@example.com
+   NOTIFY_EMAIL=you@example.com
+
+   # Multi-worker only — defaults to in-memory.
+   RATELIMIT_STORAGE_URI=memory://
    ```
 
    Notes:
    - `FLASK_DEBUG=True` enables Werkzeug's interactive debugger, which is an RCE vector. Only use it on your local machine.
    - When `FLASK_DEBUG` is not `True`, the app refuses to start unless `SECRET_KEY` is set to a non-placeholder value.
    - `ANALYTICS_USER` / `ANALYTICS_PASSWORD` gate the `/analytics` dashboard via HTTP Basic Auth. If either is unset, the route returns 404.
+   - **Lead notifications**: when SMTP env vars are set, every `/submit_contact_form` and `/download-checklist` submission emails `NOTIFY_EMAIL` with the lead's details (Reply-To set to their address). When SMTP is unset, the submission is logged to stderr in a clearly-bracketed block so it shows up in `journalctl` or `docker logs` — lead capture is never silently broken.
+   - **Rate limits**: form submits capped at 5/hour per IP; `/api/pageview` at 60/minute. Both forms include a hidden honeypot field that silently drops bot submissions.
+   - **Security headers** (CSP, X-Frame-Options: DENY, Referrer-Policy, Permissions-Policy) are set on every response. HSTS is added only when `FLASK_DEBUG` is False.
 
 ## Usage
 
