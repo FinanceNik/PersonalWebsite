@@ -2,6 +2,7 @@ import hmac
 import os
 import re
 import json
+import threading
 import markdown
 from datetime import datetime, timezone
 from functools import wraps
@@ -58,18 +59,28 @@ limiter = Limiter(
 SUPPORTED_LANGS = ['en', 'de']
 DEFAULT_LANG = 'en'
 _translations_cache = {}
+_translations_lock = threading.Lock()
 
 
 def load_translations(lang):
-    if lang in _translations_cache:
+    # Lock-free fast path for the common case (cache hit). Dict reads are
+    # atomic in CPython, so a missed-then-loaded entry is safe to read here.
+    cached = _translations_cache.get(lang)
+    if cached is not None:
+        return cached
+    with _translations_lock:
+        # Re-check under the lock — another thread may have populated it
+        # while we were waiting.
+        cached = _translations_cache.get(lang)
+        if cached is not None:
+            return cached
+        path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'translations', f'{lang}.json')
+        if os.path.exists(path):
+            with open(path, 'r', encoding='utf-8') as f:
+                _translations_cache[lang] = json.load(f)
+        else:
+            _translations_cache[lang] = {}
         return _translations_cache[lang]
-    path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'translations', f'{lang}.json')
-    if os.path.exists(path):
-        with open(path, 'r', encoding='utf-8') as f:
-            _translations_cache[lang] = json.load(f)
-    else:
-        _translations_cache[lang] = {}
-    return _translations_cache[lang]
 
 
 @app.before_request
@@ -137,6 +148,7 @@ project_slugs = (
 
 _BLOG_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'blog_posts')
 _blog_cache = {'mtimes': None, 'posts': []}
+_blog_cache_lock = threading.Lock()
 
 
 def _parse_blog_post(filepath, filename):
@@ -164,22 +176,31 @@ def _parse_blog_post(filepath, filename):
 
 
 def get_blog_posts():
-    """Return cached posts, re-parsing only when a markdown file's mtime changes."""
+    """Return cached posts, re-parsing only when a markdown file's mtime changes.
+
+    Thread-safe: cache hits take the lock-free fast path; the rebuild path is
+    serialized under _blog_cache_lock so two concurrent first-callers don't
+    both parse the markdown.
+    """
     if not os.path.exists(_BLOG_DIR):
         return []
     files = [f for f in os.listdir(_BLOG_DIR) if f.endswith('.md')]
     mtimes = {f: os.path.getmtime(os.path.join(_BLOG_DIR, f)) for f in files}
     if mtimes == _blog_cache['mtimes']:
         return _blog_cache['posts']
-    posts = []
-    for filename in files:
-        post = _parse_blog_post(os.path.join(_BLOG_DIR, filename), filename)
-        if post is not None:
-            posts.append(post)
-    posts.sort(key=lambda p: p['date'], reverse=True)
-    _blog_cache['mtimes'] = mtimes
-    _blog_cache['posts'] = posts
-    return posts
+    with _blog_cache_lock:
+        # Re-check under the lock to avoid duplicate work when threads race.
+        if mtimes == _blog_cache['mtimes']:
+            return _blog_cache['posts']
+        posts = []
+        for filename in files:
+            post = _parse_blog_post(os.path.join(_BLOG_DIR, filename), filename)
+            if post is not None:
+                posts.append(post)
+        posts.sort(key=lambda p: p['date'], reverse=True)
+        _blog_cache['mtimes'] = mtimes
+        _blog_cache['posts'] = posts
+        return posts
 
 
 # --- Routes ---

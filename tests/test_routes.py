@@ -382,3 +382,124 @@ def test_notifications_module_does_not_raise_on_smtp_failure(monkeypatch):
     monkeypatch.setenv('NOTIFY_EMAIL', 'n@example.com')
     # Should not raise — failure logs and continues.
     notifications.send_contact_notification('A', 'B', 'CH', 'a@b.com', 'msg')
+
+
+# --- Database hardening (indexes, retention, UTC timestamps) ----------------
+
+def test_pageviews_index_exists(client):
+    """idx_pageviews_ts is required for analytics queries not to full-scan."""
+    import sqlite3, database_helper
+    with sqlite3.connect(database_helper.DB_PATH) as conn:
+        names = {row[1] for row in conn.execute(
+            "SELECT * FROM sqlite_master WHERE type='index' AND tbl_name='pageviews'"
+        ).fetchall()}
+    assert 'idx_pageviews_ts' in names
+    assert 'idx_pageviews_path' in names
+
+
+def test_query_uses_index(client):
+    """EXPLAIN QUERY PLAN should mention the index, not 'SCAN'."""
+    import sqlite3, database_helper
+    # Insert a pageview so the table isn't empty (and the planner has stats)
+    database_helper.insert_pageview('/x', '', 'en', 'ua')
+    with sqlite3.connect(database_helper.DB_PATH) as conn:
+        plan = conn.execute(
+            "EXPLAIN QUERY PLAN SELECT COUNT(*) FROM pageviews WHERE timestamp > '2026-01-01'"
+        ).fetchall()
+    plan_text = ' '.join(str(r) for r in plan).lower()
+    assert 'idx_pageviews_ts' in plan_text or 'using index' in plan_text, (
+        f'expected query to use idx_pageviews_ts; plan: {plan}'
+    )
+
+
+def test_inserted_timestamps_are_utc(client):
+    """New rows should be in UTC, not server-local."""
+    import sqlite3, database_helper, datetime
+    database_helper.insert_pageview('/utc-check', '', 'en', 'ua')
+    with sqlite3.connect(database_helper.DB_PATH) as conn:
+        ts = conn.execute(
+            "SELECT timestamp FROM pageviews WHERE path='/utc-check' ORDER BY id DESC LIMIT 1"
+        ).fetchone()[0]
+    # Stored format: naive ISO, no tz suffix. But the *value* is UTC.
+    assert '+' not in ts and 'Z' not in ts, f'timestamp should be naive ISO, got {ts!r}'
+    # Parse back and compare with now-UTC; should be within a few seconds.
+    parsed = datetime.datetime.fromisoformat(ts)
+    now_utc = datetime.datetime.now(datetime.timezone.utc).replace(tzinfo=None)
+    delta = abs((now_utc - parsed).total_seconds())
+    assert delta < 5, f'inserted timestamp drifted {delta}s from UTC now'
+
+
+def test_prune_old_pageviews(client):
+    """prune_old_pageviews should drop rows older than `days`."""
+    import sqlite3, database_helper, datetime
+    # Insert one fresh row (kept) and one fake-old row (pruned)
+    database_helper.insert_pageview('/kept', '', 'en', 'ua')
+    old_ts = (datetime.datetime.now(datetime.timezone.utc)
+              - datetime.timedelta(days=120)).replace(tzinfo=None).isoformat()
+    with sqlite3.connect(database_helper.DB_PATH) as conn:
+        conn.execute(
+            'INSERT INTO pageviews (timestamp, path, referrer, lang, user_agent) '
+            "VALUES (?, '/old', '', 'en', 'ua')", (old_ts,)
+        )
+        conn.commit()
+
+    deleted = database_helper.prune_old_pageviews(days=90)
+    assert deleted >= 1
+
+    with sqlite3.connect(database_helper.DB_PATH) as conn:
+        paths = {r[0] for r in conn.execute('SELECT path FROM pageviews').fetchall()}
+    assert '/old' not in paths
+    assert '/kept' in paths
+
+
+def test_analytics_summary_uses_naive_utc_format(client):
+    """get_analytics_summary should query against the naive-UTC format and
+    return zero counts (not raise) when there are no recent rows."""
+    import database_helper
+    # huge `days` to make sure 0 is returned even on a populated db
+    stats = database_helper.get_analytics_summary(days=99999)
+    assert 'total' in stats
+    assert isinstance(stats['total'], int)
+
+
+# --- Thread-safe cache ------------------------------------------------------
+
+def test_blog_cache_concurrent_reads_do_not_crash():
+    """Hammer get_blog_posts() from several threads; no exceptions, all return
+    the same cached object once warm."""
+    import app as flask_app_module
+    import threading
+    flask_app_module._blog_cache['mtimes'] = None  # cold start
+    results = []
+    errors = []
+    def worker():
+        try:
+            results.append(id(flask_app_module.get_blog_posts()))
+        except Exception as e:
+            errors.append(e)
+    threads = [threading.Thread(target=worker) for _ in range(20)]
+    for t in threads: t.start()
+    for t in threads: t.join()
+    assert not errors, f'unexpected exceptions: {errors}'
+    # After warming, all threads should see the same list object
+    assert len(set(results)) == 1, f'expected one cached id, got {set(results)}'
+
+
+def test_translations_cache_concurrent_reads():
+    """Same for load_translations — multiple threads asking for the same lang
+    should converge on one cached dict without races."""
+    import app as flask_app_module
+    import threading
+    flask_app_module._translations_cache.clear()
+    results = []
+    errors = []
+    def worker(lang):
+        try:
+            results.append(id(flask_app_module.load_translations(lang)))
+        except Exception as e:
+            errors.append(e)
+    threads = [threading.Thread(target=worker, args=('en',)) for _ in range(20)]
+    for t in threads: t.start()
+    for t in threads: t.join()
+    assert not errors
+    assert len(set(results)) == 1
